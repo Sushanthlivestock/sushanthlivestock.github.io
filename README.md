@@ -1,2 +1,2 @@
-# -sushanthlivestock.github.io
+# sushanthlivestock.github.io
 Valparai trip
