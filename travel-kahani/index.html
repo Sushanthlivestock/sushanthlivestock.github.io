@@ -1290,7 +1290,7 @@ const D = {"states":[
     signIn: function (email, pw) {
       if (SB) return sb().then(function (c) { return c.auth.signInWithPassword({ email: email, password: pw }); }).then(chk).then(function (d) { return d.user; });
       if (email.toLowerCase() === DEMO.email && pw === DEMO.pw) { store.set(DEMO.key, DEMO.email); return Promise.resolve({ email: DEMO.email }); }
-      return Promise.reject(new Error("That email and password don\u2019t match. In this preview, use the demo login below."));
+      return Promise.reject(new Error("That email and password don\u2019t match. Check them and try again."));
     },
     user: function () {
       if (SB) return sb().then(function (c) { return c.auth.getSession(); }).then(chk).then(function (d) { return d.session ? d.session.user : null; });
@@ -1330,7 +1330,7 @@ const D = {"states":[
       '<form class="x-qcard x-form" id="lg" novalidate><label class="x-field">Email<input type="email" name="email" required autocomplete="username" /></label>' + pwField("lg-pw", "Password", "current-password") +
       '<p class="x-err" id="lg-err" role="alert" hidden></p><button class="x-btn x-btn--gold" type="submit">Sign in</button>' +
       '<p class="x-muted" style="font-size:14px">Accounts are created by Travel Kahani after enrolment. Forgot password? <a href="' + wa("Hi Travel Kahani! I forgot my Academy password.") + '" target="_blank" rel="noopener">Message us on WhatsApp</a>.</p>' +
-      demoBox("<span>Email <code>" + DEMO.email + "</code></span><span>Password <code>" + DEMO.pw + "</code></span>") + "</form></section>";
+      "</form></section>";
     auth.user().then(function (u) { if (u && still("#/academy/login")) location.replace("#/academy/dashboard"); }).catch(function () {});
   }
 
@@ -1373,7 +1373,7 @@ const D = {"states":[
     var id = (r.q.get("id") || "").trim().toUpperCase();
     view.innerHTML = '<section class="x-quiz x-auth"><p class="x-tag">Travel Kahani Academy</p><h1 style="font-size:clamp(30px,5vw,42px);margin:8px 0 6px">Verify a certificate</h1><p class="x-muted" style="margin-bottom:16px">Enter the ID printed on the certificate, or scan its QR code.</p>' +
       '<form class="x-qcard x-form" id="vf" novalidate><label class="x-field">Certificate ID<input type="text" name="cid" value="' + esc(id) + '" placeholder="TK-2026-XXXXX" autocomplete="off" autocapitalize="characters" spellcheck="false" required /></label><button class="x-btn x-btn--gold" type="submit">Verify</button>' +
-      demoBox("<span>Try <code>TK-2026-00001</code> for a sample certificate.</span>") + '</form><div id="vr" aria-live="polite" style="margin-top:20px"></div></section>';
+      '</form><div id="vr" aria-live="polite" style="margin-top:20px"></div></section>';
     if (!id) return;
     var out = $("#vr");
     var bad = function (msg) { out.innerHTML = '<div class="x-cert is-bad"><p class="x-tag x-tag--terra">Not found</p><h3>' + esc(id) + "</h3><p>" + msg + "</p></div>"; };
