@@ -16,8 +16,8 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Noto+Sans+Telugu:wght@400;600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap"
     />
-    <link rel="stylesheet" href="tk.css" />
-    <link rel="stylesheet" href="tk-hero.css" />
+    <link rel="stylesheet" href="hark.css" />
+    <link rel="stylesheet" href="hark-hero.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
       :root { color-scheme: light; --x-cream:#FBF7EE; --x-teal:#0F4C4A; --x-gold:#C8962E; --x-sage:#A9BFA8; --x-terra:#D99A7E; --x-ink:#2B2B2B; --x-grey:#DCD8CF; --x-serif:"Fraunces", Georgia, serif; --x-body:"Inter","Noto Sans Telugu",system-ui,sans-serif; }
@@ -205,39 +205,41 @@
       .x-meta div { background: var(--x-cream); border: 1.5px solid var(--x-ink); border-radius: var(--r-l); padding: 12px 16px; font-size: 15px; }
       .x-meta small { display: block; font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--x-teal); }
       @media (prefers-reduced-motion: reduce) { .x-flip__in { transition: none; } }
-      input[type=email], input[type=password] { min-height: var(--tap); border: 1.5px solid var(--x-ink); border-radius: var(--r-s); background: var(--x-cream); padding: 0 12px; font: 400 15px var(--x-body); color: var(--x-ink); width: 100%; }
+      input[type=text] { min-height: var(--tap); border: 1.5px solid var(--x-ink); border-radius: var(--r-s); background: var(--x-cream); padding: 0 12px; font: 400 15px var(--x-body); color: var(--x-ink); width: 100%; }
       .x-auth { max-width: 460px; }
-      .x-pw { display: flex; gap: 8px; }
-      .x-pw input { flex: 1; min-width: 0; }
       .x-err { color: #8a2f17; font-size: 14px; font-weight: 600; }
-      .x-ok { color: var(--x-teal); font-size: 14px; font-weight: 600; }
-      .x-demo { border: 1.5px dashed var(--x-ink); border-radius: var(--r-l); background: var(--x-cream); padding: 12px 16px; font-size: 14px; display: grid; gap: 2px; }
-      .x-demo b { font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--x-teal); }
-      .x-demo code { font: 500 14px var(--x-body); }
-      .x-dhead { display: grid; gap: 20px; align-items: center; margin-top: 20px; }
-      @media (min-width: 640px) { .x-dhead { grid-template-columns: auto 1fr; } }
-      .x-ring { width: 140px; height: 140px; }
-      .x-ring circle { fill: none; stroke-width: 12; }
-      .x-ring .x-ring__bg { stroke: var(--x-grey); }
-      .x-ring .x-ring__fg { stroke: var(--x-gold); stroke-linecap: round; transition: stroke-dashoffset var(--dur-draw) var(--ease-out); }
-      .x-ring text { font: 600 26px var(--x-serif); fill: var(--x-teal); }
-      .x-ring .x-ring__sub { font: 500 12px var(--x-body); fill: #5b5a55; }
-      .x-st { display: inline-flex; align-items: center; min-height: 28px; padding: 0 10px; border-radius: var(--r-pill); border: 1.5px solid var(--x-ink); font-size: 12px; font-weight: 600; white-space: nowrap; text-decoration: none; color: var(--x-ink); }
-      .x-st.is-done { background: var(--x-sage); }
-      .x-st.is-open { background: var(--x-gold); min-height: 32px; }
-      .x-st.is-locked { background: #fff; border-color: var(--x-grey); color: #5b5a55; }
-      .x-dgrid { display: grid; gap: 16px; margin-top: 28px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
       .x-cert { background: #fff; border: 1.5px solid var(--x-ink); border-radius: var(--r-xl); padding: 20px; display: grid; gap: 10px; box-shadow: 8px 8px 0 var(--x-sage); }
       .x-cert.is-bad { box-shadow: 8px 8px 0 var(--x-terra); }
-      @media (prefers-reduced-motion: reduce) { .x-ring .x-ring__fg { transition: none; } }
-      .x-herogrid { display: grid; gap: 20px; align-items: center; }
-      @media (min-width: 860px) { .x-herogrid { grid-template-columns: 1.5fr 1fr; } }
-      .x-globe { height: 320px; touch-action: pan-y; cursor: grab; }
-      .x-globe:active { cursor: grabbing; }
-      @media (min-width: 860px) { .x-globe { height: 420px; } }
-      .x-globe canvas { display: block; width: 100%; height: 100%; }
-      .x-noglobe .x-globe { display: none; }
-      .x-noglobe .x-herogrid { grid-template-columns: 1fr; }
+      .x-cert ul { margin: 0; padding-left: 20px; display: grid; gap: 4px; font-size: 14px; }
+      .x-free.is-done { background: var(--x-sage); }
+      .x-free.is-open { background: #fff; }
+      .x-acc li a.x-acc__t { color: inherit; text-decoration: none; }
+      .x-acc li a.x-acc__t:hover { color: var(--x-teal); text-decoration: underline; }
+      .x-myprog { margin-top: 20px; background: #fff; border: 1.5px solid var(--x-ink); border-radius: var(--r-l); padding: 14px 18px; max-width: 520px; }
+      .x-myprog p { font-size: 14px; font-weight: 600; color: var(--x-teal); }
+      .x-myprog .x-prog { margin: 8px 0 0; }
+      .x-chnav { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 28px; padding-top: 20px; border-top: 1.5px dashed var(--x-sage); }
+      .x-chnav a { justify-content: flex-start; text-align: left; padding: 10px 18px; min-height: 56px; flex-direction: column; align-items: flex-start; gap: 0; }
+      .x-chnav a + a, .x-chnav .x-chnav__next { justify-self: end; align-items: flex-end; text-align: right; }
+      .x-chnav small { font-size: 12px; font-weight: 500; color: inherit; }
+      .x-certdoc { position: relative; margin: 24px auto 0; max-width: 860px; aspect-ratio: 1.414 / 1; background: var(--x-cream); border: 1.5px solid var(--x-ink); border-radius: var(--r-s); padding: clamp(14px, 2.4vw, 22px); box-shadow: 10px 10px 0 var(--x-sage); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .x-certdoc__in { height: 100%; border: 3px double var(--x-gold); border-radius: 6px; padding: clamp(16px, 4vw, 44px) clamp(14px, 4vw, 48px); display: grid; align-content: center; justify-items: center; gap: clamp(4px, 1.2vw, 12px); text-align: center; background: radial-gradient(ellipse at center, #fff 0%, var(--x-cream) 75%); }
+      .x-certdoc__brand { display: flex; align-items: center; gap: 8px; font: 600 clamp(14px, 2.2vw, 20px)/1 var(--x-serif); color: var(--x-teal); letter-spacing: .02em; }
+      .x-certdoc__kind { font-size: clamp(12px, 1.5vw, 13px); font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--x-gold); }
+      .x-certdoc__pre { font-size: clamp(12px, 1.6vw, 15px); color: #5b5a55; }
+      .x-certdoc__name { font: 600 clamp(26px, 5.6vw, 52px)/1.1 var(--x-serif); color: var(--x-ink); border-bottom: 1.5px solid var(--x-gold); padding: 0 clamp(8px, 3vw, 32px) 6px; overflow-wrap: anywhere; }
+      .x-certdoc__course { font: 600 clamp(17px, 3vw, 28px)/1.2 var(--x-serif); color: var(--x-teal); }
+      .x-certdoc__book { font-size: clamp(12px, 1.6vw, 15px); font-style: italic; color: var(--x-ink); }
+      .x-certdoc__foot { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: end; width: 100%; margin-top: clamp(6px, 2vw, 20px); font-size: clamp(12px, 1.4vw, 13px); }
+      .x-certdoc__foot div { display: grid; gap: 2px; border-top: 1px solid var(--x-ink); padding-top: 6px; }
+      .x-certdoc__foot small { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--x-teal); }
+      .x-certdoc__seal { width: clamp(48px, 9vw, 84px); height: auto; }
+      @media print {
+        @page { size: A4 landscape; margin: 10mm; }
+        body:has(.x-certdoc) > :not(.page), #view > :not(.x-certpage), .x-certpage > :not(.x-certdoc) { display: none !important; }
+        body:has(.x-certdoc) .x-wrap, body:has(.x-certdoc) .x-certpage { margin: 0 !important; padding: 0 !important; max-width: none !important; }
+        .x-certdoc { margin: 0 auto; width: 262mm; max-width: none; box-shadow: none; opacity: 1 !important; transform: none !important; break-inside: avoid; }
+      }
       #view { view-transition-name: tk-view; }
       ::view-transition-group(tk-view) { animation-duration: 0s; }
       ::view-transition-old(tk-view) { animation: x-vt-out 160ms var(--ease-out) both; }
@@ -710,10 +712,9 @@
 {"q":"UN Tourism was formerly known as:","o":["WTTC","IATA","UNWTO","ICAO"],"a":2}],
 "task":{"title":"Map the Travel Kahani tourism chain for one package","steps":["Pick one existing Travel Kahani package, for example Valparai.","Write down the generating region (where most enquiries come from), the transit route and the destination.","List every business that earns money from one booking: transport, stay, food, guides, entry tickets, shops.","Estimate the rupee amount each one receives from a typical booking, using your actual supplier rates.","Tag the package with one or two tourism types from this chapter.","Note one possible negative impact on the destination and one action you will take to reduce it.","Save this as a one-page sheet titled \"Who earns from my package\"."],"deliverable":"A one-page chain map with rupee estimates and tourism-type tags.","time":"45 to 60 minutes"}}
 </script>
-    <script src="tk.js"></script>
+    <script src="hark.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-const TK_CONFIG = { SUPABASE_URL: '', SUPABASE_ANON_KEY: '' };
 const D = {"states":[
 {"id":"telangana","name":"Telangana","te":"తెలంగాణ","img":"telangana.jpg","tag":"Forts, lakes, waterfalls & heritage","best":[10,11,12,1,2],"places":[
  {"n":"Charminar & Old City, Hyderabad","type":"Heritage","days":1,"note":"1591 monument, Laad Bazaar bangles, Irani chai"},
@@ -905,8 +906,7 @@ const D = {"states":[
   function renderHome() {
     var inSeason = D.states.filter(function (s) { return s.best.indexOf(nowM) > -1; });
     view.innerHTML =
-      '<section class="x-hero"><div class="x-herogrid"><div class="x-frame"><img src="' + im("hero.jpg") + '" alt="Travel Kahani: India framed in a painted folk-art border" /></div>' +
-      '<div class="x-globe" id="x-globe" role="img" aria-label="Globe with routes from Hyderabad to Goa, Kochi, Jaipur, Srinagar, Shillong and Velankanni"></div></div>' +
+      '<section class="x-hero"><div class="x-frame"><img src="' + im("hero.jpg") + '" alt="Travel Kahani: India framed in a painted folk-art border" /></div>' +
       '<h1 data-i18n="headline">' + t("headline") + "</h1>" + itinBar() + "</section>" +
       '<div class="x-facts" aria-label="11 states, 60+ places, 12 sacred churches, 71 chapters"><span><b data-to="11">11</b>states</span><span><b data-to="60" data-suf="+">60+</b>places</span><span><b data-to="12">12</b>sacred churches</span><span><b data-to="71">71</b>chapters</span></div>' + LEAF +
       '<section class="x-sec"><h2>Where to go this month</h2><p class="x-muted">Perfect in ' + MONTH[nowM - 1] + ": " + (inSeason.length ? inSeason.length + " states." : "check the Best Time wheel for next month.") + "</p>" +
@@ -1193,59 +1193,76 @@ const D = {"states":[
       '<div class="x-row" style="justify-content:center"><a class="x-btn x-btn--gold" href="#/home">' + i18n("home") + '</a><a class="x-btn" target="_blank" rel="noopener" href="' + wa("Hi Travel Kahani! I'd like to know more about " + T.en[key] + ".") + '">' + i18n("send") + "</a></div></section>";
   }
 
-  /* academy */
+  /* academy: free, no sign-up; progress is kept on this device */
   var readJSON = function (id, fb) { try { return JSON.parse(document.getElementById(id).textContent); } catch (e) { return fb; } };
   var CHAPTERS = readJSON("chapters-data", []).sort(function (a, b) { return a.n - b.n; });
   var CH1 = readJSON("chapter1-data", null);
-  var PROG_KEY = "tk_progress";
-  var getProg = function () { try { return JSON.parse(localStorage.getItem(PROG_KEY) || "{}") || {}; } catch (e) { return {}; } };
-  var saveProg = function (n, score) { try { var p = getProg(); p[n] = { done: true, score: score, at: new Date().toISOString() }; localStorage.setItem(PROG_KEY, JSON.stringify(p)); } catch (e) { /* storage blocked */ } };
+  var TOTAL = CHAPTERS.length || 71;
+  var PROG_KEY = "tk_progress", NAME_KEY = "tk_cert_name";
+  var mem = {};
+  var memGet = function (k) { try { var v = localStorage.getItem(k); if (v != null) return v; } catch (e) { /* storage blocked */ } return mem[k] != null ? mem[k] : null; };
+  var memSet = function (k, v) { mem[k] = v; try { localStorage.setItem(k, v); } catch (e) { /* storage blocked: kept in memory */ } };
+  var getProg = function () { try { return JSON.parse(memGet(PROG_KEY) || "{}") || {}; } catch (e) { return {}; } };
+  var saveProg = function (n, score) { var p = getProg(); p[n] = { done: true, score: score, at: new Date().toISOString() }; memSet(PROG_KEY, JSON.stringify(p)); };
+  var passed = function (n) { var p = getProg(); return !!(p[n] && p[n].done); };
+  var contentOf = function (n) { return n === 1 && CH1 ? CH1 : null; };
+  var chapterBy = function (n) { return CHAPTERS.filter(function (c) { return c.n === n; })[0]; };
+  var quizChapters = function () { return CHAPTERS.filter(function (c) { var k = contentOf(c.n); return !!(k && k.quiz && k.quiz.length); }); };
+  var certReady = function () { var q = quizChapters(); return q.length > 0 && q.every(function (c) { return passed(c.n); }); };
   var FLOW = ["Learning Objectives", "Lessons", "Key Terms", "Summary", "Quick Quiz", "Practical Task"];
+  var SUN = function (cls, s) { return '<svg class="' + (cls || "") + '" width="' + s + '" height="' + s + '" viewBox="0 0 64 64" aria-hidden="true"><g stroke="#C8962E" stroke-width="4" stroke-linecap="round"><path d="M32 4v8M32 52v8M4 32h8M52 32h8M12 12l6 6M46 46l6 6M12 52l6-6M46 18l6-6"/></g><circle cx="32" cy="32" r="13" fill="#C8962E" stroke="#2B2B2B" stroke-width="2"/></svg>'; };
 
   function renderAcademy(r) {
+    if (r.arg === "login" || r.arg === "dashboard") { try { history.replaceState(null, "", "#/academy"); } catch (e) { /* ignore */ } r.arg = undefined; }
     if (r.arg === "chapter") return renderChapter(r);
-    if (r.arg === "login") return renderLogin();
-    if (r.arg === "dashboard") return renderDash();
+    if (r.arg === "certificate") return renderCert();
     var parts = [];
     CHAPTERS.forEach(function (c) { var last = parts[parts.length - 1]; if (!last || last.name !== c.part) parts.push(last = { name: c.part, ch: [] }); last.ch.push(c); });
-    var done = getProg();
-    view.innerHTML = banner("academy.jpg", "Travel Kahani Academy", "Travel Kahani Academy", "Travel &amp; Tourism Certification, based on the book <em>The Journey Maker</em> by Akhila Sushanth") +
-      '<div class="x-facts"><span><b>71</b>chapters</span><span><b>7</b>parts</span><span>Self-paced, no live classes</span><span>Certificate with QR verification</span></div>' +
-      '<div class="x-row" style="margin-top:20px"><a class="x-btn x-btn--gold" href="#/academy/chapter/1">Start free Chapter 1</a><a class="x-btn" href="#/academy/login">Student login</a><a class="x-btn" href="#/verify">Verify a certificate</a></div>' +
+    var done = getProg(), count = CHAPTERS.filter(function (c) { return passed(c.n); }).length;
+    view.innerHTML = banner("academy.jpg", "Travel Kahani Academy", "Travel Kahani Academy", "Travel &amp; Tourism Foundations, based on the book <em>The Journey Maker</em> by Akhila Sushanth") +
+      '<p style="margin-top:24px;max-width:640px;font:600 clamp(19px,2.8vw,24px)/1.35 var(--x-serif);color:var(--x-teal)">Free course. No sign-up. Learn at your own pace and get a free certificate at the end.</p>' +
+      '<div class="x-facts"><span><b>71</b>chapters</span><span><b>7</b>parts</span><span>Free, no sign-up</span><span>Free certificate</span></div>' +
+      '<div class="x-myprog"><p>' + count + " of " + TOTAL + ' chapters completed</p><div class="x-prog" role="progressbar" aria-label="Course progress" aria-valuemin="0" aria-valuemax="' + TOTAL + '" aria-valuenow="' + count + '"><i style="width:' + (count / TOTAL * 100) + '%"></i></div></div>' +
+      '<div class="x-row" style="margin-top:20px"><a class="x-btn x-btn--gold" href="#/academy/chapter/1">Start Chapter 1</a><a class="x-btn" href="#/academy/certificate">Your free certificate</a><a class="x-btn" href="#/verify">Verify a certificate</a></div>' +
       '<section class="x-sec"><h2>Every chapter follows the same six steps</h2><ol class="x-flow">' + FLOW.map(function (f) { return "<li>" + f + "</li>"; }).join("") + "</ol></section>" +
-      '<section class="x-sec"><h2>Syllabus: 71 chapters in 7 parts</h2><p class="x-muted">Open a part to see its chapters. Chapter 1 is free to read now.</p><div class="x-acc">' + parts.map(function (p, i) {
-        return "<details" + (i === 0 ? " open" : "") + "><summary>" + esc(p.name) + "<small>" + p.ch.length + " chapters</small></summary><ol>" + p.ch.map(function (c) {
-          return '<li><span>Ch ' + c.n + "</span><span>" + esc(c.title) + "</span>" + (c.n === 1 ? '<a class="x-free" href="#/academy/chapter/1" aria-label="Free: open Chapter 1">' + (done[1] ? "✓ Done" : "Free") + "</a>" : "<span></span>") + "</li>";
+      '<section class="x-sec"><h2>Syllabus: 71 chapters in 7 parts</h2><p class="x-muted">Every chapter is open. Pick any one to start.</p><div class="x-acc">' + parts.map(function (p, i) {
+        var pd = p.ch.filter(function (c) { return passed(c.n); }).length;
+        return "<details" + (i === 0 ? " open" : "") + "><summary>" + esc(p.name) + "<small>" + (pd ? pd + " of " + p.ch.length + " done" : p.ch.length + " chapters") + "</small></summary><ol>" + p.ch.map(function (c) {
+          var d = done[c.n] && done[c.n].done, href = "#/academy/chapter/" + c.n;
+          return '<li><span>Ch ' + c.n + '</span><a class="x-acc__t" href="' + href + '">' + esc(c.title) + '</a><a class="x-free' + (d ? " is-done" : c.n === 1 ? "" : " is-open") + '" href="' + href + '" aria-label="Open Chapter ' + c.n + (d ? ", completed" : "") + '">' + (d ? "✓ Done" : c.n === 1 ? "Start" : "Open") + "</a></li>";
         }).join("") + "</ol></details>";
       }).join("") + "</div></section>" +
-      '<section class="x-sec"><h2>How to enrol</h2><ol class="x-tl">' + [
-        ["Enquire on WhatsApp", "Message us and we\u2019ll share the fee and what\u2019s included."],
-        ["Pay offline", "Pay by bank transfer, UPI or in person. No online payment on this site."],
-        ["Get your login", "We create your student account and send your login on WhatsApp or email."]
-      ].map(function (s, i) { return "<li><b>" + (i + 1) + "</b><div><small>Step " + (i + 1) + "</small><strong>" + s[0] + "</strong><br>" + s[1] + "</div></li>"; }).join("") + "</ol>" +
-      '<div class="x-row">' + waBtn("Hi Travel Kahani! I'd like to enrol in the Travel Kahani Academy certification. Please share the fee and steps.", "Enquire on WhatsApp", "x-btn x-btn--gold") + "</div></section>" +
       '<section class="x-band x-band--sage"><span class="x-tag x-tag--terra">The book</span><h2>Buy the book: The Journey Maker</h2><p>By Akhila Sushanth. The course follows the book chapter by chapter.</p><div class="x-row">' + waBtn("Hi Travel Kahani! I'd like to buy the book The Journey Maker by Akhila Sushanth. Please share the price and delivery details.", "Enquire on WhatsApp", "x-btn x-btn--gold") + "</div></section>";
   }
 
-  var ch = { tab: 0, ans: {}, flip: {} };
+  var ch = { n: 1, c: null, tab: 0, ans: {}, flip: {} };
   function renderChapter(r) {
-    if (r.sub !== "1" || !CH1) return placeholder("Chapter " + esc(r.sub || ""), "Only Chapter 1 is open to everyone. Enrol to unlock the rest.");
-    ch = { tab: 0, ans: {}, flip: {} };
-    view.innerHTML = '<section class="x-quiz" style="max-width:860px"><a class="x-btn x-btn--sm" href="#/academy">← Academy</a><p class="x-tag" style="margin-top:20px">Chapter 1 of 71 · Free</p><h1 style="font-size:clamp(30px,5vw,46px);margin-top:8px">' + esc(CH1.title) + '</h1><p class="x-muted">' + esc(CH1.subtitle) + '</p><div id="ch"></div></section>';
+    var n = parseInt(r.sub, 10), meta = chapterBy(n);
+    if (!meta) { meta = chapterBy(1) || { n: 1, title: CH1 ? CH1.title : "Chapter 1", part: "" }; n = meta.n; try { history.replaceState(null, "", "#/academy/chapter/" + n); } catch (e) { /* ignore */ } }
+    var c = contentOf(n);
+    ch = { n: n, c: c, tab: 0, ans: {}, flip: {} };
+    view.innerHTML = '<section class="x-quiz" style="max-width:860px"><a class="x-btn x-btn--sm" href="#/academy">← Academy</a><p class="x-tag" style="margin-top:20px">Chapter ' + n + " of " + TOTAL + " · Free" + (passed(n) ? " · ✓ Completed" : "") + '</p><h1 style="font-size:clamp(30px,5vw,46px);margin-top:8px">' + esc(c ? c.title : meta.title) + '</h1><p class="x-muted">' + esc(c ? c.subtitle : meta.part) + '</p><div id="ch"></div>' + chNav(n) + "</section>";
     drawChapter();
   }
+  function chNav(n) {
+    var p = chapterBy(n - 1), q = chapterBy(n + 1);
+    return '<nav class="x-chnav" aria-label="Chapters">' +
+      (p ? '<a class="x-btn" href="#/academy/chapter/' + p.n + '"><small>← Previous chapter</small>Chapter ' + p.n + "</a>" : "<span></span>") +
+      (q ? '<a class="x-btn x-btn--gold x-chnav__next" href="#/academy/chapter/' + q.n + '"><small>Next chapter →</small>Chapter ' + q.n + "</a>" : '<a class="x-btn x-btn--gold x-chnav__next" href="#/academy/certificate"><small>Last chapter</small>Your certificate</a>') + "</nav>";
+  }
   function drawChapter(focus) {
-    var c = CH1, i = ch.tab, body = "";
-    if (i === 0) body = "<h2>Learning objectives</h2><p>By the end of this chapter you will be able to:</p><ul class=\"x-steps\">" + c.objectives.map(function (o) { return "<li>" + esc(o) + "</li>"; }).join("") + "</ul>";
-    if (i === 1) body = "<h2>Lessons</h2>" + c.lessons.map(function (l) {
+    var c = ch.c, i = ch.tab, body = "";
+    if (!c) body = "<h2>" + FLOW[i] + '</h2><p class="x-tag x-tag--terra">Content coming soon</p><p class="x-muted" style="margin-top:10px">This chapter\u2019s ' + FLOW[i].toLowerCase() + " will appear here soon. The rest of the course stays open in the meantime.</p>";
+    else if (i === 0) body = "<h2>Learning objectives</h2><p>By the end of this chapter you will be able to:</p><ul class=\"x-steps\">" + c.objectives.map(function (o) { return "<li>" + esc(o) + "</li>"; }).join("") + "</ul>";
+    else if (i === 1) body = "<h2>Lessons</h2>" + c.lessons.map(function (l) {
       var tb = l.table ? '<div class="x-tbl"><table><thead><tr>' + l.table[0].map(function (h) { return '<th scope="col">' + esc(h) + "</th>"; }).join("") + "</tr></thead><tbody>" + l.table.slice(1).map(function (row) { return "<tr>" + row.map(function (x, k) { return k ? "<td>" + esc(x) + "</td>" : '<th scope="row">' + esc(x) + "</th>"; }).join("") + "</tr>"; }).join("") + "</tbody></table></div>" : "";
       return "<h3>" + esc(l.h) + "</h3><p>" + esc(l.p) + "</p>" + tb;
     }).join("");
-    if (i === 2) body = '<h2>Key terms</h2><p class="x-muted">Tap a card to see its meaning.</p><div class="x-flips">' + c.terms.map(function (t2, k) {
+    else if (i === 2) body = '<h2>Key terms</h2><p class="x-muted">Tap a card to see its meaning.</p><div class="x-flips">' + c.terms.map(function (t2, k) {
       return '<button type="button" class="x-flip" data-flip="' + k + '" aria-pressed="' + !!ch.flip[k] + '"><span class="x-flip__in"><span class="x-flip__f" aria-hidden="' + !!ch.flip[k] + '">' + esc(t2[0]) + '<small>Tap to flip</small></span><span class="x-flip__b" aria-hidden="' + !ch.flip[k] + '"><strong>' + esc(t2[0]) + "</strong>" + esc(t2[1]) + "</span></span></button>";
     }).join("") + "</div>";
-    if (i === 3) body = '<h2>Summary</h2><ul class="x-steps">' + c.summary.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul>";
-    if (i === 4) {
+    else if (i === 3) body = '<h2>Summary</h2><ul class="x-steps">' + c.summary.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul>";
+    else if (i === 4) {
       var n = c.quiz.length, answered = Object.keys(ch.ans).length, score = c.quiz.filter(function (q, k) { return ch.ans[k] === q.a; }).length, pct = Math.round(score / n * 100);
       body = '<h2>Quick quiz</h2><p class="x-muted">' + n + " questions. Score 70% or more to complete the chapter.</p>" + c.quiz.map(function (q, k) {
         var a = ch.ans[k], has = a != null;
@@ -1254,10 +1271,10 @@ const D = {"states":[
           return '<button type="button" class="x-qopt' + cls + '" data-ans="' + k + ":" + j + '"' + (has ? " disabled" : "") + ">" + String.fromCharCode(65 + j) + ". " + esc(o) + (has && j === q.a ? " ✓" : has && j === a ? " ✗" : "") + "</button>";
         }).join("") + (has ? '<p class="x-fb" role="status" tabindex="-1">' + (a === q.a ? "Correct." : "Not quite. The answer is " + String.fromCharCode(65 + q.a) + ": " + esc(q.o[q.a]) + ".") + "</p>" : "") + "</div>";
       }).join("") + '<p class="x-fb" aria-live="polite">Score: ' + score + " / " + n + " (" + answered + " answered)</p>" +
-        (answered === n ? (pct >= 70 ? '<div class="x-done" role="status"><h3>Chapter 1 complete</h3><p>You scored ' + pct + "%. Your progress is saved on this device.</p></div>" :
+        (answered === n ? (pct >= 70 ? '<div class="x-done" role="status"><h3>Chapter ' + ch.n + " complete</h3><p>You scored " + pct + "%. Your progress is saved on this device.</p>" + (certReady() ? '<div class="x-row"><a class="x-btn x-btn--gold x-btn--sm" href="#/academy/certificate">Get your free certificate</a></div>' : "") + "</div>" :
           '<div class="x-done" style="background:#d99a7e33" role="status"><h3>You scored ' + pct + "%</h3><p>You need 70% to pass. Review the lessons and try again.</p><div class=\"x-row\"><button type=\"button\" class=\"x-btn x-btn--sm\" data-qretry>Try again</button></div></div>") : "");
     }
-    if (i === 5) body = "<h2>Practical task</h2><h3>" + esc(c.task.title) + '</h3><ol class="x-steps">' + c.task.steps.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + '</ol><div class="x-meta"><div><small>Deliverable</small>' + esc(c.task.deliverable) + "</div><div><small>Time</small>" + esc(c.task.time) + "</div></div>";
+    else if (i === 5) body = "<h2>Practical task</h2><h3>" + esc(c.task.title) + '</h3><ol class="x-steps">' + c.task.steps.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + '</ol><div class="x-meta"><div><small>Deliverable</small>' + esc(c.task.deliverable) + "</div><div><small>Time</small>" + esc(c.task.time) + "</div></div>";
     $("#ch").innerHTML = '<div class="x-prog" role="progressbar" aria-label="Chapter progress" aria-valuemin="1" aria-valuemax="6" aria-valuenow="' + (i + 1) + '" aria-valuetext="Step ' + (i + 1) + " of 6: " + FLOW[i] + '"><i style="width:' + ((i + 1) / 6 * 100) + '%"></i></div>' +
       '<div class="x-tabs" role="tablist" aria-label="Chapter steps">' + FLOW.map(function (f, k) { return '<button type="button" class="x-tab" role="tab" id="tab' + k + '" aria-controls="pane" aria-selected="' + (k === i) + '" tabindex="' + (k === i ? 0 : -1) + '" data-tab="' + k + '"><b>' + (k + 1) + "</b>" + f + "</button>"; }).join("") + "</div>" +
       '<div class="x-pane" id="pane" role="tabpanel" aria-labelledby="tab' + i + '" tabindex="-1">' + body + "</div>" +
@@ -1267,125 +1284,58 @@ const D = {"states":[
     if (focus === "pane") { $("#pane").focus({ preventScroll: true }); $("#ch").scrollIntoView({ block: "start" }); }
   }
 
-  function placeholder(title, sub) {
-    view.innerHTML = '<section class="x-soon"><span class="x-tag x-tag--terra">Opening soon</span><h1>' + title + "</h1><p>" + sub + "</p>" + LEAF +
-      '<div class="x-row" style="justify-content:center"><a class="x-btn x-btn--gold" href="#/academy">Academy</a>' + waBtn("Hi Travel Kahani! I have a question about the Travel Kahani Academy.", "Ask on WhatsApp", "x-btn") + "</div></section>";
-  }
-  /* auth adapter: Supabase when configured, demo mode otherwise */
-  var SB = !!(TK_CONFIG.SUPABASE_URL && TK_CONFIG.SUPABASE_ANON_KEY);
-  var DEMO = { email: "demo@travelkahani.in", pw: "demo123", key: "tk_demo_session" };
-  var sbP = null;
-  function sb() {
-    if (!sbP) sbP = new Promise(function (res, rej) {
-      if (window.supabase) return res();
-      var s = document.createElement("script");
-      s.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
-      s.onload = res; s.onerror = function () { sbP = null; rej(new Error("Could not reach the sign-in service. Check your connection and try again.")); };
-      document.head.appendChild(s);
-    }).then(function () { return window.supabase.createClient(TK_CONFIG.SUPABASE_URL, TK_CONFIG.SUPABASE_ANON_KEY); });
-    return sbP;
-  }
-  var chk = function (r) { if (r.error) throw r.error; return r.data; };
-  var auth = {
-    signIn: function (email, pw) {
-      if (SB) return sb().then(function (c) { return c.auth.signInWithPassword({ email: email, password: pw }); }).then(chk).then(function (d) { return d.user; });
-      if (email.toLowerCase() === DEMO.email && pw === DEMO.pw) { store.set(DEMO.key, DEMO.email); return Promise.resolve({ email: DEMO.email }); }
-      return Promise.reject(new Error("That email and password don\u2019t match. Check them and try again."));
-    },
-    user: function () {
-      if (SB) return sb().then(function (c) { return c.auth.getSession(); }).then(chk).then(function (d) { return d.session ? d.session.user : null; });
-      var e = store.get(DEMO.key); return Promise.resolve(e ? { email: e } : null);
-    },
-    signOut: function () {
-      if (SB) return sb().then(function (c) { return c.auth.signOut(); });
-      try { localStorage.removeItem(DEMO.key); } catch (e) { /* storage blocked */ }
-      return Promise.resolve();
-    },
-    setPw: function (pw) { return sb().then(function (c) { return c.auth.updateUser({ password: pw }); }).then(chk); }
+  /* free certificate */
+  var certId = function (name, day) {
+    var s = name + "|" + day, h = 2166136261, A = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789", o = "";
+    for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+    for (var k = 0; k < 5; k++) { o += A[h % 32]; h = Math.floor(h / 32); }
+    return "TK-2026-" + o;
   };
-  function syncProg(u) {
-    if (!SB || !u || !u.id) return Promise.resolve();
-    return sb().then(function (c) {
-      return c.from("progress").select("chapter,passed,score").eq("user_id", u.id).then(chk).then(function (rows) {
-        var p = getProg(), remote = {};
-        (rows || []).forEach(function (r) { if (r.passed) { remote[r.chapter] = 1; if (!(p[r.chapter] && p[r.chapter].done)) p[r.chapter] = { done: true, score: r.score, at: new Date().toISOString() }; } });
-        try { localStorage.setItem(PROG_KEY, JSON.stringify(p)); } catch (e) { /* storage blocked */ }
-        var up = Object.keys(p).filter(function (n) { return p[n].done && !remote[n]; }).map(function (n) { return { user_id: u.id, chapter: +n, passed: true, score: p[n].score || 0 }; });
-        return up.length ? c.from("progress").upsert(up, { onConflict: "user_id,chapter" }).then(chk) : null;
-      });
-    });
-  }
-  function pushProg(n, score) {
-    if (!SB) return;
-    auth.user().then(function (u) {
-      if (u) return sb().then(function (c) { return c.from("progress").upsert({ user_id: u.id, chapter: n, passed: true, score: score }, { onConflict: "user_id,chapter" }); });
-    }).catch(function () { /* stays in local progress; synced on next dashboard visit */ });
-  }
-  var still = function (h) { return location.hash.indexOf(h) === 0; };
-  var demoBox = function (inner) { return SB ? "" : '<div class="x-demo"><b>Preview demo</b>' + inner + "</div>"; };
-  var pwField = function (id, label, ac) { return '<label class="x-field" for="' + id + '">' + label + '</label><div class="x-pw"><input type="password" id="' + id + '" name="' + id + '" required minlength="6" autocomplete="' + ac + '" /><button type="button" class="x-btn x-btn--sm" data-pwt="' + id + '" aria-pressed="false" aria-label="Show password">Show</button></div>'; };
-
-  function renderLogin() {
-    view.innerHTML = '<section class="x-quiz x-auth"><a class="x-btn x-btn--sm" href="#/academy">← Academy</a><h1 style="font-size:clamp(30px,5vw,42px);margin:20px 0 16px">Student login</h1>' +
-      '<form class="x-qcard x-form" id="lg" novalidate><label class="x-field">Email<input type="email" name="email" required autocomplete="username" /></label>' + pwField("lg-pw", "Password", "current-password") +
-      '<p class="x-err" id="lg-err" role="alert" hidden></p><button class="x-btn x-btn--gold" type="submit">Sign in</button>' +
-      '<p class="x-muted" style="font-size:14px">Accounts are created by Travel Kahani after enrolment. Forgot password? <a href="' + wa("Hi Travel Kahani! I forgot my Academy password.") + '" target="_blank" rel="noopener">Message us on WhatsApp</a>.</p>' +
-      "</form></section>";
-    auth.user().then(function (u) { if (u && still("#/academy/login")) location.replace("#/academy/dashboard"); }).catch(function () {});
-  }
-
-  function renderDash() {
-    view.innerHTML = '<section class="x-sec"><p class="x-muted" role="status">Loading your dashboard…</p></section>';
-    auth.user().then(function (u) {
-      if (!still("#/academy/dashboard")) return;
-      if (!u) return location.replace("#/academy/login");
-      return syncProg(u).catch(function () {}).then(function () { if (still("#/academy/dashboard")) drawDash(u); });
-    }).catch(function (e) { view.innerHTML = '<section class="x-soon"><h1>Couldn\u2019t load your dashboard</h1><p>' + esc(e.message) + '</p><a class="x-btn x-btn--gold" href="#/academy/login">Try again</a></section>'; });
-  }
-  function drawDash(u) {
-    var p = getProg(), passed = function (n) { return !!(p[n] && p[n].done); };
-    var count = CHAPTERS.filter(function (c) { return passed(c.n); }).length;
-    var high = CHAPTERS.reduce(function (m, c) { return passed(c.n) ? Math.max(m, c.n) : m; }, 0);
-    var stat = function (n) { return passed(n) ? "done" : (n === 1 || n === high + 1) ? "open" : "locked"; };
-    var next = !passed(1) ? 1 : high < 71 ? high + 1 : 0;
-    var parts = [];
-    CHAPTERS.forEach(function (c) { var last = parts[parts.length - 1]; if (!last || last.name !== c.part) parts.push(last = { name: c.part, ch: [] }); last.ch.push(c); });
-    var C = 2 * Math.PI * 56, off = C * (1 - count / 71);
-    var LB = { done: "✓ Done", open: "Open", locked: "Locked" };
-    view.innerHTML = '<section class="x-sec"><p class="x-tag">Student dashboard</p>' +
-      '<div class="x-dhead"><svg class="x-ring" viewBox="0 0 140 140" role="img" aria-label="' + count + ' of 71 chapters passed"><circle class="x-ring__bg" cx="70" cy="70" r="56"/><circle class="x-ring__fg" cx="70" cy="70" r="56" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + off.toFixed(1) + '" transform="rotate(-90 70 70)"/><text x="70" y="72" text-anchor="middle">' + count + '</text><text class="x-ring__sub" x="70" y="92" text-anchor="middle">of 71 passed</text></svg>' +
-      '<div style="display:grid;gap:10px"><h1 style="font-size:clamp(26px,4.5vw,40px);overflow-wrap:anywhere">Welcome, ' + esc(u.email) + "</h1><p class=\"x-muted\">" + (count ? count + " of 71 chapters passed. Keep going." : "Start with Chapter 1: read it, then pass the quick quiz.") + '</p><div class="x-row">' +
-      (next ? '<a class="x-btn x-btn--gold" href="#/academy/chapter/' + next + '">Continue Chapter ' + next + "</a>" : '<span class="x-st is-done">All 71 chapters passed</span>') +
-      '<button type="button" class="x-btn" data-signout>Sign out</button></div></div></div></section>' +
-      '<section class="x-sec"><h2>Your chapters</h2><div class="x-acc">' + parts.map(function (pt) {
-        var d = pt.ch.filter(function (c) { return passed(c.n); }).length, here = pt.ch.some(function (c) { return c.n === (next || 1); });
-        return "<details" + (here ? " open" : "") + "><summary>" + esc(pt.name) + "<small>" + d + " of " + pt.ch.length + " done</small></summary><ol>" + pt.ch.map(function (c) {
-          var s = stat(c.n), sc = p[c.n] && p[c.n].score != null ? " · " + p[c.n].score + "%" : "";
-          return "<li><span>Ch " + c.n + "</span><span>" + esc(c.title) + "</span>" + (s === "open" ? '<a class="x-st is-open" href="#/academy/chapter/' + c.n + '" aria-label="Open Chapter ' + c.n + '">Open</a>' : '<span class="x-st is-' + s + '">' + LB[s] + (s === "done" ? sc : "") + "</span>") + "</li>";
-        }).join("") + "</ol></details>";
-      }).join("") + "</div></section>" +
-      '<section class="x-dgrid"><div class="x-cert"><p class="x-tag x-tag--terra">' + (count === 71 ? "Ready" : "Locked") + "</p><h3>Travel &amp; Tourism Certificate</h3><p class=\"x-muted\">" + (count === 71 ? "All 71 chapters passed. We\u2019ll issue your certificate with its QR verification ID." : "Unlocks after all 71 chapters.") + '</p><div class="x-prog" aria-hidden="true" style="margin:0"><i style="width:' + (count / 71 * 100) + '%"></i></div>' +
-      (count === 71 ? waBtn("Hi Travel Kahani! I've passed all 71 Academy chapters (" + u.email + "). Please issue my certificate.", "Request certificate") : "") + "</div>" +
-      (SB ? '<form class="x-cert x-form" id="cp" novalidate><h3>Change password</h3>' + pwField("cp-pw", "New password (6+ characters)", "new-password") + '<p id="cp-msg" role="status" hidden></p><button class="x-btn" type="submit">Update password</button></form>' : "") + "</section>";
+  function renderCert(editing) {
+    var need = quizChapters(), left = need.filter(function (c) { return !passed(c.n); });
+    var head = '<section class="x-sec x-certpage"><a class="x-btn x-btn--sm" href="#/academy">← Academy</a><p class="x-tag" style="margin-top:20px;display:block;width:max-content">Free certificate</p><h1 style="font-size:clamp(30px,5vw,46px);margin-top:8px">Your certificate</h1>';
+    if (!need.length || left.length) {
+      view.innerHTML = head + '<div class="x-cert is-bad" style="max-width:560px;margin-top:20px"><p class="x-tag x-tag--terra">Locked</p><h3>Pass every available chapter quiz to unlock it</h3>' +
+        '<p class="x-muted">Score 70% or more on each quiz. ' + (need.length ? left.length + " of " + need.length + " still to pass:" : "No chapter quizzes are available yet.") + "</p>" +
+        (left.length ? "<ul>" + left.map(function (c) { return '<li><a href="#/academy/chapter/' + c.n + '">Chapter ' + c.n + ": " + esc(c.title) + "</a></li>"; }).join("") + "</ul>" : "") +
+        (left.length ? '<div class="x-row"><a class="x-btn x-btn--gold" href="#/academy/chapter/' + left[0].n + '">Go to Chapter ' + left[0].n + "</a></div>" : "") +
+        '</div><p class="x-muted" style="margin-top:16px;font-size:14px">Chapters marked \u201cContent coming soon\u201d have no quiz yet, so they don\u2019t count for now.</p></section>';
+      return;
+    }
+    var name = (memGet(NAME_KEY) || "").trim();
+    if (!name || editing) {
+      view.innerHTML = head + '<form class="x-qcard x-form x-auth" id="cn" novalidate style="margin-top:20px"><p class="x-tag">✓ Unlocked</p><h3>You\u2019ve passed every available chapter quiz.</h3>' +
+        '<label class="x-field">Your full name, as it should appear<input type="text" name="name" value="' + esc(name) + '" maxlength="60" autocomplete="name" required /></label>' +
+        '<p class="x-err" id="cn-err" role="alert" hidden></p><button class="x-btn x-btn--gold" type="submit">Show my certificate</button></form></section>';
+      return;
+    }
+    var d = new Date(), pad = function (x) { return (x < 10 ? "0" : "") + x; };
+    var day = d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+    var ds = d.getDate() + " " + MONTH[d.getMonth()] + " " + d.getFullYear(), id = certId(name, day);
+    var share = "https://wa.me/?text=" + encodeURIComponent("I\u2019ve earned my free Travel Kahani Academy Certificate of Completion in Travel & Tourism Foundations, based on The Journey Maker by Akhila Sushanth. Certificate ID: " + id);
+    view.innerHTML = head + '<p class="x-muted">Issued free online. Print it, or choose \u201cSave as PDF\u201d in the print window.</p>' +
+      '<article class="x-certdoc" aria-label="Certificate of Completion for ' + esc(name) + '"><div class="x-certdoc__in">' +
+      '<p class="x-certdoc__brand">' + SUN("", 22) + "Travel Kahani Academy</p>" +
+      '<p class="x-certdoc__kind">Certificate of Completion</p>' +
+      '<p class="x-certdoc__pre">This certifies that</p>' +
+      '<p class="x-certdoc__name">' + esc(name) + "</p>" +
+      '<p class="x-certdoc__pre">has completed the course</p>' +
+      '<p class="x-certdoc__course">Travel &amp; Tourism Foundations</p>' +
+      '<p class="x-certdoc__book">based on <b>The Journey Maker</b> by Akhila Sushanth</p>' +
+      '<div class="x-certdoc__foot"><div style="text-align:left"><small>Date</small>' + ds + "</div>" + SUN("x-certdoc__seal", 84) + '<div style="text-align:right"><small>Certificate ID</small>' + id + "</div></div>" +
+      "</div></article>" +
+      '<div class="x-row" style="margin-top:28px;justify-content:center"><button type="button" class="x-btn x-btn--gold" data-print>Download / Print</button><a class="x-btn" target="_blank" rel="noopener" href="' + share + '">Share on WhatsApp</a><button type="button" class="x-btn" data-certedit>Change name</button></div>' +
+      '<p class="x-muted" style="margin-top:14px;text-align:center;font-size:14px">To confirm a certificate, anyone can WhatsApp us its ID from the <a href="#/verify?id=' + encodeURIComponent(id) + '">verify page</a>.</p></section>';
   }
 
+  var VNOTE = "Certificates are issued free online. To confirm one, WhatsApp us the certificate ID.";
   function renderVerify(r) {
-    var id = (r.q.get("id") || "").trim().toUpperCase();
-    view.innerHTML = '<section class="x-quiz x-auth"><p class="x-tag">Travel Kahani Academy</p><h1 style="font-size:clamp(30px,5vw,42px);margin:8px 0 6px">Verify a certificate</h1><p class="x-muted" style="margin-bottom:16px">Enter the ID printed on the certificate, or scan its QR code.</p>' +
+    var id = (r.q.get("id") || "").trim().toUpperCase().slice(0, 40);
+    view.innerHTML = '<section class="x-quiz x-auth"><p class="x-tag">Travel Kahani Academy</p><h1 style="font-size:clamp(30px,5vw,42px);margin:8px 0 6px">Verify a certificate</h1><p class="x-muted" style="margin-bottom:16px">' + VNOTE + "</p>" +
       '<form class="x-qcard x-form" id="vf" novalidate><label class="x-field">Certificate ID<input type="text" name="cid" value="' + esc(id) + '" placeholder="TK-2026-XXXXX" autocomplete="off" autocapitalize="characters" spellcheck="false" required /></label><button class="x-btn x-btn--gold" type="submit">Verify</button>' +
-      '</form><div id="vr" aria-live="polite" style="margin-top:20px"></div></section>';
-    if (!id) return;
-    var out = $("#vr");
-    var bad = function (msg) { out.innerHTML = '<div class="x-cert is-bad"><p class="x-tag x-tag--terra">Not found</p><h3>' + esc(id) + "</h3><p>" + msg + "</p></div>"; };
-    var good = function (body) { out.innerHTML = '<div class="x-cert"><p class="x-tag">✓ Valid certificate</p>' + body + "</div>"; };
-    if (!/^TK-\d{4}-\d{5}$/.test(id)) return bad("Not found. Certificate IDs look like TK-2026-XXXXX.");
-    if (!SB) return id === "TK-2026-00001" ? good("<h3>Sample: Demo Student, Travel &amp; Tourism Certification, issued 2026</h3><p class=\"x-muted\">ID " + id + "</p>") : bad("Not found. Check the ID on the certificate and try again.");
-    out.innerHTML = '<p class="x-muted">Checking…</p>';
-    sb().then(function (c) { return c.from("certificates").select("cert_id,student_name,course,issued_on").eq("cert_id", id).maybeSingle(); }).then(chk).then(function (d) {
-      if (!d) return bad("Not found. Check the ID on the certificate and try again.");
-      var dt = d.issued_on ? new Date(d.issued_on + "T00:00:00").toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" }) : "";
-      good("<h3>" + esc(d.student_name) + '</h3><div class="x-meta"><div><small>Course</small>' + esc(d.course) + "</div><div><small>Issued on</small>" + esc(dt) + "</div><div><small>Certificate ID</small>" + esc(d.cert_id) + "</div></div>");
-    }).catch(function (e) { out.innerHTML = '<p class="x-err" role="alert">' + esc(e.message || "Couldn\u2019t check right now. Try again.") + "</p>"; });
+      '</form><div id="vr" aria-live="polite" style="margin-top:20px">' +
+      (id ? '<div class="x-cert"><p class="x-tag">Certificate ID</p><h3>' + esc(id) + "</h3><p>" + VNOTE + '</p><div class="x-row">' + waBtn("Hi Travel Kahani! Please confirm Academy certificate ID " + id + ".", "WhatsApp us this ID", "x-btn x-btn--gold") + "</div></div>" : "") +
+      "</div></section>";
   }
 
   var routes = { home: renderHome, explore: renderExplore, state: renderState, itinerary: renderItin, "best-time": renderBest, churches: renderChurches, "church-trails": renderChurches, hidden: renderHidden, "hidden-india": renderHidden, "package": renderPackage, quiz: renderQuiz, guides: renderGuides, academy: renderAcademy, verify: renderVerify };
@@ -1443,15 +1393,15 @@ const D = {"states":[
       var qa = b.getAttribute("data-ans").split(":"), qi = +qa[0];
       if (ch.ans[qi] != null) return;
       ch.ans[qi] = +qa[1];
-      var qz = CH1.quiz, sc = qz.filter(function (q, j) { return ch.ans[j] === q.a; }).length;
-      if (Object.keys(ch.ans).length === qz.length && sc / qz.length >= 0.7) { saveProg(1, Math.round(sc / qz.length * 100)); pushProg(1, Math.round(sc / qz.length * 100)); }
+      var qz = ch.c.quiz, sc = qz.filter(function (q, j) { return ch.ans[j] === q.a; }).length;
+      if (Object.keys(ch.ans).length === qz.length && sc / qz.length >= 0.7) saveProg(ch.n, Math.round(sc / qz.length * 100));
       drawChapter();
       var fb = document.querySelector("#q" + qi);
       if (fb) fb.parentNode.querySelector(".x-fb").focus({ preventScroll: true });
       return;
     }
-    if (b.hasAttribute("data-pwt")) { var pi = document.getElementById(b.getAttribute("data-pwt")), show = pi.type === "password"; pi.type = show ? "text" : "password"; b.textContent = show ? "Hide" : "Show"; b.setAttribute("aria-pressed", String(show)); b.setAttribute("aria-label", show ? "Hide password" : "Show password"); return; }
-    if (b.hasAttribute("data-signout")) { b.disabled = true; auth.signOut().catch(function () {}).then(function () { location.hash = "#/academy/login"; }); return; }
+    if (b.hasAttribute("data-print")) { window.print(); return; }
+    if (b.hasAttribute("data-certedit")) { renderCert(true); var ni = document.querySelector("#cn input"); if (ni) ni.focus(); return; }
     if (b.hasAttribute("data-qretry")) { ch.ans = {}; drawChapter("pane"); return; }
     if (b.hasAttribute("data-irm")) { it.places.splice(+b.getAttribute("data-irm"), 1); drawItin(); }
   });
@@ -1470,21 +1420,11 @@ const D = {"states":[
       window.open(wa("Hi Travel Kahani! I'd like to enquire about the " + p.title + " package (" + p.days + ", from " + p.from + ").\nName: " + f.elements.name.value.trim() + "\nTravel date: " + f.date.value + "\nNumber of people: " + f.n.value + "\nPlease share the price and availability."), "_blank", "noopener");
       return;
     }
-    if (f.id === "lg") {
+    if (f.id === "cn") {
       e.preventDefault();
-      var em = f.email.value.trim(), pw = f["lg-pw"].value, err = $("#lg-err"), sbm = f.querySelector("[type=submit]");
-      var fail = function (m) { err.textContent = m; err.hidden = false; sbm.disabled = false; sbm.textContent = "Sign in"; };
-      if (!em || !pw) return fail("Enter your email and password.");
-      sbm.disabled = true; sbm.textContent = "Signing in…"; err.hidden = true;
-      auth.signIn(em, pw).then(function () { location.hash = "#/academy/dashboard"; }).catch(function (x) { fail(SB && /invalid/i.test(x.message || "") ? "That email and password don\u2019t match." : (x.message || "Sign-in failed. Try again.")); });
-      return;
-    }
-    if (f.id === "cp") {
-      e.preventDefault();
-      var np = f["cp-pw"].value, msg = $("#cp-msg");
-      var say = function (m, ok) { msg.textContent = m; msg.className = ok ? "x-ok" : "x-err"; msg.hidden = false; };
-      if (np.length < 6) return say("Use at least 6 characters.");
-      auth.setPw(np).then(function () { f.reset(); say("Password updated.", true); }).catch(function (x) { say(x.message || "Couldn\u2019t update the password."); });
+      var nm = f.elements.name.value.replace(/\s+/g, " ").trim(), ce = $("#cn-err");
+      if (nm.length < 2) { ce.textContent = "Type your full name to show the certificate."; ce.hidden = false; f.elements.name.focus(); return; }
+      memSet(NAME_KEY, nm); renderCert(); window.scrollTo(0, 0);
       return;
     }
     if (f.id === "vf") {
@@ -1521,73 +1461,6 @@ const D = {"states":[
   }
   window.addEventListener("hashchange", go);
   router();
-})();
-    </script>
-    <script src="https://unpkg.com/three@0.149.0/build/three.min.js"></script>
-    <script>
-(function () {
-  var rm = matchMedia("(prefers-reduced-motion: reduce)").matches, T, R, scene, cam, globe, host = null, io, ro;
-  var arcs = [], running = false, seen = false, t0 = 0, last = 0, spin = 0, tilt = 0, start = 0, target = 0, tiltT = 0, drag = null, grabbed = false;
-  function fail() { document.documentElement.classList.add("x-noglobe"); }
-  function vec(lat, lon, r) { var p = (90 - lat) * Math.PI / 180, q = (lon + 180) * Math.PI / 180; return new T.Vector3(-r * Math.sin(p) * Math.cos(q), r * Math.cos(p), r * Math.sin(p) * Math.sin(q)); }
-  function build() {
-    R = new T.WebGLRenderer({ antialias: true, alpha: true });
-    R.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5)); R.setClearColor(0, 0);
-    scene = new T.Scene(); cam = new T.PerspectiveCamera(40, 1, 0.1, 20); globe = new T.Group(); scene.add(globe);
-    var teal = 0x0f4c4a, gold = 0xc8962e, N = 2500, pos = new Float32Array(N * 3), ga = Math.PI * (3 - Math.sqrt(5));
-    for (var i = 0; i < N; i++) { var y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y); pos[i * 3] = Math.cos(ga * i) * r; pos[i * 3 + 1] = y; pos[i * 3 + 2] = Math.sin(ga * i) * r; }
-    var pg = new T.BufferGeometry(); pg.setAttribute("position", new T.BufferAttribute(pos, 3));
-    globe.add(new T.Points(pg, new T.PointsMaterial({ color: teal, size: 0.03, transparent: true, opacity: 0.8 })));
-    globe.add(new T.Mesh(new T.SphereGeometry(0.985, 48, 32), new T.MeshBasicMaterial({ color: 0xfbf7ee })));
-    globe.add(new T.Mesh(new T.SphereGeometry(1.002, 24, 16), new T.MeshBasicMaterial({ color: teal, wireframe: true, transparent: true, opacity: 0.08 })));
-    var A = vec(17.4, 78.5, 1), dg = new T.SphereGeometry(0.016, 12, 8), hg = new T.SphereGeometry(0.034, 12, 8);
-    var dm = new T.MeshBasicMaterial({ color: gold }), hm = new T.MeshBasicMaterial({ color: gold, transparent: true, opacity: 0.25, depthWrite: false });
-    var gm = new T.MeshBasicMaterial({ color: gold, transparent: true, opacity: 0.22, depthWrite: false });
-    function dot(v) { [[dg, dm], [hg, hm]].forEach(function (s) { var m = new T.Mesh(s[0], s[1]); m.position.copy(v); globe.add(m); }); }
-    dot(A);
-    [[15.5, 73.8], [9.9, 76.3], [26.9, 75.8], [34.1, 74.8], [25.6, 91.9], [10.7, 79.8]].forEach(function (c, k) {
-      var B = vec(c[0], c[1], 1), mid = A.clone().add(B).normalize().multiplyScalar(1 + A.distanceTo(B) * 0.55), curve = new T.QuadraticBezierCurve3(A, mid, B);
-      [[0.005, dm], [0.014, gm]].forEach(function (s) { var g = new T.TubeGeometry(curve, 48, s[0], 6, false); globe.add(new T.Mesh(g, s[1])); arcs.push({ g: g, d: k * 0.15 }); });
-      dot(B);
-    });
-    var ind = vec(22, 80, 1); target = -Math.atan2(ind.x, ind.z); tiltT = 22 * Math.PI / 180;
-    var el = R.domElement;
-    el.addEventListener("pointerdown", function (e) { grabbed = true; drag = { x: e.clientX, y: e.clientY, s: spin, t: tilt }; try { el.setPointerCapture(e.pointerId); } catch (x) {} });
-    el.addEventListener("pointermove", function (e) { if (!drag) return; spin = drag.s + (e.clientX - drag.x) * 0.008; tilt = Math.max(-1.2, Math.min(1.2, drag.t + (e.clientY - drag.y) * 0.005)); });
-    ["pointerup", "pointercancel"].forEach(function (n) { el.addEventListener(n, function () { drag = null; }); });
-    io = new IntersectionObserver(function (en) { seen = en[0].isIntersecting; update(); });
-    ro = new ResizeObserver(size);
-    document.addEventListener("visibilitychange", update);
-  }
-  function size() {
-    if (!host) return; var w = host.clientWidth, h = host.clientHeight; if (!w || !h) return;
-    R.setSize(w, h, false); cam.aspect = w / h; cam.position.z = 3.3 / Math.min(1, cam.aspect); cam.updateProjectionMatrix();
-  }
-  function update() {
-    var go = host && host.isConnected && seen && !document.hidden;
-    if (go && !running) { running = true; last = 0; requestAnimationFrame(frame); } else if (!go) running = false;
-  }
-  function frame(now) {
-    if (!running) return; requestAnimationFrame(frame);
-    if (!t0) t0 = now; var t = (now - t0) / 1000, dt = last ? Math.min(0.05, (now - last) / 1000) : 0; last = now;
-    if (!drag) {
-      if (!rm && !grabbed && t < 2.2) { var e = 1 - Math.pow(1 - t / 2.2, 3); spin = start + (target - start) * e; tilt = tiltT * e; }
-      else if (!rm) spin += dt * 0.05;
-    }
-    globe.rotation.set(tilt, spin, 0);
-    arcs.forEach(function (a) { var p = rm ? 1 : Math.max(0, Math.min(1, (t - 0.8 - a.d) / 1.2)); p = 1 - Math.pow(1 - p, 3); a.g.setDrawRange(0, Math.floor(p * 48) * 36); });
-    R.render(scene, cam);
-  }
-  function mount() {
-    host = document.getElementById("x-globe"); io.disconnect(); ro.disconnect(); seen = false;
-    if (!host) return update();
-    host.appendChild(R.domElement); io.observe(host); ro.observe(host); size();
-    t0 = 0; grabbed = false; start = rm ? target : target - 2.2; spin = start; tilt = rm ? tiltT : 0;
-  }
-  if (typeof THREE === "undefined" || !window.WebGLRenderingContext) return fail();
-  T = THREE;
-  try { build(); } catch (e) { return fail(); }
-  mount(); document.addEventListener("tk:route", mount);
 })();
     </script>
     <script>
@@ -1664,7 +1537,7 @@ const D = {"states":[
   var queued = false;
   function queue() { if (queued) return; queued = true; requestAnimationFrame(function () { queued = false; scan(); }); }
   new MutationObserver(function (ms) {
-    for (var i = 0; i < ms.length; i++) { var tg = ms[i].target; if (tg.closest && !tg.closest(".leaflet-container, .x-globe, [data-to], .x-btn")) return queue(); }
+    for (var i = 0; i < ms.length; i++) { var tg = ms[i].target; if (tg.closest && !tg.closest(".leaflet-container, [data-to], .x-btn")) return queue(); }
   }).observe(view, { childList: true, subtree: true });
   document.addEventListener("tk:route", queue);
   scan();
