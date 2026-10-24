@@ -1,1792 +1,213 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Travel Kahani: India, up close</title>
-    <meta name="description" content="Travel Kahani plans handcrafted India trips from Hyderabad — explore states, places and packages on an interactive 3D map, then chat on WhatsApp." />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2314161A'/%3E%3Cpath d='M16 6c4 0 7 3 7 7 0 5-7 13-7 13S9 18 9 13c0-4 3-7 7-7z' fill='%23DF6C4F'/%3E%3Ccircle cx='16' cy='13' r='2.6' fill='%23fff'/%3E%3C/svg%3E" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" />
-    <style>
-      :root {
-        --ink: #14161a;
-        --blue: #2779a7;
-        --coral: #b9472c;
-        --paper: #fff;
-        --muted: #5d646e;
-        --line: rgba(20, 22, 26, 0.12);
-        --glass: rgba(255, 255, 255, 0.72);
-        --r: 20px;
-        --head: 64px;
-      }
-      * { box-sizing: border-box; }
-      [hidden] { display: none !important; }
-      html { scroll-behavior: smooth; }
-      body {
-        margin: 0; background: var(--paper); color: var(--ink);
-        font: 400 16px/1.6 "Inter", system-ui, sans-serif;
-        -webkit-font-smoothing: antialiased; overflow-x: hidden;
-      }
-      h1, h2, h3, .brand { font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 700; letter-spacing: -0.02em; line-height: 1.08; margin: 0; }
-      h1 { font-size: clamp(40px, 8vw, 86px); }
-      h2 { font-size: clamp(28px, 4.4vw, 46px); }
-      h3 { font-size: 20px; }
-      p { margin: 0; }
-      a { color: inherit; }
-      img { display: block; max-width: 100%; }
-      .wrap { width: min(1160px, 100% - 40px); margin: 0 auto; }
-      .eyebrow { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--blue); font-weight: 600; }
-      .lead { color: var(--muted); font-size: 17px; }
-      /* header */
-      .hdr { position: sticky; top: 0; z-index: 60; height: var(--head); display: flex; align-items: center;
-        background: rgba(255,255,255,.82); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
-      .hdr .wrap { display: flex; align-items: center; gap: 18px; }
-      .brand { font-size: 20px; text-decoration: none; margin-right: auto; min-height: 44px; display: inline-flex; align-items: center; }
-      .brand span { color: var(--coral); }
-      .nav { display: flex; gap: 4px; }
-      .nav a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--muted); padding: 10px 12px; border-radius: 999px; min-height: 44px; display: inline-flex; align-items: center; }
-      .nav a:hover { color: var(--ink); background: rgba(39,121,167,.09); }
-      .nav a[aria-current="page"] { color: var(--ink); background: #e2edf4; }
-      .burger { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 12px; background: #fff; align-items: center; justify-content: center; gap: 4px; flex-direction: column; cursor: pointer; }
-      .burger i { width: 16px; height: 2px; background: var(--ink); display: block; }
-      /* buttons */
-      .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 0 20px; border-radius: 999px;
-        font: 600 14px/1 "Inter", sans-serif; text-decoration: none; border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; transition: transform .18s ease, background .18s ease; }
-      .btn:hover { transform: translateY(-1px); }
-      .btn--wa { background: var(--coral); border-color: var(--coral); color: #fff; }
-      .btn--dark { background: var(--ink); border-color: var(--ink); color: #fff; }
-      .btn--blue { background: var(--blue); border-color: var(--blue); color: #fff; }
-      .btns { display: flex; flex-wrap: wrap; gap: 12px; }
-      /* hero */
-      .hero { background: var(--ink); color: #fff; padding: 72px 0 96px; overflow: hidden; }
-      .hero .lead { color: rgba(255,255,255,.72); max-width: 44ch; }
-      .hero .eyebrow { color: #9fd0ea; }
-      .wall { margin-top: 56px; perspective: 1100px; height: 320px; }
-      .wall__in { display: flex; justify-content: center; gap: 14px; transform-style: preserve-3d; transition: transform .4s ease; }
-      .tile { width: 170px; height: 240px; border-radius: 16px; overflow: hidden; flex: none; box-shadow: 0 24px 50px rgba(0,0,0,.45);
-        animation: float 7s ease-in-out infinite; }
-      .tile img { width: 100%; height: 100%; object-fit: cover; }
-      @keyframes float { 0%,100% { translate: 0 0 } 50% { translate: 0 -14px } }
-      /* sections */
-      .sec { padding: 76px 0; }
-      .sec--tint { background: linear-gradient(180deg, #f6fafd, #fff); }
-      .head { max-width: 62ch; display: grid; gap: 12px; margin-bottom: 32px; }
-      .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-      .card { background: var(--glass); backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; }
-      .card img { height: 180px; width: 100%; object-fit: cover; }
-      .card__body { padding: 18px; display: grid; gap: 10px; align-content: start; flex: 1; }
-      .meta { font-size: 13px; color: var(--muted); }
-      .price { font-weight: 600; font-size: 14px; color: var(--blue); }
-      .why { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
-      .why div { border: 1px solid var(--line); border-radius: var(--r); padding: 22px; background: #fff; }
-      .why b { display: block; font-family: "Space Grotesk", sans-serif; font-size: 28px; color: var(--coral); margin-bottom: 8px; }
-      .band { background: var(--blue); color: #fff; border-radius: 28px; padding: 44px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; }
-      .band { background: #1f6690; }
-      .band p { color: #fff; }
-      .foot { border-top: 1px solid var(--line); padding: 28px 0 110px; font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; }
-      .foot p a { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; padding: 0 4px; }
-      /* map */
-      .mapbox { position: relative; border-radius: 24px; overflow: hidden; border: 1px solid var(--line);
-        background: linear-gradient(180deg, #cfe6f5, #eaf4fb); height: 60vh; min-height: 420px; }
-      .mapbox--full { height: calc(100vh - var(--head)); border-radius: 0; border: none; min-height: 520px; }
-      .mapbox canvas { display: block; }
-      .lbl { position: absolute; transform: translate(-50%, -140%); font: 600 12px/1 "Inter", sans-serif; color: var(--ink);
-        background: rgba(255,255,255,.86); border: 1px solid var(--line); padding: 7px 10px; border-radius: 999px; white-space: nowrap; pointer-events: none; transition: opacity .25s ease; }
-      .fallback { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; gap: 10px; padding: 24px; }
-      .tools { position: absolute; top: 16px; left: 16px; right: 16px; display: flex; flex-wrap: wrap; gap: 8px; z-index: 5; }
-      .tools input { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.9); backdrop-filter: blur(8px); font: 400 14px "Inter", sans-serif; width: 240px; }
-      .chip { min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,.86); font: 500 13px "Inter", sans-serif; cursor: pointer; display: inline-flex; align-items: center; }
-      .chip[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
-      .hits { position: absolute; top: 68px; left: 16px; z-index: 6; width: 260px; background: rgba(255,255,255,.95); border: 1px solid var(--line); border-radius: 16px; padding: 8px; display: none; max-height: 220px; overflow: auto; }
-      .hits button { display: block; width: 100%; text-align: left; background: none; border: 0; padding: 9px 10px; border-radius: 10px; font: 400 14px "Inter", sans-serif; cursor: pointer; }
-      .hits button:hover { background: #eef6fb; }
-      /* panel */
-      .panel { position: absolute; right: 16px; bottom: 16px; top: 16px; width: 340px; z-index: 8;
-        background: var(--glass); backdrop-filter: blur(16px); border: 1px solid var(--line); border-radius: 22px; overflow: auto;
-        box-shadow: 0 20px 50px rgba(20,22,26,.18); display: none; }
-      .panel.on { display: block; animation: pop .3s ease; }
-      @keyframes pop { from { opacity: 0; transform: translateY(14px) } }
-      .panel img { height: 150px; width: 100%; object-fit: cover; }
-      .panel__b { padding: 18px; display: grid; gap: 14px; }
-      .close { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: #fff; cursor: pointer; font-size: 16px; line-height: 1; }
-      .months { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; }
-      .months span { font-size: 11px; text-align: center; padding: 6px 0 4px; border-radius: 6px; color: #fff; font-weight: 600; }
-      .m-p { background: #22784f; } .m-o { background: #e0a33c; color: var(--ink); } .m-a { background: #c7cbd1; color: #4a505a; }
-      .key { font-size: 12px; color: var(--muted); display: flex; gap: 12px; flex-wrap: wrap; }
-      .key i { width: 9px; height: 9px; border-radius: 3px; display: inline-block; margin-right: 5px; }
-      .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-      .tag { font-size: 12px; border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; background: rgba(255,255,255,.7); }
-      /* bottom bar */
-      .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 70; display: none; grid-template-columns: 1fr 1fr; gap: 1px;
-        background: var(--line); border-top: 1px solid var(--line); }
-      .bar a { background: #fff; text-align: center; padding: 14px; text-decoration: none; font: 600 14px "Inter", sans-serif; min-height: 52px; }
-      .bar a:first-child { color: var(--coral); }
-      .soon { padding: 120px 0; text-align: center; display: grid; gap: 18px; justify-items: center; }
-      /* step 2: lists, 360, packages, contact, trip */
-      .fchips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
-      .fchips .chip { min-height: 44px; }
-      .card--link { text-decoration: none; transition: transform .2s ease, box-shadow .2s ease; }
-      .card--link:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(20,22,26,.12); }
-      .go { font-weight: 600; font-size: 14px; color: var(--coral); }
-      .v360 { position: relative; height: calc(100vh - var(--head)); height: calc(100dvh - var(--head)); min-height: 560px; background: #0d0f12; overflow: hidden; }
-      .vstage, .vstage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
-      .vstage canvas:active { cursor: grabbing; }
-      .vfall { width: 100%; height: 100%; object-fit: cover; }
-      .vtop { position: absolute; top: 16px; left: 16px; right: 16px; display: flex; gap: 8px; align-items: center; z-index: 5; pointer-events: none; }
-      .vtop > * { pointer-events: auto; }
-      .gbtn { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.35); background: rgba(20,22,26,.5); color: #fff; backdrop-filter: blur(10px);
-        font: 600 14px "Inter", sans-serif; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
-      .gbtn[aria-pressed="true"] { background: #fff; color: var(--ink); }
-      .ghint { margin: 0 auto; font-weight: 500; font-size: 13px; pointer-events: none; }
-      .hot { position: absolute; left: 0; top: 0; z-index: 4; transform: translate(-50%, -50%); display: none; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px 0 10px;
-        border-radius: 999px; border: 1px solid rgba(255,255,255,.45); background: rgba(20,22,26,.55); color: #fff; backdrop-filter: blur(8px); font: 600 13px "Inter", sans-serif; cursor: pointer; white-space: nowrap; }
-      .hot i { width: 12px; height: 12px; border-radius: 50%; background: #df6c4f; box-shadow: 0 0 0 0 rgba(223,108,79,.7); animation: ping 1.8s infinite; }
-      @keyframes ping { 70% { box-shadow: 0 0 0 10px rgba(223,108,79,0) } 100% { box-shadow: 0 0 0 0 rgba(223,108,79,0) } }
-      .hcard { position: absolute; top: 72px; left: 16px; z-index: 6; width: min(300px, calc(100% - 32px)); background: var(--glass); backdrop-filter: blur(16px);
-        border: 1px solid var(--line); border-radius: 18px; padding: 16px; display: grid; gap: 10px; box-shadow: 0 20px 50px rgba(0,0,0,.3); animation: pop .25s ease; }
-      .hcard h3 { padding-right: 36px; font-size: 18px; }
-      .vpanel { position: absolute; left: 16px; right: 16px; bottom: 16px; z-index: 5; max-height: 48%; overflow: auto; background: var(--glass); backdrop-filter: blur(18px);
-        border: 1px solid var(--line); border-radius: 22px; padding: 20px; display: grid; gap: 18px; box-shadow: 0 20px 50px rgba(0,0,0,.25); }
-      .vhead { display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: end; }
-      .vhead h2 { font-size: clamp(26px, 4vw, 38px); }
-      .vlbl { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
-      .hscroll { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; }
-      .pcard { flex: 0 0 230px; scroll-snap-align: start; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 14px; display: grid; gap: 8px; align-content: start; }
-      .pcard h3 { font-size: 16px; }
-      .addb { min-height: 44px; border-radius: 999px; border: 1px dashed var(--blue); background: #fff; color: var(--blue); font: 600 13px "Inter", sans-serif; cursor: pointer; padding: 0 14px; justify-self: start; }
-      .addb[aria-pressed="true"] { border-style: solid; background: var(--blue); color: #fff; }
-      .thumbs a { flex: 0 0 104px; scroll-snap-align: start; text-decoration: none; font-size: 12px; font-weight: 600; display: grid; gap: 6px; }
-      .thumbs img { width: 104px; height: 66px; object-fit: cover; border-radius: 12px; }
-      .banner { position: relative; min-height: 360px; display: flex; align-items: flex-end; color: #fff; overflow: hidden; background: var(--ink); }
-      .banner > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .75; }
-      .banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,22,26,.1), rgba(20,22,26,.85)); }
-      .banner .wrap { position: relative; z-index: 1; padding: 90px 0 36px; display: grid; gap: 10px; justify-items: start; }
-      .banner h1 { font-size: clamp(34px, 6vw, 62px); }
-      .banner .eyebrow { color: #9fd0ea; }
-      .pkg { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 40px; align-items: start; }
-      .pkg__main { display: grid; gap: 44px; }
-      .pkg__main h2 { font-size: 28px; margin-bottom: 18px; }
-      .tl { list-style: none; margin: 0; padding: 0; }
-      .tl li { position: relative; padding: 0 0 26px 58px; }
-      .tl li::before { content: ""; position: absolute; left: 19px; top: 40px; bottom: 0; width: 2px; background: var(--line); }
-      .tl li:last-child::before { display: none; }
-      .tl b { position: absolute; left: 0; top: 0; width: 40px; height: 40px; border-radius: 50%; background: var(--coral); color: #fff; display: grid; place-items: center; font: 700 15px "Space Grotesk", sans-serif; }
-      .tl .eyebrow { margin: 2px 0 4px; }
-      .route { border: 1px solid var(--line); border-radius: var(--r); background: linear-gradient(180deg, #f6fafd, #fff); overflow-x: auto; padding: 8px; }
-      .route svg { display: block; min-width: 600px; width: 100%; height: auto; }
-      .ie { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
-      .ie > div { border: 1px solid var(--line); border-radius: var(--r); padding: 22px; display: grid; gap: 12px; align-content: start; }
-      .ie ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-      .ie li { padding-left: 26px; position: relative; color: var(--muted); }
-      .ie li::before { position: absolute; left: 0; font-weight: 700; }
-      .ok li::before { content: "✓"; color: #2f9e6b; } .no li::before { content: "✕"; color: var(--coral); }
-      .sticky { position: sticky; top: calc(var(--head) + 20px); }
-      .pcta { border: 1px solid var(--line); border-radius: 22px; padding: 24px; background: #fff; box-shadow: 0 20px 50px rgba(20,22,26,.08); display: grid; gap: 16px; }
-      .pcta .big { font: 700 26px/1.1 "Space Grotesk", sans-serif; }
-      .form { display: grid; gap: 12px; }
-      .form label { display: grid; gap: 6px; font-size: 13px; font-weight: 600; }
-      .form input, .form textarea { min-height: 46px; border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; font: 400 15px "Inter", sans-serif; background: #fff; color: var(--ink); width: 100%; }
-      .form textarea { min-height: 96px; resize: vertical; }
-      .form .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-      .btn--big { min-height: 64px; font-size: 17px; padding: 0 32px; }
-      .cgrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 40px; align-items: start; }
-      .trip-pill { position: fixed; right: 16px; bottom: 16px; z-index: 75; min-height: 48px; padding: 0 20px; border-radius: 999px; border: 0; background: var(--ink); color: #fff;
-        font: 600 14px "Inter", sans-serif; cursor: pointer; box-shadow: 0 14px 34px rgba(20,22,26,.3); }
-      .trip-pill b { color: #ffb19c; }
-      body.immersive .bar { display: none; }
-      body.immersive .trip-pill { bottom: auto; top: calc(var(--head) + 72px); }
-      .scrim { position: fixed; inset: 0; z-index: 88; background: rgba(20,22,26,.4); }
-      .drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 90; width: min(400px, 100%); background: #fff; display: flex; flex-direction: column;
-        transform: translateX(100%); visibility: hidden; transition: transform .3s ease, visibility .3s; box-shadow: -20px 0 50px rgba(20,22,26,.2); }
-      .drawer.on { transform: none; visibility: visible; }
-      .drawer__h { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; border-bottom: 1px solid var(--line); }
-      .drawer .close, .hcard .close { position: absolute; width: 44px; height: 44px; }
-      .drawer .close { position: static; }
-      .tlist { list-style: none; margin: 0; padding: 8px 20px; overflow: auto; flex: 1; }
-      .tlist li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
-      .tlist button { flex: none; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: #fff; cursor: pointer; font-size: 15px; }
-      .drawer__f { padding: 18px 20px; border-top: 1px solid var(--line); display: grid; gap: 10px; }
-      @media (max-width: 860px) {
-        .trip-pill { bottom: 66px; }
-        .pkg, .cgrid { grid-template-columns: 1fr; }
-        .sticky { position: static; }
-        .ghint { display: none; }
-        .vtop { justify-content: space-between; }
-        .vpanel { left: 8px; right: 8px; bottom: 8px; max-height: 52%; padding: 16px; }
-        .hcard { top: 68px; }
-      }
-      @media (max-width: 860px) {
-        .nav { display: none; position: fixed; top: var(--head); left: 0; right: 0; background: #fff; flex-direction: column; padding: 12px; border-bottom: 1px solid var(--line); }
-        .nav.on { display: flex; }
-        .burger { display: flex; }
-        .bar { display: grid; }
-        .wall { height: 230px; }
-        .tile { width: 120px; height: 170px; }
-        .panel { left: 10px; right: 10px; width: auto; top: auto; max-height: 72%; border-radius: 22px 22px 0 0; bottom: 0; }
-        .band { padding: 28px; border-radius: 22px; }
-        .tools input { width: 100%; }
-      }
-      /* step 3: trip builder, churches, academy */
-      @media (max-width: 1100px) {
-        .nav { display: none; position: fixed; top: var(--head); left: 0; right: 0; background: #fff; flex-direction: column; padding: 12px; border-bottom: 1px solid var(--line); }
-        .nav.on { display: flex; }
-        .burger { display: flex; }
-      }
-      .tb { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
-      .tbmap { position: sticky; top: calc(var(--head) + 20px); border: 1px solid var(--line); border-radius: 24px; background: linear-gradient(180deg, #cfe6f5, #eaf4fb); padding: 12px; }
-      .tbmap svg { display: block; width: 100%; height: auto; max-height: 72vh; }
-      .tbmap svg { transition: none; }
-      .rline { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.6s ease forwards; }
-      @keyframes draw { to { stroke-dashoffset: 0 } }
-      .ctl { display: grid; gap: 18px; border: 1px solid var(--line); border-radius: 22px; padding: 22px; background: #fff; }
-      .ctl label, .ctl .lbl2 { display: grid; gap: 8px; font-size: 13px; font-weight: 600; }
-      .ctl select { min-height: 46px; border: 1px solid var(--line); border-radius: 12px; padding: 0 12px; font: 400 15px "Inter", sans-serif; background: #fff; color: var(--ink); }
-      .ctl input[type=range] { width: 100%; min-height: 44px; accent-color: var(--coral); }
-      .tchips { display: flex; flex-wrap: wrap; gap: 8px; }
-      .tchips .chip { min-height: 44px; }
-      .plist { display: grid; gap: 8px; }
-      .pl { display: flex; align-items: center; gap: 12px; border: 1px solid var(--line); border-radius: 14px; padding: 8px 8px 8px 12px; background: #fff; }
-      .pl b { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--coral); color: #fff; display: grid; place-items: center; font: 700 13px "Space Grotesk", sans-serif; }
-      .pl span { flex: 1; min-width: 0; font-size: 14px; }
-      .pl button { flex: none; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: #fff; cursor: pointer; }
-      .days { display: grid; gap: 12px; }
-      .day { border: 1px solid var(--line); border-radius: 18px; padding: 16px 18px; background: #fff; }
-      .day h3 { font-size: 17px; margin-bottom: 8px; }
-      .day dl { margin: 0; display: grid; grid-template-columns: 96px 1fr; gap: 6px 12px; font-size: 14px; }
-      .day dt { color: var(--muted); font-weight: 600; } .day dd { margin: 0; }
-      .warn { font-size: 13px; color: var(--coral); }
-      .wall--church .tile { cursor: default; }
-      .ctrail { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-      .ccard { border: 1px solid var(--line); border-radius: var(--r); padding: 20px; background: #fff; display: grid; gap: 10px; align-content: start; }
-      .feat { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); border-radius: 26px; overflow: hidden; background: var(--ink); color: #fff; margin-bottom: 40px; }
-      .feat img { width: 100%; height: 100%; min-height: 260px; object-fit: cover; }
-      .feat > div { padding: 32px; display: grid; gap: 12px; align-content: center; }
-      .feat .meta { color: rgba(255,255,255,.72); }
-      .prog { height: 12px; border-radius: 999px; background: rgba(255,255,255,.18); overflow: hidden; }
-      .prog i { display: block; height: 100%; background: linear-gradient(90deg, #df6c4f, #f3b07b); border-radius: inherit; transition: width .6s ease; }
-      .acc details { border: 1px solid var(--line); border-radius: 18px; background: #fff; margin-bottom: 10px; }
-      .acc summary { cursor: pointer; padding: 16px 20px; min-height: 56px; display: flex; justify-content: space-between; align-items: center; gap: 12px; font: 700 17px "Space Grotesk", sans-serif; list-style: none; }
-      .acc summary::-webkit-details-marker { display: none; }
-      .acc summary::after { content: "+"; font-size: 22px; color: var(--muted); }
-      .acc details[open] summary::after { content: "–"; }
-      .acc ol { list-style: none; margin: 0; padding: 0 10px 10px; }
-      .acc li a { display: flex; gap: 12px; align-items: center; min-height: 48px; padding: 8px 10px; border-radius: 12px; text-decoration: none; font-size: 14px; }
-      .acc li a:hover { background: #eef6fb; }
-      .acc li em { font-style: normal; color: var(--muted); width: 74px; flex: none; font-size: 13px; }
-      .acc li a span { flex: 1; }
-      .ok2 { color: #22784f; font-weight: 600; font-size: 13px; white-space: nowrap; }
-      .book { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; justify-content: space-between; border: 1px dashed var(--coral); border-radius: 22px; padding: 26px; margin-top: 28px; }
-      .stepper { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 26px; counter-reset: st; }
-      .stepper button { flex: none; min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font: 500 13px "Inter", sans-serif; cursor: pointer; color: var(--muted); }
-      .stepper button::before { counter-increment: st; content: counter(st) ". "; }
-      .stepper button[aria-selected="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
-      .spanel { border: 1px solid var(--line); border-radius: 22px; padding: 26px; background: #fff; display: grid; gap: 18px; }
-      .spanel ul, .spanel ol { margin: 0; padding-left: 22px; display: grid; gap: 8px; }
-      .lesson { display: grid; gap: 8px; } .lesson + .lesson { border-top: 1px solid var(--line); padding-top: 18px; }
-      .ltab { width: 100%; border-collapse: collapse; font-size: 14px; }
-      .ltab th, .ltab td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
-      .twrap { overflow-x: auto; }
-      .flips { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
-      .flip { perspective: 900px; height: 170px; border: 0; padding: 0; background: none; cursor: pointer; font: inherit; color: inherit; text-align: left; }
-      .flip__in { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .5s ease; }
-      .flip[aria-pressed="true"] .flip__in { transform: rotateY(180deg); }
-      .flip__f, .flip__b { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 18px; padding: 16px; display: grid; align-content: center; gap: 6px; }
-      .flip__f { background: linear-gradient(160deg, #e2edf4, #fff); border: 1px solid var(--line); font: 700 18px "Space Grotesk", sans-serif; }
-      .flip__f small { font: 500 12px "Inter", sans-serif; color: var(--muted); }
-      .flip__b { background: var(--ink); color: #fff; transform: rotateY(180deg); font-size: 14px; }
-      .q { display: grid; gap: 8px; } .q + .q { border-top: 1px solid var(--line); padding-top: 16px; }
-      .q button { text-align: left; min-height: 46px; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--line); background: #fff; font: 400 14px "Inter", sans-serif; cursor: pointer; color: var(--ink); }
-      .q button.right { background: #e5f4ec; border-color: #2f9e6b; }
-      .q button.wrong { background: #fbe9e4; border-color: var(--coral); }
-      .q button:disabled { cursor: default; opacity: 1; }
-      .fb { font-size: 13px; font-weight: 600; }
-      .score { border-radius: 16px; padding: 18px; background: #f6fafd; display: grid; gap: 10px; }
-      .chnav { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; margin-top: 26px; }
-      .cert { aspect-ratio: 297 / 210; width: 100%; max-width: 1000px; margin: 0 auto; background: #fbf8f1; color: #1d1b16; border-radius: 6px; padding: 3%; box-shadow: 0 30px 70px rgba(20,22,26,.18); position: relative;
-        -webkit-print-color-adjust: exact; print-color-adjust: exact; container-type: inline-size; }
-      .cert__in { height: 100%; border: 2px solid #b08a3e; outline: 1px solid #b08a3e; outline-offset: -8px; display: grid; align-content: center; justify-items: center; text-align: center; gap: 1.6cqw; padding: 3cqw; position: relative;
-        background: radial-gradient(circle at 50% 0, rgba(176,138,62,.12), transparent 60%); }
-      .cert .c-brand { font: 700 2.2cqw "Space Grotesk", sans-serif; letter-spacing: .2em; text-transform: uppercase; color: #8a6a2c; }
-      .cert .c-t { font: 700 4.6cqw/1 "Space Grotesk", sans-serif; letter-spacing: -.01em; }
-      .cert .c-s { font-size: 1.6cqw; color: #5b5547; letter-spacing: .06em; text-transform: uppercase; }
-      .cert .c-n { font: 700 5.6cqw/1.05 "Space Grotesk", sans-serif; color: #14161a; border-bottom: 1px solid #b08a3e; padding: 0 4cqw 1cqw; }
-      .cert .c-c { font: 600 2.4cqw "Space Grotesk", sans-serif; color: #2779a7; }
-      .cert .c-b { font-size: 1.5cqw; color: #5b5547; }
-      .cert .c-f { display: flex; gap: 6cqw; margin-top: 1.5cqw; font-size: 1.4cqw; color: #5b5547; }
-      .cert .c-f b { display: block; font: 600 1.7cqw "Inter", sans-serif; color: #1d1b16; }
-      .seal { position: absolute; right: 5cqw; bottom: 5cqw; width: 11cqw; height: 11cqw; }
-      .vbox { max-width: 520px; display: grid; gap: 14px; }
-      .spanel li a.link { display: inline-flex; align-items: center; min-height: 44px; }
-      .hits button { min-height: 44px; }
-      .flip__f, .flip__b { -webkit-backface-visibility: hidden; }
-      @media print {
-        @page { size: A4 landscape; margin: 0; }
-        body { background: #fff; }
-        body > *:not(#app), #app > *:not(.certsec), .certsec .noprint { display: none !important; }
-        .certsec { padding: 0 !important; }
-        .certsec .wrap { width: 100%; }
-        .cert { box-shadow: none; border-radius: 0; width: 297mm; height: 209mm; max-width: none; aspect-ratio: auto; overflow: hidden; break-inside: avoid; }
-      }
-      @media (max-width: 860px) {
-        .tb, .feat { grid-template-columns: 1fr; }
-        .tbmap { position: static; }
-        .day dl { grid-template-columns: 1fr; gap: 2px; }
-        .day dd { margin-bottom: 6px; }
-      }
-      @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
-    </style>
-  </head>
-  <body>
-    <header class="hdr">
-      <div class="wrap">
-        <a class="brand" href="#/home">Travel <span>Kahani</span></a>
-        <nav class="nav" id="nav">
-          <a href="#/home">Home</a>
-          <a href="#/map">3D Map</a>
-          <a href="#/destinations">Destinations</a>
-          <a href="#/packages">Packages</a>
-          <a href="#/trip">Trip Builder</a>
-          <a href="#/churches">Church Trails</a>
-          <a href="#/academy">Academy</a>
-          <a href="#/contact">Contact</a>
-        </nav>
-        <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
-      </div>
-    </header>
-
-    <main id="app"></main>
-
-    <nav class="bar" aria-label="Quick contact">
-      <a id="barwa" href="#" target="_blank" rel="noopener">WhatsApp</a>
-      <a href="tel:+917671819808">Call +91 76718 19808</a>
-    </nav>
-
-    <button class="trip-pill" id="trippill" aria-controls="drawer" aria-expanded="false">My Trip (<b id="tripn">0</b>)</button>
-    <div class="scrim" id="scrim" hidden></div>
-    <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dtitle" aria-hidden="true">
-      <div class="drawer__h"><h3 id="dtitle">My trip</h3><button class="close" id="dclose" aria-label="Close my trip">×</button></div>
-      <ul class="tlist" id="tlist"></ul>
-      <div class="drawer__f" id="dfoot"></div>
-    </aside>
-
-    <div hidden aria-hidden="true" id="imgsrc">
-      <img data-f="kerala.jpg" src="kerala.jpg" alt="" />
-      <img data-f="himalaya.jpg" src="himalaya.jpg" alt="" />
-      <img data-f="rajasthan.jpg" src="rajasthan.jpg" alt="" />
-      <img data-f="hampi.jpg" src="hampi.jpg" alt="" />
-      <img data-f="goa.jpg" src="goa.jpg" alt="" />
-      <img data-f="telangana.jpg" src="telangana.jpg" alt="" />
-      <img data-f="hidden.jpg" src="hidden.jpg" alt="" />
-      <img data-f="church.jpg" src="church.jpg" alt="" />
-    </div>
-    <script type="application/json" id="destinations">{"states":[
-{"id":"telangana","name":"Telangana","te":"తెలంగాణ","img":"telangana.jpg","tag":"Forts, lakes, waterfalls & heritage","best":[10,11,12,1,2],"places":[
- {"n":"Charminar & Old City, Hyderabad","type":"Heritage","days":1,"note":"1591 monument, Laad Bazaar bangles, Irani chai"},
- {"n":"Golconda Fort","type":"Heritage","days":0.5,"note":"Qutb Shahi fort, evening sound & light show"},
- {"n":"Qutb Shahi Tombs","type":"Heritage","days":0.5,"note":"Restored royal tombs and gardens"},
- {"n":"Ramoji Film City","type":"Family","days":1,"note":"Film studio theme park"},
- {"n":"Warangal Fort","type":"Heritage","days":1,"note":"Kakatiya stone gateways (Kirti Toranas)"},
- {"n":"Ramappa (UNESCO World Heritage)","type":"Heritage","days":0.5,"note":"13th-century Kakatiya architecture near Palampet"},
- {"n":"Laknavaram Lake","type":"Nature","days":1,"note":"Hanging bridge and island cottages"},
- {"n":"Bhongir Fort","type":"Adventure","days":0.5,"note":"Monolithic rock fort, short trek"},
- {"n":"Kuntala Waterfall","type":"Nature","days":1,"note":"Telangana's highest waterfall, Adilabad"},
- {"n":"Medak Cathedral","type":"Church","days":0.5,"note":"One of Asia's largest churches, completed 1924"},
- {"n":"Nagarjuna Sagar","type":"Nature","days":1,"note":"Dam, reservoir and Buddhist island museum"}]},
-{"id":"andhra","name":"Andhra Pradesh","te":"ఆంధ్రప్రదేశ్","img":"hidden.jpg","tag":"Beaches, valleys & canyons","best":[10,11,12,1,2],"places":[
- {"n":"Araku Valley","type":"Nature","days":2,"note":"Coffee estates, Borra Caves, misty winters"},
- {"n":"Visakhapatnam beaches","type":"Beach","days":2,"note":"RK Beach, Rushikonda, submarine museum"},
- {"n":"Gandikota","type":"Adventure","days":1,"note":"The 'Grand Canyon of India' on the Pennar"},
- {"n":"Papikondalu boat cruise","type":"Nature","days":1,"note":"Godavari gorge cruise"},
- {"n":"Lambasingi","type":"Hidden","days":1,"note":"Andhra's chilliest village"}]},
-{"id":"karnataka","name":"Karnataka","te":"కర్ణాటక","img":"hampi.jpg","tag":"Ruins, coffee hills & palaces","best":[10,11,12,1,2],"places":[
- {"n":"Hampi (UNESCO)","type":"Heritage","days":2,"note":"Boulder landscapes, stone chariot, coracle rides"},
- {"n":"Coorg","type":"Nature","days":2,"note":"Coffee estates, Abbey Falls, Dubare"},
- {"n":"Mysuru Palace","type":"Heritage","days":1,"note":"Illuminated on Sunday evenings"},
- {"n":"Chikmagalur","type":"Nature","days":2,"note":"Mullayanagiri trek, coffee trails"},
- {"n":"Gokarna","type":"Beach","days":2,"note":"Quiet beaches and cliff walks"}]},
-{"id":"kerala","name":"Kerala","te":"కేరళ","img":"kerala.jpg","tag":"Backwaters, tea hills & old churches","best":[9,10,11,12,1,2,3],"places":[
- {"n":"Alleppey houseboat","type":"Nature","days":1,"note":"Overnight on the backwaters"},
- {"n":"Munnar","type":"Nature","days":2,"note":"Tea gardens, Eravikulam National Park"},
- {"n":"Fort Kochi","type":"Heritage","days":1,"note":"Chinese fishing nets, St Francis Church"},
- {"n":"Thekkady","type":"Nature","days":1,"note":"Periyar boating and spice gardens"},
- {"n":"Varkala","type":"Beach","days":2,"note":"Cliff-top beach"},
- {"n":"Wayanad","type":"Nature","days":2,"note":"Edakkal Caves, Chembra Peak"}]},
-{"id":"tamilnadu","name":"Tamil Nadu","te":"తమిళనాడు","img":"church.jpg","tag":"Hills, coast & basilicas","best":[10,11,12,1,2,3],"places":[
- {"n":"Ooty & Coonoor","type":"Nature","days":2,"note":"Nilgiri toy train (UNESCO), tea estates"},
- {"n":"Kodaikanal","type":"Nature","days":2,"note":"Lake, Coaker's Walk, pine forests"},
- {"n":"Velankanni Basilica","type":"Church","days":1,"note":"Basilica of Our Lady of Good Health"},
- {"n":"San Thome Basilica, Chennai","type":"Church","days":0.5,"note":"Built over the tomb of St Thomas"},
- {"n":"Mahabalipuram shore & Pondicherry","type":"Beach","days":2,"note":"French Quarter, Promenade beach"}]},
-{"id":"goa","name":"Goa","te":"గోవా","img":"goa.jpg","tag":"Beaches, Christmas & Old Goa","best":[11,12,1,2],"places":[
- {"n":"North Goa beaches","type":"Beach","days":2,"note":"Baga, Anjuna, Fort Aguada"},
- {"n":"South Goa beaches","type":"Beach","days":2,"note":"Palolem, Colva, quieter coves"},
- {"n":"Basilica of Bom Jesus, Old Goa","type":"Church","days":0.5,"note":"UNESCO, relics of St Francis Xavier"},
- {"n":"Se Cathedral, Old Goa","type":"Church","days":0.5,"note":"One of Asia's largest churches"},
- {"n":"Dudhsagar Falls","type":"Nature","days":1,"note":"Four-tiered waterfall, best after monsoon"},
- {"n":"Fontainhas, Panaji","type":"Heritage","days":0.5,"note":"Latin Quarter, painted houses"}]},
-{"id":"rajasthan","name":"Rajasthan","te":"రాజస్థాన్","img":"rajasthan.jpg","tag":"Forts, palaces & desert","best":[10,11,12,1,2,3],"places":[
- {"n":"Jaipur","type":"Heritage","days":2,"note":"Amer Fort, Hawa Mahal, City Palace"},
- {"n":"Udaipur","type":"Heritage","days":2,"note":"Lake Pichola, City Palace"},
- {"n":"Jodhpur","type":"Heritage","days":1,"note":"Mehrangarh Fort, blue city"},
- {"n":"Jaisalmer & Sam dunes","type":"Adventure","days":2,"note":"Golden fort, desert camp, camel safari"}]},
-{"id":"delhi","name":"Delhi & Agra","te":"ఢిల్లీ & ఆగ్రా","img":"rajasthan.jpg","tag":"Monuments & markets","best":[10,11,12,2,3],"places":[
- {"n":"Red Fort & Chandni Chowk","type":"Heritage","days":1,"note":"Mughal fort, old city food walk"},
- {"n":"Qutub Minar & Humayun's Tomb","type":"Heritage","days":1,"note":"Two UNESCO sites"},
- {"n":"Taj Mahal, Agra","type":"Heritage","days":1,"note":"Sunrise visit, closed Fridays"}]},
-{"id":"himachal","name":"Himachal Pradesh","te":"హిమాచల్ ప్రదేశ్","img":"himalaya.jpg","tag":"Snow, valleys & treks","best":[3,4,5,6,10,11,12],"places":[
- {"n":"Manali & Solang","type":"Adventure","days":3,"note":"Snow point, Atal Tunnel, paragliding"},
- {"n":"Shimla","type":"Nature","days":2,"note":"Mall Road, Christ Church, toy train"},
- {"n":"Kasol & Tosh","type":"Nature","days":2,"note":"Parvati Valley cafes and treks"},
- {"n":"Chitkul","type":"Hidden","days":2,"note":"Last village near the Tibet border"}]},
-{"id":"kashmir","name":"Kashmir","te":"కాశ్మీర్","img":"himalaya.jpg","tag":"Lakes, meadows & snow","best":[4,5,6,9,10,12,1],"places":[
- {"n":"Srinagar & Dal Lake","type":"Nature","days":2,"note":"Houseboat stay, shikara ride, Mughal gardens"},
- {"n":"Gulmarg","type":"Adventure","days":1,"note":"Gondola, snow in winter"},
- {"n":"Pahalgam","type":"Nature","days":2,"note":"Betaab and Aru valleys"},
- {"n":"Sonamarg","type":"Nature","days":1,"note":"Thajiwas glacier"}]},
-{"id":"meghalaya","name":"Meghalaya","te":"మేఘాలయ","img":"hidden.jpg","tag":"Root bridges, clouds & caves","best":[10,11,12,1,2,3],"places":[
- {"n":"Shillong","type":"Nature","days":1,"note":"Ward's Lake, Elephant Falls"},
- {"n":"Cherrapunji & Nongriat","type":"Adventure","days":2,"note":"Double-decker living root bridge trek"},
- {"n":"Mawlynnong","type":"Hidden","days":1,"note":"Often called Asia's cleanest village"},
- {"n":"Dawki","type":"Nature","days":1,"note":"Crystal-clear Umngot river boating"}]}
-],
-"churchTrails":[
- {"n":"St Francis Church, Fort Kochi","state":"Kerala","note":"One of India's oldest European-built churches; Vasco da Gama was first buried here"},
- {"n":"Santa Cruz Cathedral Basilica, Kochi","state":"Kerala","note":"Gothic basilica with painted ceilings"},
- {"n":"Vallarpadam Basilica","state":"Kerala","note":"Basilica of Our Lady of Ransom, Kochi"},
- {"n":"Malayattoor Church","state":"Kerala","note":"Hilltop shrine of St Thomas; big pilgrimage season around Lent and Easter"},
- {"n":"St Mary's Church, Kuravilangad","state":"Kerala","note":"Ancient Syro-Malabar Marian church"},
- {"n":"St George's Church, Edathua","state":"Kerala","note":"Riverside church, famous feast in May"},
- {"n":"Basilica of Our Lady of Good Health, Velankanni","state":"Tamil Nadu","note":"Feast 29 Aug – 8 Sep"},
- {"n":"San Thome Basilica, Chennai","state":"Tamil Nadu","note":"Over the tomb of St Thomas the Apostle"},
- {"n":"Basilica of Bom Jesus, Old Goa","state":"Goa","note":"UNESCO; Feast of St Francis Xavier on 3 Dec"},
- {"n":"Se Cathedral, Old Goa","state":"Goa","note":"Home of the Golden Bell"},
- {"n":"Medak Cathedral","state":"Telangana","note":"Gothic cathedral, completed 1924; Christmas is very special here"},
- {"n":"Mount Mary Basilica, Bandra","state":"Maharashtra","note":"Bandra Fair in September"}],
-"hidden":[
- {"n":"Mawlynnong","state":"Meghalaya","note":"Clean village, sky-walk, root bridge"},
- {"n":"Ziro Valley","state":"Arunachal Pradesh","note":"Apatani rice fields; permit (ILP) needed"},
- {"n":"Chitkul","state":"Himachal Pradesh","note":"Baspa river, wooden houses"},
- {"n":"Majuli","state":"Assam","note":"River island on the Brahmaputra"},
- {"n":"Lambasingi","state":"Andhra Pradesh","note":"Misty winters, strawberry farms"},
- {"n":"Gandikota","state":"Andhra Pradesh","note":"Canyon camping"},
- {"n":"Laknavaram","state":"Telangana","note":"Lake islands and forest"}],
-"packages":[
- {"id":"velankanni","title":"Velankanni Pilgrimage","days":"3 Days / 2 Nights","from":"Hyderabad","img":"church.jpg","plan":["Train/flight to Chennai, drive to Velankanni, evening Mass and candle procession","Basilica, Morning Star Church, museum, Velankanni beach","Return via Nagapattinam / Chennai"]},
- {"id":"kerala","title":"Kerala Backwaters & Munnar","days":"5 Days / 4 Nights","from":"Kochi","img":"kerala.jpg","plan":["Arrive Kochi, Fort Kochi walk, St Francis Church, Chinese nets","Drive to Munnar, waterfalls on the way","Eravikulam, tea museum, Mattupetty","Alleppey houseboat overnight","Back to Kochi, depart"]},
- {"id":"goa","title":"Goa Beaches & Old Goa","days":"4 Days / 3 Nights","from":"Goa","img":"goa.jpg","plan":["Arrive, North Goa beaches, Fort Aguada sunset","Old Goa: Bom Jesus, Se Cathedral; Fontainhas","South Goa: Colva, Palolem","Leisure, depart"]},
- {"id":"telangana","title":"Telangana Heritage Circuit","days":"3 Days / 2 Nights","from":"Hyderabad","img":"telangana.jpg","plan":["Charminar, Golconda Fort, Qutb Shahi Tombs","Warangal Fort, Ramappa, Laknavaram Lake overnight","Bhongir Fort on the way back"]},
- {"id":"meghalaya","title":"Hidden Meghalaya","days":"6 Days / 5 Nights","from":"Guwahati","img":"hidden.jpg","plan":["Guwahati to Shillong","Cherrapunji viewpoints and caves","Nongriat root bridge trek","Mawlynnong and Dawki","Shillong cafes","Back to Guwahati"]},
- {"id":"rajasthan","title":"Royal Rajasthan","days":"7 Days / 6 Nights","from":"Jaipur","img":"rajasthan.jpg","plan":["Jaipur: Amer Fort, Hawa Mahal","Jaipur city palace, markets","Drive to Jodhpur, Mehrangarh","Jaisalmer fort","Sam dunes desert camp","Udaipur lakes","Depart Udaipur"]}],
-"guides":[
- {"t":"Best time to visit Kerala: a month-by-month guide","img":"kerala.jpg","mins":6},
- {"t":"Hyderabad in 2 days: Charminar to Golconda","img":"telangana.jpg","mins":5},
- {"t":"Goa at Christmas: churches, carols and beaches","img":"goa.jpg","mins":5},
- {"t":"Living root bridges of Meghalaya: how to plan the trek","img":"hidden.jpg","mins":7},
- {"t":"Hampi on a budget: 2 days among the boulders","img":"hampi.jpg","mins":6},
- {"t":"Kashmir in winter: what to pack","img":"himalaya.jpg","mins":4}]
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TK Home · Travel Kahani</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background-color:#3a78ab}
+body{font-family:Roboto,system-ui,sans-serif;color:#0f2233;min-height:100vh;overflow-x:hidden;background-color:#3a78ab;
+  background-image:linear-gradient(180deg,#3a78ab 0%,#5f9fd0 60%,#8cc0e6 100%);background-attachment:fixed}
+.wrap{background-color:rgba(58,120,171,0)}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.clouds{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.cloud{position:absolute;background:#fff;border-radius:50%;filter:blur(18px);opacity:.5;animation:drift linear infinite}
+.c1{width:260px;height:110px;top:8%;left:-280px;animation-duration:95s}
+.c2{width:320px;height:130px;top:58%;left:-340px;animation-duration:130s;animation-delay:-60s}
+.c3{width:200px;height:90px;top:30%;left:-220px;animation-duration:110s;animation-delay:-35s;opacity:.6}
+.c4{width:280px;height:110px;top:82%;left:-300px;animation-duration:150s;animation-delay:-100s}
+@keyframes drift{to{transform:translateX(calc(100vw + 400px))}}
+.wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 32px}
+/* nav */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;letter-spacing:.04em;line-height:1.05;font-size:17px;min-height:44px}
+.logo svg{width:38px;height:38px;flex:none}
+.links{display:flex;gap:22px;list-style:none}
+.links a{color:#fff;font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.03em;display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;text-underline-offset:6px}
+.links a:hover,.links a[aria-current]{text-decoration:underline;text-decoration-thickness:2px}
+.burger{display:none;width:44px;height:44px;border:1.5px solid rgba(255,255,255,.85);border-radius:12px;background:rgba(255,255,255,.2);color:#fff;cursor:pointer}
+.burger span,.burger span::before,.burger span::after{display:block;width:20px;height:2px;background:#fff;margin:auto;position:relative;content:""}
+.burger span::before{position:absolute;top:-6px}.burger span::after{position:absolute;top:6px}
+/* glass */
+.glass{background:rgba(255,255,255,.35);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.85);border-radius:16px;box-shadow:0 10px 30px rgba(20,60,100,.18)}
+h1,h2{color:#fff;font-weight:900;text-shadow:0 4px 18px rgba(20,60,100,.35);letter-spacing:-.01em}
+h1{font-size:clamp(48px,6.4vw,88px);line-height:1}
+h2{font-size:clamp(30px,3.6vw,44px);margin-bottom:22px}
+.sub{color:#fff;font-size:clamp(20px,2.3vw,30px);line-height:1.3;margin:22px 0 30px;max-width:460px;text-shadow:0 2px 12px rgba(20,60,100,.3)}
+.btns{display:flex;flex-wrap:wrap;gap:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:10px 24px;border-radius:999px;font-size:17px;font-weight:500;box-shadow:0 6px 18px rgba(20,60,100,.2);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.pri{background:#2777A7;color:#fff}.btn.sec{background:#fff;color:#0f2233}
+.btn svg{width:20px;height:20px;flex:none}
+.btn.sm{font-size:15px;padding:8px 18px;min-height:44px;justify-content:center;width:100%}
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:24px;align-items:center;padding:24px 0 40px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.card{padding:12px;display:flex;flex-direction:column}
+.card img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:10px}
+.card h3{font-size:18px;font-weight:500;margin:12px 0 4px;line-height:1.25}
+.card p{font-size:14px}
+.card .price{font-size:15px;font-weight:500;margin:10px 0 12px}
+.card .btn{margin-top:auto}
+/* map */
+.map{position:relative;animation:float 6s ease-in-out infinite}
+.map>img{width:100%;border-radius:16px;-webkit-mask-image:radial-gradient(ellipse 72% 72% at 50% 50%,#000 60%,transparent 100%);mask-image:radial-gradient(ellipse 72% 72% at 50% 50%,#000 60%,transparent 100%)}
+@keyframes float{50%{transform:translateY(-12px)}}
+.route{position:absolute;inset:0;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 0 4px #FFD84D) drop-shadow(0 0 10px rgba(255,216,77,.7))}
+.route path{fill:none;stroke:#FFD84D;stroke-width:5;stroke-linecap:round;stroke-dasharray:4 14;animation:dash 2s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-36}}
+.plane{fill:#fff;filter:drop-shadow(0 2px 4px rgba(20,60,100,.5))}
+.pin{position:absolute;width:0;height:0}
+.pin i{position:absolute;left:-14px;top:-38px;width:28px;height:28px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:radial-gradient(circle at 35% 35%,#7fb8ea,#3d86c9 70%);border:2px solid rgba(255,255,255,.9);box-shadow:0 6px 12px rgba(20,60,100,.35)}
+.pin.coral i{background:radial-gradient(circle at 35% 35%,#f6a5a5,#E76F6F 70%)}
+.pin i::after{content:"";position:absolute;inset:8px;border-radius:50%;background:rgba(255,255,255,.75)}
+.pin b{position:absolute;top:-40px;left:20px;white-space:nowrap;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid #fff;box-shadow:0 4px 10px rgba(20,60,100,.18)}
+.pin.l b{left:auto;right:20px}.pin.d b{top:6px;left:-30px}
+/* below */
+.more{padding:40px 0}
+.more .cards{margin-top:0}
+.strip{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;padding:28px 32px;margin:20px 0 40px}
+.strip h2{color:#0f2233;text-shadow:none;margin:0;font-size:clamp(24px,3vw,34px)}
+.strip .btn{font-size:16px}
+footer{color:#fff;font-size:13px;text-align:center;padding:24px 0 32px}
+@media (max-width:900px){
+  .burger{display:block}
+  .links{display:none;position:absolute;top:76px;right:32px;left:32px;flex-direction:column;gap:0;padding:10px 18px;z-index:5;background:rgba(39,119,167,.85);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.85);border-radius:16px}
+  .links.open{display:flex}
+  .links a{display:flex;justify-content:flex-start;width:100%}
+  .nav{position:relative}
+  .hero{grid-template-columns:1fr}
+  .map{order:-1}
 }
-</script>
-    <script type="application/json" id="outline">[[77.52, 35.49], [77.91, 35.46], [78.86, 35.97], [79.34, 35.99], [80.05, 35.42], [80.21, 35.58], [80.41, 35.48], [80.07, 34.71], [79.51, 34.45], [79.61, 34.24], [79.4, 34.0], [78.89, 33.97], [79.09, 33.64], [78.91, 33.62], [78.94, 33.38], [79.41, 33.19], [79.33, 33.0], [79.55, 32.68], [78.97, 32.34], [78.74, 32.7], [78.4, 32.53], [78.78, 31.99], [78.78, 31.31], [79.1, 31.45], [79.43, 31.02], [79.87, 30.97], [80.24, 30.76], [80.22, 30.58], [81.03, 30.25], [80.37, 29.75], [80.08, 28.82], [81.21, 28.36], [81.88, 27.86], [82.71, 27.72], [82.74, 27.5], [83.32, 27.33], [83.39, 27.48], [83.86, 27.35], [84.15, 27.52], [84.62, 27.34], [84.64, 27.05], [85.21, 26.76], [85.63, 26.87], [85.85, 26.57], [86.33, 26.62], [86.73, 26.42], [87.07, 26.59], [87.34, 26.35], [87.89, 26.49], [88.01, 26.36], [88.19, 26.74], [87.99, 27.12], [88.12, 27.92], [88.64, 28.12], [88.89, 27.86], [88.76, 27.57], [88.91, 27.29], [88.75, 27.14], [89.13, 26.81], [92.06, 26.85], [92.12, 27.29], [92.02, 27.48], [91.65, 27.48], [91.64, 27.76], [92.46, 27.79], [92.73, 27.98], [92.68, 28.15], [93.43, 28.66], [94.26, 28.93], [94.29, 29.15], [94.63, 29.3], [95.26, 29.07], [96.05, 29.38], [96.3, 29.19], [96.19, 29.04], [96.33, 29.11], [96.63, 28.73], [96.41, 28.51], [96.71, 28.61], [97.36, 28.2], [97.4, 28.01], [96.89, 27.61], [97.14, 27.09], [96.7, 27.37], [96.23, 27.28], [95.15, 26.62], [95.19, 26.07], [94.63, 25.4], [94.71, 24.94], [94.16, 23.85], [93.33, 24.08], [93.39, 23.13], [93.13, 23.04], [93.2, 22.26], [92.91, 21.94], [92.7, 22.16], [92.68, 22.01], [92.6, 21.98], [92.28, 23.72], [91.96, 23.73], [91.84, 23.09], [91.62, 22.94], [91.41, 23.28], [91.35, 23.1], [91.16, 23.61], [91.37, 24.11], [91.9, 24.14], [91.92, 24.34], [92.16, 24.42], [92.23, 24.9], [92.5, 24.88], [92.43, 25.03], [89.84, 25.29], [89.89, 25.95], [89.68, 26.24], [89.58, 25.97], [89.36, 26.01], [89.09, 26.4], [88.9, 26.41], [89.05, 26.24], [88.67, 26.26], [88.4, 26.63], [88.33, 26.48], [88.52, 26.36], [88.18, 26.15], [88.11, 25.82], [88.81, 25.52], [89.01, 25.26], [88.44, 25.21], [88.4, 24.95], [88.14, 24.94], [88.01, 24.67], [88.74, 24.28], [88.56, 23.65], [88.8, 23.5], [88.72, 23.26], [89.0, 23.22], [88.84, 23.01], [89.1, 21.64], [88.72, 21.68], [88.78, 22.01], [88.64, 22.08], [88.45, 21.61], [88.27, 21.73], [88.25, 21.56], [88.21, 22.15], [88.18, 22.19], [88.02, 22.22], [88.19, 22.1], [87.8, 21.7], [86.91, 21.34], [86.87, 20.78], [87.07, 20.72], [86.73, 20.53], [86.67, 20.29], [86.8, 20.35], [86.37, 19.95], [85.04, 19.39], [84.13, 18.31], [82.31, 17.04], [82.3, 16.56], [81.27, 16.29], [80.94, 15.71], [80.68, 15.89], [80.26, 15.67], [80.05, 15.07], [80.35, 13.28], [79.76, 11.67], [79.88, 10.31], [79.29, 10.26], [78.9, 9.49], [79.19, 9.28], [78.27, 9.02], [78.07, 8.37], [77.55, 8.07], [77.01, 8.35], [76.55, 8.9], [76.67, 8.99], [76.54, 8.93], [76.36, 9.36], [75.87, 11.12], [75.2, 12.0], [74.52, 14.24], [73.46, 16.05], [73.3, 17.29], [72.93, 18.22], [73.1, 18.14], [73.09, 18.32], [72.92, 18.35], [72.86, 18.69], [73.02, 18.72], [72.91, 18.9], [73.07, 19.02], [72.99, 19.19], [72.96, 19.04], [72.81, 18.89], [72.79, 19.3], [72.91, 19.29], [72.74, 19.46], [72.89, 19.52], [72.73, 19.53], [72.66, 19.83], [72.93, 20.76], [72.6, 21.3], [72.93, 21.68], [72.54, 21.66], [72.75, 21.97], [72.51, 21.98], [72.59, 22.2], [72.76, 22.17], [72.91, 22.26], [72.33, 22.31], [72.11, 21.2], [70.82, 20.69], [70.16, 21.05], [68.94, 22.31], [69.07, 22.48], [69.23, 22.26], [70.17, 22.54], [70.45, 22.97], [70.22, 23.06], [69.71, 22.74], [69.2, 22.84], [69.08, 22.95], [69.06, 22.92], [69.01, 22.98], [68.99, 22.95], [68.98, 22.99], [68.96, 22.97], [68.76, 23.08], [68.63, 23.17], [68.43, 23.51], [68.81, 23.88], [68.43, 23.82], [68.35, 23.58], [68.17, 23.62], [68.36, 23.97], [68.75, 23.97], [68.81, 24.31], [70.03, 24.17], [70.56, 24.42], [70.71, 24.22], [71.12, 24.4], [70.66, 25.7], [70.27, 25.71], [70.1, 25.94], [70.17, 26.55], [69.51, 26.74], [69.59, 27.18], [70.37, 28.01], [70.87, 27.71], [71.9, 27.96], [72.39, 28.77], [72.95, 29.03], [73.4, 29.95], [73.97, 30.2], [73.93, 30.49], [74.7, 31.07], [74.51, 31.13], [74.61, 31.89], [75.37, 32.23], [75.1, 32.48], [74.68, 32.49], [74.71, 32.84], [74.37, 32.77], [73.63, 33.09], [73.4, 34.38], [74.13, 35.12], [73.75, 35.22], [73.79, 35.52], [73.41, 35.53], [73.13, 35.72], [73.18, 35.86], [72.57, 35.85], [72.55, 36.23], [73.06, 36.7], [73.86, 36.72], [73.67, 36.92], [75.15, 37.03], [76.72, 36.16], [76.84, 35.86], [77.35, 35.72], [77.52, 35.49]]</script>
-    <script type="application/json" id="chapters">[
- {
-  "n": 1,
-  "title": "Why the World Moves: The Story and Scale of Travel",
-  "part": "Part One · Foundations"
- },
- {
-  "n": 2,
-  "title": "Reading the Planet: Maps, Seasons and Smart Routing",
-  "part": "Part One · Foundations"
- },
- {
-  "n": 3,
-  "title": "The Traveller's Toolkit: Stays, Rides and Packages",
-  "part": "Part One · Foundations"
- },
- {
-  "n": 4,
-  "title": "Service That Wins Hearts",
-  "part": "Part One · Foundations"
- },
- {
-  "n": 5,
-  "title": "Inside the Travel Desk: How Agencies Really Work",
-  "part": "Part One · Foundations"
- },
- {
-  "n": 6,
-  "title": "The Art of Hosting: Hotels and Hospitality",
-  "part": "Part One · Foundations"
- },
- {
-  "n": 7,
-  "title": "Getting Noticed: Marketing Fundamentals for Travel",
-  "part": "Part One · Foundations"
- },
- {
-  "n": 8,
-  "title": "Travel That Gives Back: Responsible Journeys",
-  "part": "Part One · Foundations"
- },
- {
-  "n": 9,
-  "title": "Papers, Permits and Perfect Logistics",
-  "part": "Part One · Foundations"
- },
- {
-  "n": 10,
-  "title": "The Digital Backbone: Reservation and Information Systems",
-  "part": "Part One · Foundations"
- },
- {
-  "n": 11,
-  "title": "Crowds and Occasions: Travel Built Around Events",
-  "part": "Part One · Foundations"
- },
- {
-  "n": 12,
-  "title": "Stories in Stone: Culture and Heritage Journeys",
-  "part": "Part One · Foundations"
- },
- {
-  "n": 13,
-  "title": "Thrill Seekers: Designing Safe Adventures",
-  "part": "Part Two · Crafting Experiences"
- },
- {
-  "n": 14,
-  "title": "Suits on the Move: Corporate Travel and MICE",
-  "part": "Part Two · Crafting Experiences"
- },
- {
-  "n": 15,
-  "title": "Follow the Rupee: How Tourism Makes Money",
-  "part": "Part Two · Crafting Experiences"
- },
- {
-  "n": 16,
-  "title": "Wheels Up: How Airlines Really Work",
-  "part": "Part Two · Crafting Experiences"
- },
- {
-  "n": 17,
-  "title": "Making a Place Shine: Managing Destinations",
-  "part": "Part Two · Crafting Experiences"
- },
- {
-  "n": 18,
-  "title": "Words That Make People Pack",
-  "part": "Part Two · Crafting Experiences"
- },
- {
-  "n": 19,
-  "title": "Same Room, Smarter Price: Revenue Management",
-  "part": "Part Two · Crafting Experiences"
- },
- {
-  "n": 20,
-  "title": "Clicks to Bookings: Winning Online",
-  "part": "Part Two · Crafting Experiences"
- },
- {
-  "n": 21,
-  "title": "Healing Holidays: The Wellness Traveller",
-  "part": "Part Two · Crafting Experiences"
- },
- {
-  "n": 22,
-  "title": "Into the Wild, Gently: Nature-first Travel",
-  "part": "Part Two · Crafting Experiences"
- },
- {
-  "n": 23,
-  "title": "Taste Trails: Food and Vineyard Journeys",
-  "part": "Part Two · Crafting Experiences"
- },
- {
-  "n": 24,
-  "title": "Rules of the Road: Travel Law and Policy in India",
-  "part": "Part Two · Crafting Experiences"
- },
- {
-  "n": 25,
-  "title": "Thinking Like a CEO: Strategy for Travel Businesses",
-  "part": "Part Three · Strategy and Growth"
- },
- {
-  "n": 26,
-  "title": "Beyond Borders: Selling the World",
-  "part": "Part Three · Strategy and Growth"
- },
- {
-  "n": 27,
-  "title": "Life at Sea: The Cruise Business",
-  "part": "Part Three · Strategy and Growth"
- },
- {
-  "n": 28,
-  "title": "Tomorrow's Toolkit: Tech That Changes Travel",
-  "part": "Part Three · Strategy and Growth"
- },
- {
-  "n": 29,
-  "title": "Growing Without Harm: Long-term Destination Health",
-  "part": "Part Three · Strategy and Growth"
- },
- {
-  "n": 30,
-  "title": "Campaigns That Convert",
-  "part": "Part Three · Strategy and Growth"
- },
- {
-  "n": 31,
-  "title": "Festivals, Fairs and Big Days Out",
-  "part": "Part Three · Strategy and Growth"
- },
- {
-  "n": 32,
-  "title": "The Premium Promise: Luxury Travel",
-  "part": "Part Three · Strategy and Growth"
- },
- {
-  "n": 33,
-  "title": "Safe Hands: Risk, Safety and Crisis Care",
-  "part": "Part Three · Strategy and Growth"
- },
- {
-  "n": 34,
-  "title": "People Power: Building a Great Travel Team",
-  "part": "Part Three · Strategy and Growth"
- },
- {
-  "n": 35,
-  "title": "A Seat at the Table: Policy and the Industry's Voice",
-  "part": "Part Three · Strategy and Growth"
- },
- {
-  "n": 36,
-  "title": "Building a Destination Brand",
-  "part": "Part Three · Strategy and Growth"
- },
- {
-  "n": 37,
-  "title": "Your Own Travel Company: From Idea to Launch",
-  "part": "Part Four · The Entrepreneur's Road"
- },
- {
-  "n": 38,
-  "title": "Numbers That Talk: Data and Analytics",
-  "part": "Part Four · The Entrepreneur's Road"
- },
- {
-  "n": 39,
-  "title": "Guests for Life: Relationships and Loyalty",
-  "part": "Part Four · The Entrepreneur's Road"
- },
- {
-  "n": 40,
-  "title": "The Big Picture: Global Threats and Openings",
-  "part": "Part Four · The Entrepreneur's Road"
- },
- {
-  "n": 41,
-  "title": "Travel for Everyone: Accessible Journeys",
-  "part": "Part Four · The Entrepreneur's Road"
- },
- {
-  "n": 42,
-  "title": "Reels, Reach and Influence",
-  "part": "Part Four · The Entrepreneur's Road"
- },
- {
-  "n": 43,
-  "title": "Certified Green: Eco-labels and Clean Operations",
-  "part": "Part Four · The Entrepreneur's Road"
- },
- {
-  "n": 44,
-  "title": "Reading the Room Across Cultures",
-  "part": "Part Four · The Entrepreneur's Road"
- },
- {
-  "n": 45,
-  "title": "When Villages Win: Community-led Tourism",
-  "part": "Part Four · The Entrepreneur's Road"
- },
- {
-  "n": 46,
-  "title": "The Professional Edge",
-  "part": "Part Four · The Entrepreneur's Road"
- },
- {
-  "n": 47,
-  "title": "Asking the Right Questions: Research for Travel Businesses",
-  "part": "Part Four · The Entrepreneur's Road"
- },
- {
-  "n": 48,
-  "title": "The Grand Project: Launching Your Travel Brand",
-  "part": "Part Four · The Entrepreneur's Road"
- },
- {
-  "n": 49,
-  "title": "Behind the Booking Screen: A GDS Primer",
-  "part": "Part Five · Going Global, Going Pro"
- },
- {
-  "n": 50,
-  "title": "Passports and Visas: Getting Past the Counter",
-  "part": "Part Five · Going Global, Going Pro"
- },
- {
-  "n": 51,
-  "title": "The Visa Atlas: A Country Guide for Indians",
-  "part": "Part Five · Going Global, Going Pro"
- },
- {
-  "n": 52,
-  "title": "Home Ground: Telangana and South India Circuits",
-  "part": "Part Five · Going Global, Going Pro"
- },
- {
-  "n": 53,
-  "title": "Open for Business, Legally: Registering Your Agency",
-  "part": "Part Five · Going Global, Going Pro"
- },
- {
-  "n": 54,
-  "title": "Careers in Travel: Roles, Pay and Getting Hired",
-  "part": "Part Five · Going Global, Going Pro"
- },
- {
-  "n": 55,
-  "title": "Your AI Co-pilot: AI Tools for Travel Businesses",
-  "part": "Part Five · Going Global, Going Pro"
- },
- {
-  "n": 56,
-  "title": "Voices from the Field: Lessons from Professionals",
-  "part": "Part Five · Going Global, Going Pro"
- },
- {
-  "n": 57,
-  "title": "Price It Right: The Pricing and Profit Playbook",
-  "part": "Part Six · Running the Show"
- },
- {
-  "n": 58,
-  "title": "Money In, Money Out: Payments and Accounting",
-  "part": "Part Six · Running the Show"
- },
- {
-  "n": 59,
-  "title": "Partners in the Field: Working with Suppliers",
-  "part": "Part Six · Running the Show"
- },
- {
-  "n": 60,
-  "title": "Covered: Travel Insurance Explained",
-  "part": "Part Six · Running the Show"
- },
- {
-  "n": 61,
-  "title": "On the Road with the Group: A Tour Manager's Guide",
-  "part": "Part Six · Running the Show"
- },
- {
-  "n": 62,
-  "title": "Getting There: The Transport Masterclass",
-  "part": "Part Six · Running the Show"
- },
- {
-  "n": 63,
-  "title": "Healthy and Packed: Health and Special Travellers",
-  "part": "Part Six · Running the Show"
- },
- {
-  "n": 64,
-  "title": "Sacred Journeys: Pilgrimage and Spiritual Circuits",
-  "part": "Part Seven · Niches That Pay"
- },
- {
-  "n": 65,
-  "title": "Happily Ever After: Honeymoons and Weddings",
-  "part": "Part Seven · Niches That Pay"
- },
- {
-  "n": 66,
-  "title": "Learning on the Move: Educational Tours",
-  "part": "Part Seven · Niches That Pay"
- },
- {
-  "n": 67,
-  "title": "Winning Corporate Clients: The Pitch Kit",
-  "part": "Part Seven · Niches That Pay"
- },
- {
-  "n": 68,
-  "title": "Found on Google: Websites, SEO and Ads",
-  "part": "Part Seven · Niches That Pay"
- },
- {
-  "n": 69,
-  "title": "Shoot to Sell: Travel Photography and Content",
-  "part": "Part Seven · Niches That Pay"
- },
- {
-  "n": 70,
-  "title": "The Case Book: Twenty Stories from Indian Travel",
-  "part": "Part Seven · Niches That Pay"
- },
- {
-  "n": 71,
-  "title": "Beyond Five Stars: Building a Luxury Travel Business",
-  "part": "Part Seven · Niches That Pay"
- }
-]</script>
-    <script type="application/json" id="ch1">{"n":1,"title":"Why the World Moves","subtitle":"The Story and Scale of Travel",
-"objectives":["Explain what travel and tourism mean, and how a tourist is different from a regular traveller.","Trace the history of tourism from pilgrimages and trade routes to budget airlines and booking apps.","Describe the economic impact of tourism on India and the world, using verified figures.","Identify the main sectors of the industry and how they depend on one another.","Classify the major types of tourism and match them to real Indian examples.","Name the key global and Indian organisations, such as UN Tourism, WTTC and IATA, and say what each one does."],
-"lessons":[
-{"h":"What is travel and tourism?","p":"Travel simply means moving from one place to another. Tourism is a special kind of travel: people go outside their usual surroundings for leisure, business, pilgrimage, health or other purposes, and stay less than a year. A tourist stays at least one night; an excursionist (same-day visitor) comes and goes the same day, like a group that drives to Ramoji Film City and is home by dinner. Domestic tourism is travel inside your own country, inbound is foreigners visiting India, outbound is Indians going abroad."},
-{"h":"The tourism system","p":"Think of tourism as a chain with three links: the generating region (where tourists live, e.g. Hyderabad), the transit route (train, flight or tempo traveller on NH-44) and the destination region (e.g. Valparai or Hampi). A tour operator's job is to make all three links feel smooth."},
-{"h":"A short history of tourism","p":"Pilgrims walked to distant shrines and traders crossed the Silk Route and the spice routes of the Malabar Coast. In 1841 Thomas Cook organised a railway trip for about 500 people from Leicester to Loughborough, bundling ticket and food into one price: the birth of the package tour. The 20th century brought paid holidays, the car and the jet; low-cost airlines like IndiGo (2006), IRCTC online ticketing, MakeMyTrip and ixigo moved booking onto the phone.","table":[["Period","Key development","Indian example"],["Ancient times","Pilgrimage and trade travel","Pilgrim routes, spice trade"],["1841","First package tour","Thomas Cook's rail trip"],["1950s-70s","Jet travel, paid holidays","Air India international routes"],["2000s","Online booking, budget airlines","IRCTC website, IndiGo"],["2010s-now","Apps, social media, homestays","ixigo, Instagram reels, Airbnb"]]},
-{"h":"The economic impact","p":"WTTC says travel and tourism contributed USD 11.6 trillion to global GDP in 2025 (about 9.8%) and supported about 366 million jobs. In India it generated about USD 263.6 billion in 2025, roughly 6.6% of GDP, supporting about 46.2 million jobs, and domestic visitors made up about 86% of tourism spending. Spending flows in three layers (direct, indirect, induced): the multiplier effect. Too many visitors cause overtourism, so responsible operators choose smaller homestays and off-peak dates."},
-{"h":"Sectors of the industry","p":"Transport (airlines, railways, buses, houseboats), accommodation (hotels, homestays, Haritha hotels), food and beverage, attractions, travel trade (tour operators, travel agents, OTAs like MakeMyTrip) and support services (insurance, forex, guides, tourism boards). A tour operator buys rooms, vehicles and tickets and sells them as one package; a travel agent mainly sells others' products for a commission."},
-{"h":"Types of tourism","p":"Leisure (Goa, Ooty), religious/pilgrimage, heritage/cultural (Hampi, Golconda), adventure (Rishikesh rafting), eco/nature (Valparai, Thekkady), medical/wellness (Kerala Ayurveda), business/MICE (HICC Hyderabad) and rural (Pochampally weaving village). Small operators often win by owning a niche."},
-{"h":"Organisations","p":"UN Tourism (formerly UNWTO, Madrid; World Tourism Day 27 September), WTTC (London-based CEO forum, yearly Economic Impact Research), IATA (airlines' trade association, founded 1945, accredits agents), ICAO (UN agency for aviation safety), India's Ministry of Tourism, and trade bodies like TAAI and ADTOI."}],
-"terms":[["Tourism","Travel to places outside one's usual environment for less than a year, for leisure, business or other purposes."],["Excursionist","A same-day visitor who does not stay overnight at the destination."],["Domestic tourism","Residents travelling within their own country."],["Inbound tourism","Foreign visitors travelling into a country."],["Outbound tourism","Residents travelling to other countries."],["Package tour","A trip that bundles transport, stay and often food and sightseeing for one price."],["Multiplier effect","The way tourist spending passes through the local economy and creates further income."],["MICE","Meetings, Incentives, Conferences and Exhibitions; business travel for groups."],["Overtourism","When too many visitors harm a destination and the lives of local people."],["UN Tourism","The United Nations agency for tourism, formerly called UNWTO."]],
-"summary":["Tourism is travel outside one's usual surroundings for under a year; tourists stay overnight, excursionists do not.","Modern tourism grew from pilgrimages and trade to Thomas Cook's package tour of 1841, then to jet travel and today's booking apps.","Travel and tourism contributed about 6.6% of India's GDP and supported about 46.2 million jobs in 2025, with domestic travellers making up most of the spending (WTTC).","The industry is made of connected sectors: transport, accommodation, food, attractions, travel trade and support services.","Tourism types include leisure, religious, heritage, adventure, eco, medical, business (MICE) and rural; small operators win by choosing a niche.","UN Tourism, WTTC, IATA, the Ministry of Tourism and trade bodies like TAAI and ADTOI shape how the industry works."],
-"quiz":[
-{"q":"A group drives from Hyderabad to Ramoji Film City and returns home the same evening. They are:","o":["Tourists","Excursionists","Outbound tourists","MICE travellers"],"a":1},
-{"q":"Who organised the 1841 rail trip often called the first package tour?","o":["Thomas Cook","Marco Polo","IATA","Faxian"],"a":0},
-{"q":"What does MICE stand for?","o":["Money, Insurance, Cars, Exchange","Meetings, Incentives, Conferences and Exhibitions","Mountains, Islands, Coasts, Estates","Marketing, Itineraries, Customers, Events"],"a":1},
-{"q":"A Hyderabad family holidaying in Dubai is an example of:","o":["Domestic tourism","Inbound tourism","Outbound tourism","Rural tourism"],"a":2},
-{"q":"UN Tourism was formerly known as:","o":["WTTC","IATA","UNWTO","ICAO"],"a":2}],
-"task":{"title":"Map the Travel Kahani tourism chain for one package","steps":["Pick one existing Travel Kahani package, for example Valparai.","Write down the generating region (where most enquiries come from), the transit route and the destination.","List every business that earns money from one booking: transport, stay, food, guides, entry tickets, shops.","Estimate the rupee amount each one receives from a typical booking, using your actual supplier rates.","Tag the package with one or two tourism types from this chapter.","Note one possible negative impact on the destination and one action you will take to reduce it.","Save this as a one-page sheet titled \"Who earns from my package\"."],"deliverable":"A one-page chain map with rupee estimates and tourism-type tags.","time":"45 to 60 minutes"}}
-</script>
-    <script src="https://unpkg.com/three@0.147.0/build/three.min.js"></script>
-    <script src="https://unpkg.com/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script>
-    (function () {
-      "use strict";
-      const OrbitControls = window.THREE && THREE.OrbitControls;
-      const SRC = {};
-      document.querySelectorAll("#imgsrc img").forEach((i) => (SRC[i.dataset.f] = i.getAttribute("src")));
-      const img = (f) => SRC[f] || f;
+@media (max-width:640px){
+  .wrap{padding:0 18px}.links{left:18px;right:18px}
+  .cards{grid-template-columns:1fr}
+  .pin b{font-size:12px;padding:3px 7px}
+  .pin i{width:20px;height:20px;left:-10px;top:-28px}.pin i::after{inset:5px}
+  .pin b{top:-30px;left:14px}.pin.l b{right:14px}
+  .strip{padding:22px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="wa" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z"/><path fill="currentColor" d="M9 7.5c.3-.3.8-.3 1 0l1 1.6c.2.3.1.7-.1 1l-.6.5c.5 1.2 1.6 2.3 2.8 2.9l.6-.6c.3-.3.7-.3 1-.1l1.6 1c.3.2.3.7 0 1-.8.9-1.9 1.2-3 .7-2.3-1-4-2.7-5-5-.5-1.1-.1-2.2.7-3z"/></symbol>
+  <symbol id="pl" viewBox="0 0 24 24"><path d="M2 11.5 22 3l-6.5 18-4-7.5zM11.5 13.5 22 3"/></symbol>
+</svg>
+<div class="clouds" aria-hidden="true"><div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div><div class="cloud c4"></div></div>
 
-      const DATA = JSON.parse(document.getElementById("destinations").textContent);
-      const OUTLINE = JSON.parse(document.getElementById("outline").textContent);
-      const PH = "+91 76718 19808";
-      const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const wa = (t) => "https://wa.me/917671819808?text=" + encodeURIComponent(t);
-      document.getElementById("barwa").href = wa("Hi Travel Kahani! I'd like to plan a trip.");
+<div class="wrap">
+  <header class="nav">
+    <a class="logo" href="index.html" aria-label="Travel Kahani home">
+      <svg viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"><circle cx="20" cy="20" r="18"/><path d="M9 20 30 11l-6 19-4-7z M20 23l10-12" /></svg>
+      <span>TRAVEL<br />KAHANI</span>
+    </a>
+    <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="links"><span></span></button>
+    <ul class="links" id="links">
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="map.html">3D Map</a></li>
+      <li><a href="destination.html">360°</a></li>
+      <li><a href="package.html">Packages</a></li>
+      <li><a href="trip.html">Trip Builder</a></li>
+      <li><a href="churches.html">Church Trails</a></li>
+      <li><a href="academy.html">Academy</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </header>
 
-      const IMG = { telangana: "telangana.jpg", andhra: "telangana.jpg", tamilnadu: "telangana.jpg", karnataka: "hampi.jpg", kerala: "kerala.jpg", goa: "goa.jpg", rajasthan: "rajasthan.jpg", delhi: "rajasthan.jpg", himachal: "himalaya.jpg", kashmir: "himalaya.jpg", meghalaya: "hidden.jpg" };
-      const PIN = { telangana: [17.4, 78.5], andhra: [16.5, 80.6], karnataka: [15.33, 76.46], kerala: [9.93, 76.26], tamilnadu: [11.1, 78.6], goa: [15.5, 73.83], rajasthan: [26.9, 75.8], delhi: [28.61, 77.21], himachal: [32.24, 77.19], kashmir: [34.08, 74.8], meghalaya: [25.57, 91.88] };
-      const FILTERS = {
-        Beaches: (s) => s.places.some((p) => p.type === "Beach"),
-        Mountains: (s) => s.places.some((p) => /Nature|Adventure/.test(p.type)) && ["himachal", "kashmir", "meghalaya", "kerala", "andhra"].includes(s.id),
-        Heritage: (s) => s.places.some((p) => p.type === "Heritage"),
-        Churches: (s) => s.places.some((p) => p.type === "Church"),
-        Offbeat: (s) => s.places.some((p) => p.type === "Hidden"),
-      };
-      const MN = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
-      const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-      const MS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      const $ = (s, r = document) => r.querySelector(s);
-      const byId = (id) => DATA.states.find((s) => s.id === id);
-      const PTYPE = { velankanni: "Pilgrimage", kerala: "Nature", goa: "Beach", telangana: "Heritage", meghalaya: "Offbeat", rajasthan: "Heritage" };
-      const TILE = { "kerala.jpg": "kerala", "himalaya.jpg": "himachal", "rajasthan.jpg": "rajasthan", "hampi.jpg": "karnataka", "goa.jpg": "goa", "telangana.jpg": "telangana", "hidden.jpg": "meghalaya", "church.jpg": "tamilnadu" };
-      function monthsHtml(best) {
-        const s = MN.map((m, i) => {
-          const n = i + 1, nb = best.includes(n % 12 + 1) || best.includes(n === 1 ? 12 : n - 1);
-          const cls = best.includes(n) ? "m-p" : nb ? "m-o" : "m-a";
-          return `<span class="${cls}" title="${MS[i]}: ${cls === "m-p" ? "Perfect" : cls === "m-o" ? "Okay" : "Avoid"}">${m}</span>`;
-        }).join("");
-        return `<div><div class="months">${s}</div><p class="key" style="margin-top:8px"><span><i style="background:#22784f"></i>Perfect</span><span><i style="background:#e0a33c"></i>Okay</span><span><i style="background:#c7cbd1"></i>Avoid</span></p></div>`;
-      }
-      function bestText(best) {
-        const S = new Set(best), nx = (m) => (m % 12) + 1, pv = (m) => (m === 1 ? 12 : m - 1);
-        return best.filter((m) => !S.has(pv(m))).map((a) => { let b = a; while (S.has(nx(b)) && nx(b) !== a) b = nx(b); return a === b ? MS[a - 1] : MS[a - 1] + "–" + MS[b - 1]; }).join(", ");
-      }
+  <main>
+    <section class="hero">
+      <div>
+        <h1>India, up close.</h1>
+        <p class="sub">Explore India on a 3D map and plan your own Kahani.</p>
+        <div class="btns">
+          <a class="btn pri" href="map.html">Explore the 3D Map</a>
+          <a class="btn sec" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27d%20like%20to%20plan%20a%20trip%20in%20India." target="_blank" rel="noopener">Enquire on WhatsApp <svg><use href="#wa"/></svg></a>
+        </div>
+        <div class="cards">
+          <article class="card glass">
+            <img src="kerala.jpg" alt="Houseboat on the Kerala backwaters" />
+            <h3>Kerala Backwaters &amp; Munnar</h3><p>5 Days / 4 Nights</p>
+            <p class="price">Price on enquiry</p>
+            <a class="btn pri sm" href="package.html">View trip</a>
+          </article>
+          <article class="card glass">
+            <img src="goa.jpg" alt="Goa beach at sunset" />
+            <h3>Goa Beaches &amp; Old Goa</h3><p>4 Days / 3 Nights</p>
+            <p class="price">Price on enquiry</p>
+            <a class="btn pri sm" href="package.html">View trip</a>
+          </article>
+          <article class="card glass">
+            <img src="himalaya.jpg" alt="Snow peaks above a Himalayan valley" />
+            <h3>Himalayan Escape</h3><p>6 Days / 5 Nights</p>
+            <p class="price">Price on enquiry</p>
+            <a class="btn pri sm" href="package.html">View trip</a>
+          </article>
+        </div>
+      </div>
 
-      /* ---------- 3D map ---------- */
-      const C_LNG = 82.8, C_LAT = 22.5, SC = 0.42;
-      const px = (lng) => (lng - C_LNG) * SC, pz = (lat) => -(lat - C_LAT) * SC;
-      let disposer = null;
+      <div class="map">
+        <img src="map_art.jpg" alt="3D relief map of India" width="1312" height="816" />
+        <svg class="route" viewBox="0 0 1312 816" aria-hidden="true">
+          <path id="trail" d="M472 139 Q540 215 551 310 Q495 330 446 367 Q520 470 643 498 Q575 525 525 579 Q560 655 617 694" />
+          <g class="plane"><path d="M-16 -11 18 0 -16 11 -9 0z"/><path d="M-9 0 18 0" stroke="rgba(15,34,51,.25)" stroke-width="1.5"/>
+            <animateMotion dur="12s" repeatCount="indefinite" rotate="auto"><mpath href="#trail"/></animateMotion>
+          </g>
+        </svg>
+        <span class="pin" style="left:36%;top:17%"><i></i><b>Kashmir</b></span>
+        <span class="pin" style="left:42%;top:38%"><i></i><b>Delhi</b></span>
+        <span class="pin coral l" style="left:34%;top:45%"><i></i><b>Rajasthan</b></span>
+        <span class="pin coral" style="left:49%;top:61%"><i></i><b>Hyderabad</b></span>
+        <span class="pin l" style="left:40%;top:71%"><i></i><b>Goa</b></span>
+        <span class="pin coral d" style="left:47%;top:85%"><i></i><b>Kerala</b></span>
+      </div>
+    </section>
 
-      function initMap(container, opt = {}) {
-        const full = !!opt.full;
-        let gl;
-        try { gl = document.createElement("canvas").getContext("webgl2") || document.createElement("canvas").getContext("webgl"); } catch (e) {}
-        if (!gl || !OrbitControls || !window.gsap) {
-          container.insertAdjacentHTML("beforeend", '<div class="fallback"><h3>3D map unavailable</h3><p class="lead">Your browser has no WebGL. Browse states and packages below, or message us on WhatsApp and we will send the map as photos.</p></div>');
-          return;
-        }
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
-        renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-        container.appendChild(renderer.domElement);
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 200);
-        camera.position.set(0, 11, 13);
-        const controls = new OrbitControls(camera, renderer.domElement);
-        Object.assign(controls, { enableDamping: true, dampingFactor: 0.07, minDistance: 7, maxDistance: 24, maxPolarAngle: 1.22, minPolarAngle: 0.25, enablePan: false, autoRotate: !RM, autoRotateSpeed: 0.5 });
-        controls.target.set(0, 0, 0.5);
-        controls.addEventListener("start", () => (controls.autoRotate = false));
-
-        scene.add(new THREE.HemisphereLight(0xdcefff, 0xcfd6c5, 1.5));
-        const sun = new THREE.DirectionalLight(0xffffff, 1.5);
-        sun.position.set(-7, 14, 8);
-        sun.castShadow = true;
-        sun.shadow.mapSize.set(1024, 1024);
-        Object.assign(sun.shadow.camera, { left: -14, right: 14, top: 14, bottom: -14, far: 50 });
-        scene.add(sun);
-
-        const sea = new THREE.Mesh(new THREE.CircleGeometry(40, 64), new THREE.MeshStandardMaterial({ color: 0xbcdcef, roughness: 1 }));
-        sea.rotation.x = -Math.PI / 2; sea.position.y = -0.25; sea.receiveShadow = true;
-        scene.add(sea);
-
-        const shape = new THREE.Shape();
-        OUTLINE.forEach(([lng, lat], i) => (i ? shape.lineTo(px(lng), pz(lat)) : shape.moveTo(px(lng), pz(lat))));
-        const land = new THREE.Mesh(
-          new THREE.ExtrudeGeometry(shape, { depth: 0.55, bevelEnabled: true, bevelThickness: 0.07, bevelSize: 0.06, bevelSegments: 2 }),
-          [new THREE.MeshStandardMaterial({ color: 0xd9d6b4, roughness: 0.85 }), new THREE.MeshStandardMaterial({ color: 0x8f9d72, roughness: 0.9 })]
-        );
-        land.geometry.groups.forEach((g, i) => (g.materialIndex = i === 0 ? 0 : 1));
-        land.rotation.x = Math.PI / 2;
-        land.position.y = 0.55;
-        land.castShadow = land.receiveShadow = true;
-        scene.add(land);
-
-        // clouds
-        const cloudMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 1, transparent: true, opacity: 0.92 });
-        const clouds = [];
-        for (let i = 0; i < 4; i++) {
-          const g = new THREE.Group();
-          for (let j = 0; j < 4; j++) {
-            const s = new THREE.Mesh(new THREE.IcosahedronGeometry(0.45 + Math.random() * 0.3, 0), cloudMat);
-            s.position.set(j * 0.5 - 0.7, Math.random() * 0.15, Math.random() * 0.3);
-            g.add(s);
-          }
-          g.position.set(-9 + i * 5.2, 3.4 + (i % 2) * 0.8, -5 + i * 2.6);
-          g.scale.setScalar(0.9 + Math.random() * 0.5);
-          clouds.push(g); scene.add(g);
-        }
-
-        // pins
-        const labelHost = document.createElement("div");
-        labelHost.style.cssText = "position:absolute;inset:0;pointer-events:none";
-        container.appendChild(labelHost);
-        const coralMat = new THREE.MeshStandardMaterial({ color: 0xdf6c4f, roughness: 0.5 });
-        const pins = [];
-        DATA.states.forEach((st) => {
-          const c = PIN[st.id]; if (!c) return;
-          const g = new THREE.Group();
-          g.position.set(px(c[1]), 0.56, pz(c[0]));
-          const cone = new THREE.Mesh(new THREE.ConeGeometry(0.17, 0.5, 14), coralMat);
-          cone.position.y = 0.3; cone.rotation.x = Math.PI; cone.castShadow = true;
-          const ring = new THREE.Mesh(new THREE.RingGeometry(0.2, 0.3, 24), new THREE.MeshBasicMaterial({ color: 0xdf6c4f, transparent: true, opacity: 0.6, side: THREE.DoubleSide }));
-          ring.rotation.x = -Math.PI / 2; ring.position.y = 0.02;
-          const hit = new THREE.Mesh(new THREE.SphereGeometry(0.42, 8, 8), new THREE.MeshBasicMaterial({ visible: false }));
-          hit.position.y = 0.3;
-          g.add(cone, ring, hit);
-          scene.add(g);
-          const el = document.createElement("div");
-          el.className = "lbl"; el.textContent = st.name;
-          labelHost.appendChild(el);
-          pins.push({ st, g, cone, ring, hit, el, dim: false });
-        });
-
-        // paper plane on a route
-        const order = ["kashmir", "rajasthan", "delhi", "telangana", "goa", "karnataka", "kerala"];
-        const pts = order.map((id) => new THREE.Vector3(px(PIN[id][1]), 1.5, pz(PIN[id][0])));
-        const curve = new THREE.CatmullRomCurve3(pts, true, "catmullrom", 0.3);
-        const dots = new THREE.Points(new THREE.BufferGeometry().setFromPoints(curve.getPoints(240)), new THREE.PointsMaterial({ color: 0x2779a7, size: 0.07 }));
-        scene.add(dots);
-        const plane = new THREE.Group();
-        const pg = new THREE.BufferGeometry();
-        pg.setAttribute("position", new THREE.Float32BufferAttribute([0, 0, 0.26, -0.18, 0, -0.18, 0, 0.04, -0.07, 0, 0, 0.26, 0, 0.04, -0.07, 0.18, 0, -0.18], 3));
-        pg.computeVertexNormals();
-        plane.add(new THREE.Mesh(pg, new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.6, side: THREE.DoubleSide })));
-        scene.add(plane);
-
-        // panel
-        const panel = document.createElement("aside");
-        panel.className = "panel";
-        container.appendChild(panel);
-        let active = null;
-        function openPanel(st) {
-          active = st.id;
-          panel.innerHTML = `<button class="close" aria-label="Close">×</button>
-            <a href="#/destination/${st.id}" aria-label="View ${esc(st.name)} in 360°"><img src="${img(IMG[st.id])}" alt="${esc(st.name)}" /></a>
-            <div class="panel__b">
-              <div><p class="eyebrow">${esc(st.te || "India")}</p><h3>${esc(st.name)}</h3><p class="lead">${esc(st.tag)}</p></div>
-              ${monthsHtml(st.best)}
-              <div class="tags">${st.places.slice(0, 8).map((p) => `<span class="tag">${esc(p.n)}</span>`).join("")}</div>
-              <div class="btns"><a class="btn btn--blue" href="#/destination/${st.id}">View in 360°</a><a class="btn btn--wa" target="_blank" rel="noopener" href="${wa("Hi Travel Kahani! I'd like to know more about " + st.name + ".")}">Enquire on WhatsApp</a><a class="btn" href="#/trip?state=${st.id}">Plan this trip</a></div>
-            </div>`;
-          panel.classList.add("on");
-          panel.querySelector(".close").onclick = () => { panel.classList.remove("on"); active = null; };
-          const c = PIN[st.id];
-          const to = new THREE.Vector3(px(c[1]), 0.6, pz(c[0]));
-          controls.autoRotate = false;
-          gsap.to(controls.target, { x: to.x, y: to.y, z: to.z, duration: 1.1, ease: "power2.inOut", onUpdate: () => controls.update() });
-          gsap.to(camera.position, { x: to.x + 1.2, y: 6.2, z: to.z + 6.4, duration: 1.1, ease: "power2.inOut" });
-        }
-
-        const ray = new THREE.Raycaster(), m = new THREE.Vector2();
-        let downAt = 0;
-        renderer.domElement.addEventListener("pointerdown", () => (downAt = Date.now()));
-        renderer.domElement.addEventListener("pointerup", (e) => {
-          if (Date.now() - downAt > 400) return;
-          const r = renderer.domElement.getBoundingClientRect();
-          m.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
-          ray.setFromCamera(m, camera);
-          const hits = ray.intersectObjects(pins.filter((p) => !p.dim).map((p) => p.hit));
-          if (hits.length) openPanel(pins.find((p) => p.hit === hits[0].object).st);
-        });
-
-        // tools (full page only)
-        if (full) {
-          const tools = document.createElement("div");
-          tools.className = "tools";
-          tools.innerHTML = `<input type="search" id="q" placeholder="Search states and places" aria-label="Search states and places" />` +
-            Object.keys(FILTERS).map((f) => `<button class="chip" aria-pressed="false" data-f="${f}">${f}</button>`).join("") +
-            `<div class="hits" id="hits"></div>`;
-          container.appendChild(tools);
-          const hits = tools.querySelector("#hits"), q = tools.querySelector("#q");
-          const on = new Set();
-          const applyFilters = () => {
-            pins.forEach((p) => {
-              const ok = !on.size || [...on].some((f) => FILTERS[f](p.st));
-              p.dim = !ok;
-              p.cone.material = ok ? coralMat : (p.gm || (p.gm = new THREE.MeshStandardMaterial({ color: 0xc8ccd2, roughness: 0.8, transparent: true, opacity: 0.5 })));
-              p.ring.visible = ok;
-              p.el.style.opacity = ok ? 1 : 0.25;
-            });
-          };
-          tools.querySelectorAll(".chip").forEach((b) => (b.onclick = () => {
-            const f = b.dataset.f, is = on.has(f);
-            is ? on.delete(f) : on.add(f);
-            b.setAttribute("aria-pressed", String(!is));
-            applyFilters();
-          }));
-          q.addEventListener("input", () => {
-            const v = q.value.trim().toLowerCase();
-            if (v.length < 2) { hits.style.display = "none"; return; }
-            const res = [];
-            DATA.states.forEach((s) => {
-              if (s.name.toLowerCase().includes(v)) res.push([s.name, s]);
-              s.places.forEach((p) => { if (p.n.toLowerCase().includes(v)) res.push([p.n + " · " + s.name, s]); });
-            });
-            hits.innerHTML = res.slice(0, 8).map((r, i) => `<button data-i="${i}">${esc(r[0])}</button>`).join("") || '<button disabled style="color:var(--muted)">No match</button>';
-            hits.style.display = "block";
-            hits.querySelectorAll("button[data-i]").forEach((b) => (b.onclick = () => { openPanel(res[+b.dataset.i][1]); hits.style.display = "none"; q.value = ""; }));
-          });
-        }
-
-        function size() {
-          const w = container.clientWidth, h = container.clientHeight;
-          renderer.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix();
-        }
-        size();
-        const ro = new ResizeObserver(size); ro.observe(container);
-
-        const v = new THREE.Vector3();
-        let raf, t0 = performance.now(), running = true;
-        function tick(now) {
-          raf = requestAnimationFrame(tick);
-          const t = (now - t0) / 1000;
-          controls.update();
-          pins.forEach((p, i) => {
-            const s = 1 + 0.35 * (0.5 + 0.5 * Math.sin(t * 2 + i));
-            p.ring.scale.setScalar(p.dim ? 1 : s);
-            p.ring.material.opacity = p.dim ? 0 : 0.6 - 0.35 * (s - 1) / 0.35;
-            v.copy(p.g.position).setY(1.05).project(camera);
-            const vis = v.z < 1;
-            p.el.style.display = vis ? "block" : "none";
-            p.el.style.left = ((v.x + 1) / 2) * 100 + "%";
-            p.el.style.top = ((1 - v.y) / 2) * 100 + "%";
-          });
-          clouds.forEach((c, i) => {
-            c.position.x += (RM ? 0 : 0.004 + i * 0.001);
-            if (c.position.x > 12) c.position.x = -12;
-          });
-          if (!RM) {
-            const u = (t * 0.035) % 1;
-            curve.getPointAt(u, plane.position);
-            plane.lookAt(curve.getPointAt((u + 0.01) % 1, v));
-          }
-          renderer.render(scene, camera);
-        }
-        raf = requestAnimationFrame(tick);
-
-        disposer = () => {
-          cancelAnimationFrame(raf); ro.disconnect(); controls.dispose();
-          scene.traverse((o) => { o.geometry && o.geometry.dispose(); const mm = o.material; if (mm) [].concat(mm).forEach((x) => x.dispose()); });
-          renderer.dispose(); container.innerHTML = "";
-        };
-      }
-
-      /* ---------- views ---------- */
-      const packCard = (p) => `<article class="card" data-type="${PTYPE[p.id] || "Trip"}"><a href="#/package/${p.id}" tabindex="-1" aria-hidden="true"><img src="${img(p.img)}" alt="" loading="lazy" /></a><div class="card__body">
-          <div class="tags"><span class="tag">${PTYPE[p.id] || "Trip"}</span></div>
-          <h3><a href="#/package/${p.id}" style="text-decoration:none;display:flex;align-items:center;min-height:44px">${esc(p.title)}</a></h3><p class="meta">${esc(p.days)} · from ${esc(p.from)}</p>
+    <section class="more" id="more">
+      <h2>More journeys</h2>
+      <div class="cards">
+        <article class="card glass">
+          <img src="church.jpg" alt="Church on the Velankanni pilgrimage" />
+          <h3>Velankanni Pilgrimage</h3><p>3 Days / 2 Nights</p>
           <p class="price">Price on enquiry</p>
-          <p class="meta">${esc(p.plan[0])}</p>
-          <div class="btns"><a class="btn btn--dark" href="#/package/${p.id}">View plan</a><a class="btn btn--wa" target="_blank" rel="noopener" href="${wa("Hi Travel Kahani! I'm interested in the " + p.title + " package (" + p.days + ").")}">WhatsApp</a></div>
-        </div></article>`;
-      const foot = () => `<footer class="foot"><div class="wrap" style="display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;width:min(1160px,100% - 40px)">
-            <p>© 2026 Travel Kahani · Hyderabad</p><p>${PH} · <a href="#/map">3D Map</a> · <a href="#/contact">Contact</a></p>
-          </div></footer>`;
+          <a class="btn pri sm" href="package.html">View trip</a>
+        </article>
+        <article class="card glass">
+          <img src="telangana.jpg" alt="Heritage monument in Telangana" />
+          <h3>Telangana Heritage Circuit</h3><p>3 Days / 2 Nights</p>
+          <p class="price">Price on enquiry</p>
+          <a class="btn pri sm" href="package.html">View trip</a>
+        </article>
+        <article class="card glass">
+          <img src="hidden.jpg" alt="Waterfall in Meghalaya" />
+          <h3>Hidden Meghalaya</h3><p>6 Days / 5 Nights</p>
+          <p class="price">Price on enquiry</p>
+          <a class="btn pri sm" href="package.html">View trip</a>
+        </article>
+      </div>
 
-      function home() {
-        const tiles = ["kerala.jpg", "himalaya.jpg", "rajasthan.jpg", "hampi.jpg", "goa.jpg", "telangana.jpg", "hidden.jpg", "church.jpg"];
-        const n = tiles.length;
-        return `<section class="hero"><div class="wrap">
-            <p class="eyebrow">Handcrafted India trips · Hyderabad</p>
-            <h1>India,<br />up close.</h1>
-            <p class="lead" style="margin-top:18px">All of India. One click. Your kahani.</p>
-            <div class="btns" style="margin-top:28px"><a class="btn btn--wa" href="#/map">Explore the 3D map</a><a class="btn btn--blue" href="#/trip">Plan this trip</a><a class="btn" target="_blank" rel="noopener" href="${wa("Hi Travel Kahani! I'd like to plan a trip.")}">Enquire on WhatsApp</a></div>
-            <div class="wall" id="wall"><div class="wall__in" id="wallin">${tiles.map((f, i) => `<a class="tile" href="#/destination/${TILE[f]}" aria-label="View ${esc(byId(TILE[f]).name)} in 360°" style="transform:rotateY(${(i - (n - 1) / 2) * -14}deg) translateZ(${-Math.abs(i - (n - 1) / 2) * 26}px);animation-delay:${i * 0.4}s"><img src="${img(f)}" alt="" loading="lazy" /></a>`).join("")}</div></div>
-          </div></section>
+      <div class="strip glass">
+        <h2>Plan your trip with us</h2>
+        <div class="btns">
+          <a class="btn pri" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20please%20help%20me%20plan%20my%20trip." target="_blank" rel="noopener"><svg><use href="#wa"/></svg> Chat on WhatsApp</a>
+          <a class="btn sec" href="tel:+917671819808">Call +91 76718 19808</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-          <section class="sec"><div class="wrap">
-            <div class="head"><p class="eyebrow">Explore India in 3D</p><h2>Tap a coral pin to open a state.</h2><p class="lead">Spin the map, pick a pin, and see the best months, the places worth your days, and a way to start the conversation.</p></div>
-            <div class="mapbox" id="map3d"></div>
-          </div></section>
+  <footer>© 2026 Travel Kahani · Hyderabad, Telangana · WhatsApp +91 76718 19808</footer>
+</div>
 
-          <section class="sec sec--tint"><div class="wrap">
-            <div class="head"><p class="eyebrow">Packages</p><h2>Six trips people ask for most.</h2><p class="lead">Every itinerary is a starting point — dates, pace and hotels are yours to change.</p></div>
-            <div class="grid">${DATA.packages.map(packCard).join("")}</div>
-          </div></section>
-
-          <section class="sec"><div class="wrap">
-            <div class="head"><p class="eyebrow">Why Travel Kahani</p><h2>Planned by people, not a booking form.</h2></div>
-            <div class="why">
-              <div><b>01</b><h3>Handcrafted itineraries</h3><p class="lead">Each plan is written for your trip, not pulled off a shelf.</p></div>
-              <div><b>02</b><h3>Custom dates</h3><p class="lead">For families, couples and groups, on the days that suit you.</p></div>
-              <div><b>03</b><h3>Local Hyderabad team</h3><p class="lead">Reach a real person on call or WhatsApp.</p></div>
-              <div><b>04</b><h3>Chat first</h3><p class="lead">Book only when the plan feels right.</p></div>
-            </div>
-          </div></section>
-
-          <section class="sec sec--tint"><div class="wrap"><a class="feat card--link" href="#/academy" style="text-decoration:none;margin:0">
-            <div><p class="eyebrow" style="color:#9fd0ea">Travel Kahani Academy</p><h2 style="color:#fff">Learn Travel &amp; Tourism, free.</h2>
-              <p class="meta">71 chapters based on the book <i>The Journey Maker</i> by Akhila Sushanth. No sign-up, your own pace, and a free certificate at the end.</p>
-              <span class="btn btn--wa" style="justify-self:start">Open the Academy</span></div>
-            <div style="padding:32px;display:grid;gap:10px;align-content:center;background:#1c2026">${["Why the World Moves", "Reading the Planet", "The Traveller's Toolkit"].map((t, i) => `<p style="display:flex;gap:12px;align-items:center"><b style="font:700 22px 'Space Grotesk',sans-serif;color:#ffb19c">0${i + 1}</b>Chapter ${i + 1} · ${t}</p>`).join("")}<p class="meta">+ 68 more chapters in 7 parts</p></div>
-          </a></div></section>
-
-          <section class="sec"><div class="wrap"><div class="band">
-            <div><h2 style="color:#fff">Tell us where you want to go.</h2><p style="margin-top:10px">We reply on WhatsApp, usually the same day. ${PH}</p></div>
-            <div class="btns"><a class="btn" target="_blank" rel="noopener" href="${wa("Hi Travel Kahani! I'd like to plan a trip.")}">Enquire on WhatsApp</a><a class="btn btn--dark" href="tel:+917671819808">Call ${PH}</a></div>
-          </div></div></section>
-
-          ${foot()}`;
-      }
-
-      function mapPage() {
-        return `<div class="mapbox mapbox--full" id="map3d"></div>`;
-      }
-
-      function soon(name) {
-        return `<section class="soon"><div class="wrap" style="display:grid;gap:18px;justify-items:center">
-            <p class="eyebrow">${esc(name)}</p><h2>Coming soon.</h2>
-            <p class="lead" style="max-width:46ch">This page is still being written. Meanwhile, open the 3D map or send us a message — we answer every enquiry personally.</p>
-            <div class="btns"><a class="btn btn--blue" href="#/map">Open the 3D map</a><a class="btn btn--wa" target="_blank" rel="noopener" href="${wa("Hi Travel Kahani! I have a question.")}">Enquire on WhatsApp</a></div>
-          </div></section>`;
-      }
-
-      /* ---------- my trip ---------- */
-      let trip = [];
-      try { trip = JSON.parse(localStorage.getItem("tk-trip")) || []; } catch (e) { trip = []; }
-      const saveTrip = () => { try { localStorage.setItem("tk-trip", JSON.stringify(trip)); } catch (e) {} };
-      const inTrip = (k) => trip.some((t) => t.k === k);
-      const addBtn = (st, i) => `<button class="addb" data-add="${st.id}|${i}" aria-pressed="false">+ Add to my trip</button>`;
-      function toggleTrip(k) {
-        if (inTrip(k)) trip = trip.filter((t) => t.k !== k);
-        else { const [sid, i] = k.split("|"), s = byId(sid), p = s && s.places[+i]; if (!p) return; trip.push({ k, n: p.n, s: s.name }); }
-        saveTrip(); renderTrip();
-      }
-      function renderTrip() {
-        $("#tripn").textContent = trip.length;
-        $("#tlist").innerHTML = trip.length
-          ? trip.map((t) => `<li><span><b>${esc(t.n)}</b><br /><span class="meta">${esc(t.s)}</span></span><button data-rm="${esc(t.k)}" aria-label="Remove ${esc(t.n)}">✕</button></li>`).join("")
-          : `<li><span class="meta">Nothing saved yet. Open a state in 360° and tap “+ Add to my trip” on the places you like.</span></li>`;
-        const msg = "Hi Travel Kahani! Here's my trip wishlist:\n" + trip.map((t, i) => `${i + 1}. ${t.n} (${t.s})`).join("\n") + "\nPlease help me plan it.";
-        $("#dfoot").innerHTML = trip.length
-          ? `<a class="btn btn--wa" target="_blank" rel="noopener" href="${wa(msg)}">Send my trip on WhatsApp</a>`
-          : `<a class="btn btn--blue" href="#/destinations">Browse destinations</a>`;
-        document.querySelectorAll("[data-add]").forEach((b) => { const on = inTrip(b.dataset.add); b.setAttribute("aria-pressed", String(on)); b.textContent = on ? "✓ In my trip" : "+ Add to my trip"; });
-      }
-      function drawer(open) {
-        $("#drawer").classList.toggle("on", open); $("#drawer").setAttribute("aria-hidden", String(!open));
-        $("#scrim").hidden = !open; $("#trippill").setAttribute("aria-expanded", String(open));
-        open ? $("#dclose").focus() : $("#trippill").focus();
-      }
-      $("#trippill").onclick = () => drawer(true);
-      $("#dclose").onclick = $("#scrim").onclick = () => drawer(false);
-      $("#dfoot").addEventListener("click", (e) => { if (e.target.closest("a[href^='#']")) drawer(false); });
-      addEventListener("keydown", (e) => { if (e.key === "Escape" && $("#drawer").classList.contains("on")) drawer(false); });
-      document.addEventListener("click", (e) => {
-        const a = e.target.closest("[data-add]"), r = e.target.closest("[data-rm]");
-        if (a) toggleTrip(a.dataset.add);
-        if (r) toggleTrip(r.dataset.rm);
-      });
-
-      /* ---------- destinations ---------- */
-      const chips = (list, label) => `<div class="fchips" role="group" aria-label="${label}">${list.map((f) => `<button class="chip" aria-pressed="false" data-f="${f}">${f}</button>`).join("")}</div>`;
-      function destinationsPage() {
-        return `<section class="sec"><div class="wrap">
-            <div class="head"><p class="eyebrow">Destinations</p><h2>Eleven states, each one in 360°.</h2><p class="lead">Filter by what you love, then tap a state to look around and pick its places.</p></div>
-            ${chips(Object.keys(FILTERS), "Filter states")}
-            <div class="grid" id="dgrid">${DATA.states.map((s) => `<a class="card card--link" href="#/destination/${s.id}" data-id="${s.id}"><img src="${img(s.img)}" alt="${esc(s.name)}" loading="lazy" /><div class="card__body">
-              <p class="eyebrow">${esc(s.te)}</p><h3>${esc(s.name)}</h3><p class="meta">${esc(s.tag)}</p><p class="meta"><b>Best:</b> ${bestText(s.best)}</p><span class="go">View in 360° →</span></div></a>`).join("")}</div>
-            <p class="lead" id="dnone" hidden>No state matches every filter. Clear one to see more.</p>
-          </div></section>${foot()}`;
-      }
-      function bindDest() {
-        const on = new Set();
-        document.querySelectorAll(".fchips .chip").forEach((b) => (b.onclick = () => {
-          on.has(b.dataset.f) ? on.delete(b.dataset.f) : on.add(b.dataset.f);
-          b.setAttribute("aria-pressed", String(on.has(b.dataset.f)));
-          let n = 0;
-          document.querySelectorAll("#dgrid [data-id]").forEach((c) => { const ok = !on.size || [...on].some((f) => FILTERS[f](byId(c.dataset.id))); c.hidden = !ok; n += ok; });
-          $("#dnone").hidden = n > 0;
-        }));
-      }
-
-      /* ---------- 360 view ---------- */
-      let prevHash = null, curHash = null;
-      function destPage(st) {
-        const top = st.places.slice(0, 3);
-        return `<section class="v360" aria-label="360° view of ${esc(st.name)}">
-            <div class="vstage" id="vstage"></div>
-            <div class="vtop"><button class="gbtn" id="vclose" aria-label="Close 360° view">← Close</button><span class="gbtn ghint">Drag to look around</span><button class="gbtn" id="gyro" aria-pressed="false" hidden>Gyro</button></div>
-            ${top.map((p, i) => `<button class="hot" data-h="${i}"><i></i>${esc(p.n)}</button>`).join("")}
-            <div class="hcard" id="hcard" hidden></div>
-            <div class="vpanel">
-              <div class="vhead"><div><p class="eyebrow">${esc(st.te)}</p><h2>${esc(st.name)}</h2><p class="lead">${esc(st.tag)}</p></div>
-                <a class="btn btn--wa" target="_blank" rel="noopener" href="${wa("Hi Travel Kahani! I'd like to know more about " + st.name + ".")}">Enquire on WhatsApp</a></div>
-              <div><p class="vlbl">Best time to go</p>${monthsHtml(st.best)}</div>
-              <div><p class="vlbl">Places · ${st.places.length}</p><div class="hscroll">${st.places.map((p, i) => `<article class="pcard"><div class="tags"><span class="tag">${esc(p.type)}</span><span class="tag">${p.days} ${p.days > 1 ? "days" : "day"}</span></div><h3>${esc(p.n)}</h3><p class="meta">${esc(p.note)}</p>${addBtn(st, i)}</article>`).join("")}</div></div>
-              <div><p class="vlbl">Other states</p><div class="hscroll thumbs">${DATA.states.filter((s) => s.id !== st.id).map((s) => `<a href="#/destination/${s.id}"><img src="${img(s.img)}" alt="" loading="lazy" />${esc(s.name)}</a>`).join("")}</div></div>
-            </div>
-          </section>`;
-      }
-      function view360(st) {
-        const stage = $("#vstage"), hc = $("#hcard"), gb = $("#gyro");
-        const top = st.places.slice(0, 3);
-        $("#vclose").onclick = () => (prevHash ? history.back() : (location.hash = "#/destinations"));
-        document.querySelectorAll(".hot").forEach((b) => (b.onclick = () => {
-          const i = +b.dataset.h, p = top[i];
-          hc.innerHTML = `<button class="close" aria-label="Close">×</button><div class="tags"><span class="tag">${esc(p.type)}</span></div><h3>${esc(p.n)}</h3><p class="meta">${esc(p.note)}</p>${addBtn(st, i)}`;
-          hc.hidden = false; renderTrip(); hc.querySelector(".close").onclick = () => (hc.hidden = true);
-        }));
-        const el = document.querySelector(`#imgsrc img[data-f="${st.img}"]`);
-        let gl; try { gl = document.createElement("canvas").getContext("webgl2") || document.createElement("canvas").getContext("webgl"); } catch (e) {}
-        if (!gl || !el) { stage.innerHTML = `<img class="vfall" src="${img(st.img)}" alt="${esc(st.name)}" />`; document.querySelectorAll(".hot").forEach((b) => { b.style.display = "inline-flex"; b.style.left = 25 + b.dataset.h * 25 + "%"; b.style.top = "30%"; }); return; }
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-        renderer.outputEncoding = THREE.sRGBEncoding;
-        const cv = renderer.domElement;
-        cv.tabIndex = 0; cv.setAttribute("aria-label", "360° photo of " + st.name + ". Drag or use arrow keys to look around.");
-        stage.appendChild(cv);
-        const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(75, 1, 0.1, 200);
-        const tex = new THREE.Texture(el);
-        tex.encoding = THREE.sRGBEncoding; tex.wrapS = THREE.MirroredRepeatWrapping; tex.repeat.x = 2;
-        const ready = () => (tex.needsUpdate = true);
-        el.complete && el.naturalWidth ? ready() : el.addEventListener("load", ready, { once: true });
-        const geo = new THREE.SphereGeometry(50, 60, 40); geo.scale(-1, 1, 1);
-        const mat = new THREE.MeshBasicMaterial({ map: tex });
-        scene.add(new THREE.Mesh(geo, mat));
-        const D = Math.PI / 180, clamp = (x) => Math.max(-80, Math.min(80, x));
-        const dir = (lon, lat, r = 1) => new THREE.Vector3(Math.sin((90 - lat) * D) * Math.cos(lon * D), Math.cos((90 - lat) * D), Math.sin((90 - lat) * D) * Math.sin(lon * D)).multiplyScalar(r);
-        const spots = [...document.querySelectorAll(".hot")].map((b, i) => ({ b, pos: dir(i * 120 + 25, i === 1 ? 8 : -5, 40) }));
-        let lon = 0, lat = 0, drag = null, gyro = null, idle = 0;
-        cv.addEventListener("pointerdown", (e) => { drag = { x: e.clientX, y: e.clientY, lon, lat }; cv.setPointerCapture(e.pointerId); });
-        cv.addEventListener("pointermove", (e) => { if (drag) { lon = drag.lon + (drag.x - e.clientX) * 0.12; lat = clamp(drag.lat + (e.clientY - drag.y) * 0.12); } });
-        const up = () => { drag = null; idle = performance.now(); };
-        cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
-        cv.addEventListener("keydown", (e) => {
-          const k = { ArrowLeft: [-6, 0], ArrowRight: [6, 0], ArrowUp: [0, 6], ArrowDown: [0, -6] }[e.key];
-          if (k) { e.preventDefault(); lon += k[0]; lat = clamp(lat + k[1]); idle = performance.now(); }
-        });
-        const ori = (e) => { if (!gyro || e.alpha == null) return; if (gyro.off == null) gyro.off = lon + e.alpha; lon = gyro.off - e.alpha; lat = clamp((e.beta || 90) - 90); };
-        if ("DeviceOrientationEvent" in window && matchMedia("(pointer: coarse)").matches) gb.hidden = false;
-        gb.onclick = async () => {
-          if (gyro) { gyro = null; removeEventListener("deviceorientation", ori); gb.setAttribute("aria-pressed", "false"); return; }
-          try { if (typeof DeviceOrientationEvent.requestPermission === "function" && (await DeviceOrientationEvent.requestPermission()) !== "granted") throw 0; }
-          catch (e) { gb.textContent = "Gyro blocked"; return; }
-          gyro = { off: null }; addEventListener("deviceorientation", ori); gb.setAttribute("aria-pressed", "true");
-        };
-        const size = () => { const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); };
-        size();
-        const ro = new ResizeObserver(size); ro.observe(stage);
-        const v = new THREE.Vector3();
-        let raf, last = performance.now();
-        function tick(now) {
-          raf = requestAnimationFrame(tick);
-          const dt = Math.min(0.1, (now - last) / 1000); last = now;
-          if (!drag && !gyro && !RM && now - idle > 2500) lon += dt * 3;
-          camera.lookAt(dir(lon, lat));
-          renderer.render(scene, camera);
-          spots.forEach((s) => {
-            v.copy(s.pos).project(camera);
-            const vis = v.z < 1 && Math.abs(v.x) < 1.1 && Math.abs(v.y) < 1.1;
-            s.b.style.display = vis ? "inline-flex" : "none";
-            if (vis) { s.b.style.left = ((v.x + 1) / 2) * 100 + "%"; s.b.style.top = ((1 - v.y) / 2) * 100 + "%"; }
-          });
-        }
-        raf = requestAnimationFrame(tick);
-        disposer = () => {
-          cancelAnimationFrame(raf); ro.disconnect(); removeEventListener("deviceorientation", ori);
-          geo.dispose(); mat.dispose(); tex.dispose(); renderer.dispose(); renderer.forceContextLoss(); cv.remove();
-        };
-      }
-
-      /* ---------- packages ---------- */
-      const INC = ["Stay", "Local transport", "Sightseeing as per plan", "Driver allowance"];
-      const EXC = ["Flights / trains unless requested", "Entry tickets", "Personal expenses"];
-      function packagesPage() {
-        const types = ["All", ...new Set(DATA.packages.map((p) => PTYPE[p.id] || "Trip"))];
-        return `<section class="sec"><div class="wrap">
-            <div class="head"><p class="eyebrow">Packages</p><h2>Six trips, each a starting point.</h2><p class="lead">Open a plan to see it day by day. Dates, pace and hotels are yours to change.</p></div>
-            ${chips(types, "Filter packages by type")}
-            <div class="grid" id="pgrid">${DATA.packages.map(packCard).join("")}</div>
-          </div></section>${foot()}`;
-      }
-      function bindPacks() {
-        const bs = document.querySelectorAll(".fchips .chip");
-        bs[0].setAttribute("aria-pressed", "true");
-        bs.forEach((b) => (b.onclick = () => {
-          bs.forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
-          document.querySelectorAll("#pgrid [data-type]").forEach((c) => (c.hidden = b.dataset.f !== "All" && c.dataset.type !== b.dataset.f));
-        }));
-      }
-      function routeSvg(p) {
-        const n = p.plan.length, W = 600, step = (W - 100) / Math.max(1, n - 1);
-        const pts = p.plan.map((d, i) => [n === 1 ? W / 2 : 50 + i * step, i % 2 ? 62 : 118]);
-        const short = (d) => { let s = d.split(/[:,]/)[0].replace(/^(Arrive|Drive to|Train\/flight to|Back to|Return via|Guwahati to)\s*/i, "").trim() || d; return s.length > 20 ? s.slice(0, 19) + "…" : s; };
-        return `<svg viewBox="0 0 ${W} 180" role="img" aria-label="Route of ${n} days: ${esc(p.plan.map(short).join(", "))}">
-          <polyline points="${pts.map((q) => q.join(",")).join(" ")}" fill="none" stroke="#2779a7" stroke-width="2.5" stroke-dasharray="2 8" stroke-linecap="round" />
-          ${pts.map(([x, y], i) => `<g><path d="M${x} ${y + 16} l-8 -12 h16 z" fill="#df6c4f" /><circle cx="${x}" cy="${y - 12}" r="15" fill="#df6c4f" /><text x="${x}" y="${y - 7}" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="14" fill="#fff">${i + 1}</text>
-            <text x="${x}" y="${i % 2 ? y - 38 : y + 34}" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#14161a">${esc(short(p.plan[i]))}</text></g>`).join("")}
-        </svg>`;
-      }
-      function packagePage(p) {
-        return `<section class="banner"><img src="${img(p.img)}" alt="" /><div class="wrap">
-            <a class="gbtn" href="#/packages">← All packages</a>
-            <p class="eyebrow">${PTYPE[p.id] || "Trip"} · ${esc(p.days)}</p><h1>${esc(p.title)}</h1><p>Starts from ${esc(p.from)}</p>
-          </div></section>
-          <section class="sec"><div class="wrap pkg">
-            <div class="pkg__main">
-              <div><h2>Day by day</h2><ol class="tl">${p.plan.map((d, i) => `<li><b>${i + 1}</b><p class="eyebrow">Day ${i + 1}</p><p>${esc(d)}</p></li>`).join("")}</ol></div>
-              <div><h2>The route</h2><div class="route">${routeSvg(p)}</div></div>
-              <div class="ie"><div><h3>Included</h3><ul class="ok">${INC.map((x) => `<li>${x}</li>`).join("")}</ul></div><div><h3>Not included</h3><ul class="no">${EXC.map((x) => `<li>${x}</li>`).join("")}</ul></div></div>
-            </div>
-            <aside class="pcta sticky" aria-label="Enquire about this package">
-              <div><p class="big">Price on enquiry</p><p class="meta">Quoted on WhatsApp for your dates and group.</p></div>
-              <form class="form" id="pform">
-                <label>Name<input name="name" required autocomplete="name" /></label>
-                <div class="row2"><label>Travel date<input name="date" type="date" required /></label><label>People<input name="people" type="number" min="1" value="2" required /></label></div>
-                <button class="btn btn--wa" type="submit">Get a quote on WhatsApp</button>
-              </form>
-              <p class="meta">Or call <a href="tel:+917671819808">${PH}</a></p>
-            </aside>
-          </div></section>${foot()}`;
-      }
-      function bindPkg(p) {
-        $("#pform").onsubmit = (e) => {
-          e.preventDefault(); const f = e.target.elements;
-          open(wa(`Hi Travel Kahani! I'd like a quote for the ${p.title} package (${p.days}).\nName: ${f.name.value}\nTravel date: ${f.date.value}\nPeople: ${f.people.value}`), "_blank", "noopener");
-        };
-      }
-
-      /* ---------- contact ---------- */
-      function contactPage() {
-        return `<section class="hero" style="padding-bottom:80px"><div class="wrap">
-            <p class="eyebrow">Contact</p><h1>Let's plan<br />your kahani.</h1>
-            <p class="lead" style="margin-top:18px">Based in Hyderabad, Telangana. We reply on WhatsApp, usually the same day.</p>
-            <div class="btns" style="margin-top:30px"><a class="btn btn--wa btn--big" target="_blank" rel="noopener" href="${wa("Hi Travel Kahani! I'd like to plan a trip.")}">WhatsApp us</a><a class="btn btn--big" href="tel:+917671819808">Call ${PH}</a></div>
-          </div></section>
-          <section class="sec"><div class="wrap cgrid">
-            <div class="head"><p class="eyebrow">Quick enquiry</p><h2>Tell us the basics.</h2><p class="lead">We'll open WhatsApp with your message ready to send. No account, no booking form.</p></div>
-            <form class="form pcta" id="cform">
-              <label>Name<input name="name" required autocomplete="name" /></label>
-              <label>Where to<input name="where" placeholder="Kerala, Goa, not sure yet…" /></label>
-              <div class="row2"><label>When<input name="date" type="date" /></label><label>People<input name="people" type="number" min="1" value="2" /></label></div>
-              <label>Anything else<textarea name="msg" placeholder="Pace, budget, occasion…"></textarea></label>
-              <button class="btn btn--wa" type="submit">Send on WhatsApp</button>
-            </form>
-          </div></section>${foot()}`;
-      }
-      function bindContact() {
-        $("#cform").onsubmit = (e) => {
-          e.preventDefault(); const f = e.target.elements;
-          open(wa(`Hi Travel Kahani! I'm ${f.name.value}.\nWhere to: ${f.where.value || "Not sure yet"}\nWhen: ${f.date.value || "Flexible"}\nPeople: ${f.people.value}${f.msg.value ? "\n" + f.msg.value : ""}`), "_blank", "noopener");
-        };
-      }
-
-      /* ---------- trip builder ---------- */
-      const TRAV = ["Family", "Couple", "Friends", "Solo"];
-      const SLOT = { Family: ["Easy start, breakfast and the first sight", "Main sight at a relaxed pace, lunch break", "Early dinner, short walk, back by 9"], Couple: ["Slow morning, café and the first sight", "The main sight, then a quiet corner", "Sunset point and a long dinner"], Friends: ["Early start, the big sight first", "Activity or local market, street food", "Night out, live music or a beach shack"], Solo: ["Walk the area, first sight on foot", "Main sight with a local guide", "Local café, journal, early night"] };
-      const tb = { state: "kerala", days: 4, who: "Family", places: [] };
-      function tbDefault(id) {
-        const st = byId(id); tb.state = id;
-        tb.places = st.places.map((p, i) => ({ sid: id, i, n: p.n, days: p.days, type: p.type }));
-        tb.days = Math.min(10, Math.max(1, Math.ceil(tb.places.reduce((a, p) => a + p.days, 0))));
-      }
-      // approximate [lat, lng] of each place, in the order of destinations.json
-      const PLC = {
-        telangana: [[17.36, 78.47], [17.38, 78.4], [17.4, 78.39], [17.25, 78.68], [17.95, 79.61], [18.26, 79.94], [18.15, 80.05], [17.51, 78.89], [19.2, 78.43], [18.04, 78.26], [16.58, 79.31]],
-        andhra: [[18.33, 82.88], [17.69, 83.22], [14.81, 78.29], [17.47, 81.6], [17.95, 82.55]],
-        karnataka: [[15.33, 76.46], [12.42, 75.74], [12.31, 76.65], [13.32, 75.77], [14.55, 74.32]],
-        kerala: [[9.5, 76.34], [10.09, 77.06], [9.96, 76.24], [9.6, 77.16], [8.73, 76.71], [11.69, 76.13]],
-        tamilnadu: [[11.4, 76.7], [10.24, 77.49], [10.68, 79.84], [13.03, 80.28], [12.3, 80.0]],
-        goa: [[15.6, 73.74], [15.18, 73.95], [15.5, 73.91], [15.47, 73.96], [15.31, 74.31], [15.5, 73.83]],
-        rajasthan: [[26.91, 75.79], [24.58, 73.71], [26.24, 73.02], [26.91, 70.91]],
-        delhi: [[28.66, 77.24], [28.55, 77.22], [27.17, 78.04]],
-        himachal: [[32.24, 77.19], [31.1, 77.17], [32.01, 77.31], [31.35, 78.44]],
-        kashmir: [[34.08, 74.8], [34.05, 74.38], [34.02, 75.32], [34.3, 75.29]],
-        meghalaya: [[25.57, 91.88], [25.27, 91.73], [25.2, 91.92], [25.18, 92.02]],
-      };
-      const LEISURE = "Leisure / local markets";
-      function tbPlan() {
-        const halves = [];
-        tb.places.forEach((p) => { for (let k = 0; k < Math.max(1, Math.round(p.days * 2)); k++) halves.push(p); });
-        const out = [], S = SLOT[tb.who];
-        for (let d = 0; d < tb.days; d++) {
-          const m = halves[d * 2], a = halves[d * 2 + 1];
-          const names = [...new Set([m, a].filter(Boolean).map((p) => p.n))];
-          out.push({ t: names.length ? names.join(" · ") : LEISURE,
-            slots: [m ? m.n + " — " + S[0] : LEISURE, a ? a.n + " — " + S[1] : LEISURE, S[2]] });
-        }
-        return { days: out, over: [...new Set(halves.slice(tb.days * 2).map((p) => p.n))] };
-      }
-      function tbMapSvg() {
-        const X = (lng) => (lng - 68) * 10, Y = (lat) => (38 - lat) * 10;
-        const path = OUTLINE.map(([lng, lat], i) => `${i ? "L" : "M"}${X(lng).toFixed(1)} ${Y(lat).toFixed(1)}`).join(" ") + " Z";
-        const pts = tb.places.map((p) => { const c = (PLC[p.sid] && PLC[p.sid][p.i]) || PIN[p.sid]; return [X(c[1]), Y(c[0])]; });
-        let vb = [0, 0, 300, 300];
-        if (pts.length) {
-          const xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
-          const cx = (Math.min(...xs) + Math.max(...xs)) / 2, cy = (Math.min(...ys) + Math.max(...ys)) / 2;
-          const span = Math.max(70, (Math.max(...xs) - Math.min(...xs)) * 1.5, (Math.max(...ys) - Math.min(...ys)) * 1.5);
-          vb = [cx - span / 2, cy - span / 2, span, span];
-        }
-        const r = vb[2] * 0.032, line = pts.map((q, i) => `${i ? "L" : "M"}${q[0].toFixed(2)} ${q[1].toFixed(2)}`).join(" ");
-        return `<svg viewBox="${vb.map((v) => v.toFixed(2)).join(" ")}" role="img" aria-label="Map with ${pts.length} numbered stops: ${esc(tb.places.map((p) => p.n).join(", "))}">
-          <rect x="-500" y="-500" width="1400" height="1400" fill="#cfe6f5" />
-          <path d="${path}" fill="#dcd9b8" stroke="#8f9d72" stroke-width="${(vb[2] / 300).toFixed(2)}" stroke-linejoin="round" />
-          ${pts.length > 1 ? `<path class="rline" pathLength="1" d="${line}" fill="none" stroke="#2779a7" stroke-width="${(r * 0.35).toFixed(2)}" stroke-linecap="round" stroke-linejoin="round" />` : ""}
-          ${pts.map((q, i) => `<g><circle cx="${q[0].toFixed(2)}" cy="${q[1].toFixed(2)}" r="${r.toFixed(2)}" fill="#b9472c" stroke="#fff" stroke-width="${(r * 0.15).toFixed(2)}" /><text x="${q[0].toFixed(2)}" y="${(q[1] + r * 0.4).toFixed(2)}" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="${(r * 1.1).toFixed(2)}" font-weight="700" fill="#fff">${i + 1}</text></g>`).join("")}
-        </svg>`;
-      }
-      function tbMsg() {
-        const plan = tbPlan().days;
-        return `Hi Travel Kahani! Please plan this trip for me.\nDestination: ${[...new Set(tb.places.map((p) => byId(p.sid).name))].join(", ") || byId(tb.state).name}\nDays: ${tb.days}\nTravelling as: ${tb.who}\nPlaces: ${tb.places.map((p) => p.n).join(", ") || "Open to suggestions"}\n\n` +
-          plan.map((d, i) => `Day ${i + 1} — ${d.t}\n  Morning: ${d.slots[0]}\n  Afternoon: ${d.slots[1]}\n  Evening: ${d.slots[2]}`).join("\n");
-      }
-      function tripPage() {
-        return `<section class="sec"><div class="wrap">
-            <div class="head"><p class="eyebrow">Trip Builder</p><h2>Build the trip, day by day.</h2><p class="lead">Pick a state, set your days and who you're travelling with. The plan below is yours to edit — then send it to us on WhatsApp.</p></div>
-            <div class="tb">
-              <div class="tbmap" id="tbmap">${tbMapSvg()}</div>
-              <div style="display:grid;gap:24px">
-                <div class="ctl">
-                  <label>Destination<select id="tbstate">${DATA.states.map((s) => `<option value="${s.id}">${esc(s.name)}</option>`).join("")}</select></label>
-                  <label>Days <span id="tbdn" class="meta"></span><input id="tbdays" type="range" min="1" max="10" step="1" /></label>
-                  <div class="lbl2">Travelling as<div class="tchips" role="group" aria-label="Travelling as">${TRAV.map((t) => `<button class="chip" data-who="${t}" aria-pressed="false">${t}</button>`).join("")}</div></div>
-                  <div class="lbl2">Places in this trip<div class="plist" id="tbplaces"></div><p class="warn" id="tbwarn" hidden>No places left. Pick another state or load your saved trip.</p></div>
-                  <div class="btns"><button class="btn" id="tbuse" type="button">Use my trip</button><button class="btn" id="tbreset" type="button">Reset places</button></div>
-                </div>
-                <div><h3 style="margin-bottom:12px">Your day-by-day plan</h3><div class="days" id="tbdays-out"></div></div>
-                <a class="btn btn--wa btn--big" id="tbwa" target="_blank" rel="noopener" href="#">Send this plan on WhatsApp</a>
-              </div>
-            </div>
-          </div></section>${foot()}`;
-      }
-      function tbRender() {
-        $("#tbdn").textContent = tb.days + (tb.days > 1 ? " days" : " day");
-        $("#tbmap").innerHTML = tbMapSvg();
-        $("#tbplaces").innerHTML = tb.places.map((p, i) => `<div class="pl"><b>${i + 1}</b><span>${esc(p.n)}<br /><span class="meta">${p.days} ${p.days > 1 ? "days" : "day"} · ${esc(p.type || "Place")}</span></span><button data-del="${i}" aria-label="Remove ${esc(p.n)}">✕</button></div>`).join("");
-        $("#tbwarn").hidden = tb.places.length > 0;
-        const plan = tbPlan();
-        $("#tbwarn").hidden = tb.places.length > 0 && !plan.over.length;
-        $("#tbwarn").textContent = tb.places.length ? `Doesn't fit in ${tb.days} ${tb.days > 1 ? "days" : "day"}: ${plan.over.join(", ")}. Add days or remove a place.` : "No places left. Pick another state or load your saved trip.";
-        $("#tbdays-out").innerHTML = plan.days.map((d, i) => `<article class="day"><p class="eyebrow">Day ${i + 1}</p><h3>${esc(d.t)}</h3>
-          <dl><dt>Morning</dt><dd>${esc(d.slots[0])}</dd><dt>Afternoon</dt><dd>${esc(d.slots[1])}</dd><dt>Evening</dt><dd>${esc(d.slots[2])}</dd></dl></article>`).join("");
-        $("#tbwa").href = wa(tbMsg());
-      }
-      function bindTrip(q) {
-        const want = new URLSearchParams(q || "").get("state") || "";
-        if (want && byId(want)) tbDefault(want); else if (!tb.places.length) tbDefault(tb.state);
-        $("#tbstate").value = tb.state;
-        $("#tbdays").value = tb.days;
-        $("#tbstate").onchange = (e) => { tbDefault(e.target.value); tbRender(); };
-        $("#tbdays").oninput = (e) => { tb.days = +e.target.value; tbRender(); };
-        document.querySelectorAll("[data-who]").forEach((b) => {
-          b.setAttribute("aria-pressed", String(b.dataset.who === tb.who));
-          b.onclick = () => { tb.who = b.dataset.who; document.querySelectorAll("[data-who]").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); tbRender(); };
-        });
-        $("#tbplaces").onclick = (e) => { const d = e.target.closest("[data-del]"); if (!d) return; tb.places.splice(+d.dataset.del, 1); tbRender(); };
-        $("#tbreset").onclick = () => { tbDefault(tb.state); tbRender(); };
-        $("#tbuse").onclick = () => {
-          if (!trip.length) { drawer(true); return; }
-          const first = trip[0].k.split("|")[0];
-          tb.state = byId(first) ? first : tb.state;
-          tb.places = trip.map((t) => { const [sid, i] = t.k.split("|"), s = byId(sid), p = s && s.places[+i]; return p ? { sid, i: +i, n: p.n, days: p.days, type: p.type } : null; }).filter(Boolean);
-          $("#tbstate").value = tb.state; tbRender();
-        };
-        tbRender();
-      }
-
-      /* ---------- church trails ---------- */
-      function churchesPage() {
-        const CT = DATA.churchTrails;
-        const states = ["All", ...new Set(CT.map((c) => c.state))];
-        const n = 7;
-        const pkg = DATA.packages.find((p) => p.id === "velankanni");
-        return `<section class="hero"><div class="wrap">
-            <p class="eyebrow">Church Trails</p><h1>Catholic and<br />Christian heritage<br />across India.</h1>
-            <p class="lead" style="margin-top:18px">Basilicas, cathedrals and hilltop shrines — feast days, quiet mornings and the stories behind them.</p>
-            <div class="wall wall--church" id="wall"><div class="wall__in" id="wallin">${Array.from({ length: n }, (_, i) => `<div class="tile" style="transform:rotateY(${(i - (n - 1) / 2) * -15}deg) translateZ(${-Math.abs(i - (n - 1) / 2) * 28}px);animation-delay:${i * 0.45}s"><img src="${img("church.jpg")}" alt="${i ? "" : "A church on the Indian coast"}" ${i ? 'aria-hidden="true"' : ""} loading="lazy" /></div>`).join("")}</div></div>
-          </div></section>
-          <section class="sec"><div class="wrap">
-            <div class="feat"><img src="${img("church.jpg")}" alt="Velankanni basilica" /><div>
-              <p class="eyebrow" style="color:#9fd0ea">Featured package</p><h2 style="color:#fff">${esc(pkg.title)}</h2>
-              <p class="meta">${esc(pkg.days)} · from ${esc(pkg.from)} · Mass, candle procession and the Morning Star Church.</p>
-              <div class="btns"><a class="btn btn--wa" href="#/package/velankanni">See the plan</a><a class="btn" target="_blank" rel="noopener" href="${wa("Hi Travel Kahani! I'm interested in the Velankanni Pilgrimage package (" + pkg.days + ").")}">WhatsApp</a></div>
-            </div></div>
-            <div class="head"><h2>Twelve churches worth the journey.</h2><p class="lead">Filter by state, then ask us to work one into your trip.</p></div>
-            <div class="fchips" role="group" aria-label="Filter churches by state">${states.map((s) => `<button class="chip" data-f="${esc(s)}" aria-pressed="${s === "All"}">${esc(s)}</button>`).join("")}</div>
-            <div class="ctrail" id="cgridc">${CT.map((c) => `<article class="ccard" data-state="${esc(c.state)}"><div class="tags"><span class="tag">${esc(c.state)}</span></div><h3>${esc(c.n)}</h3><p class="meta">${esc(c.note)}</p>
-              <a class="btn btn--wa" style="justify-self:start" target="_blank" rel="noopener" href="${wa("Hi Travel Kahani! I'd like to plan a visit to " + c.n + " (" + c.state + ").")}">Plan this visit</a></article>`).join("")}</div>
-          </div></section>${foot()}`;
-      }
-      function bindChurches() {
-        const bs = document.querySelectorAll(".fchips .chip");
-        bs.forEach((b) => (b.onclick = () => {
-          bs.forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
-          document.querySelectorAll("#cgridc [data-state]").forEach((c) => (c.hidden = b.dataset.f !== "All" && c.dataset.state !== b.dataset.f));
-        }));
-      }
-
-      /* ---------- academy ---------- */
-      const CHAPTERS = JSON.parse(document.getElementById("chapters").textContent);
-      const CH1 = JSON.parse(document.getElementById("ch1").textContent);
-      const QUIZZED = [1];
-      let done = [];
-      try { done = JSON.parse(localStorage.getItem("tk-academy")) || []; } catch (e) { done = []; }
-      const saveDone = () => { try { localStorage.setItem("tk-academy", JSON.stringify(done)); } catch (e) {} };
-      const isDone = (n) => done.indexOf(n) > -1;
-      const markDone = (n) => { if (!isDone(n)) { done.push(n); saveDone(); } };
-      const BOOK = "Buy the book The Journey Maker";
-      function academyPage() {
-        const parts = [];
-        CHAPTERS.forEach((c) => { let p = parts.find((x) => x.name === c.part); if (!p) parts.push((p = { name: c.part, items: [] })); p.items.push(c); });
-        const pct = Math.round((done.length / CHAPTERS.length) * 100);
-        return `<section class="hero" style="padding-bottom:64px"><div class="wrap">
-            <p class="eyebrow">Travel Kahani Academy</p><h1>Travel &amp; Tourism,<br />taught chapter<br />by chapter.</h1>
-            <p class="lead" style="margin-top:18px">A free Travel &amp; Tourism course based on the book <i>The Journey Maker</i> by Akhila Sushanth. Free course. No sign-up. Learn at your own pace and get a free certificate at the end.</p>
-            <div style="max-width:420px;margin-top:30px;display:grid;gap:10px"><div class="prog"><i style="width:${pct}%"></i></div><p class="lead" id="progtxt">${done.length} of ${CHAPTERS.length} chapters completed</p></div>
-            <div class="btns" style="margin-top:26px"><a class="btn btn--wa" href="#/academy/chapter/1">Start Chapter 1</a><a class="btn" href="#/academy/certificate">Your free certificate</a><a class="btn" href="#/verify">Verify a certificate</a></div>
-          </div></section>
-          <section class="sec"><div class="wrap">
-            <div class="head"><p class="eyebrow">Syllabus</p><h2>Seven parts, 71 chapters.</h2><p class="lead">Nothing is locked. Open any chapter, take its quiz, and it is marked done.</p></div>
-            <div class="acc">${parts.map((p, i) => `<details${i ? "" : " open"}><summary>${esc(p.name)}<span class="meta" style="font:500 13px Inter,sans-serif">Chapters ${p.items[0].n}–${p.items[p.items.length - 1].n}</span></summary>
-              <ol>${p.items.map((c) => `<li><a href="#/academy/chapter/${c.n}"><em>Chapter ${c.n}</em><span>${esc(c.title)}</span>${isDone(c.n) ? '<span class="ok2">✓ Done</span>' : ""}</a></li>`).join("")}</ol></details>`).join("")}</div>
-            <div class="book"><div><h3>${BOOK}</h3><p class="lead">The full text behind every chapter, by Akhila Sushanth.</p></div>
-              <a class="btn btn--wa" target="_blank" rel="noopener" href="${wa("Hi Travel Kahani! I'd like to buy the book The Journey Maker by Akhila Sushanth. Please share the price and how to order.")}">Enquire on WhatsApp</a></div>
-          </div></section>${foot()}`;
-      }
-      const STEPS = ["Learning Objectives", "Lessons", "Key Terms", "Summary", "Quick Quiz", "Practical Task"];
-      function chapterPage(n) {
-        const c = CHAPTERS.find((x) => x.n === n); if (!c) return null;
-        const prev = n > 1 ? `<a class="btn" href="#/academy/chapter/${n - 1}">← Chapter ${n - 1}</a>` : `<a class="btn" href="#/academy">← Syllabus</a>`;
-        const next = n < CHAPTERS.length ? `<a class="btn btn--dark" href="#/academy/chapter/${n + 1}">Chapter ${n + 1} →</a>` : `<a class="btn btn--wa" href="#/academy/certificate">Get your certificate →</a>`;
-        return `<section class="sec"><div class="wrap" style="max-width:860px">
-            <div class="head"><p class="eyebrow">${esc(c.part)} · Chapter ${n} of ${CHAPTERS.length}</p><h2>${esc(c.title)}</h2>
-              <p class="lead">From <i>The Journey Maker</i> by Akhila Sushanth.${isDone(n) ? ' <span class="ok2">✓ Done</span>' : ""}</p></div>
-            <div class="stepper" role="tablist" aria-label="Chapter steps">${STEPS.map((s, i) => `<button role="tab" aria-selected="${!i}" data-step="${i}">${esc(s)}</button>`).join("")}</div>
-            <div class="spanel" id="spanel"></div>
-            <div class="chnav">${prev}${next}</div>
-          </div></section>${foot()}`;
-      }
-      function stepHtml(n, i) {
-        const d = n === 1 ? CH1 : null;
-        const soonBlock = `<h3>${STEPS[i]}</h3><p class="lead">Content coming soon. This chapter is being written from <i>The Journey Maker</i>. Chapter 1 is ready now.</p>
-          <div class="btns"><a class="btn btn--blue" href="#/academy/chapter/1">Open Chapter 1</a><a class="btn btn--wa" target="_blank" rel="noopener" href="${wa("Hi Travel Kahani! When will Chapter " + n + " of the Academy be ready?")}">Ask us</a></div>`;
-        if (!d) return soonBlock;
-        if (i === 0) return `<h3>Learning Objectives</h3><p class="lead">By the end of this chapter you will be able to:</p><ul>${d.objectives.map((o) => `<li>${esc(o)}</li>`).join("")}</ul>`;
-        if (i === 1) return `<h3>Lessons</h3>${d.lessons.map((l) => `<div class="lesson"><h3 style="font-size:17px">${esc(l.h)}</h3><p>${esc(l.p)}</p>${l.table ? `<div class="twrap"><table class="ltab"><thead><tr>${l.table[0].map((h) => `<th scope="col">${esc(h)}</th>`).join("")}</tr></thead><tbody>${l.table.slice(1).map((r) => `<tr>${r.map((x, j) => (j ? `<td>${esc(x)}</td>` : `<th scope="row">${esc(x)}</th>`)).join("")}</tr>`).join("")}</tbody></table></div>` : ""}</div>`).join("")}`;
-        if (i === 2) return `<h3>Key Terms</h3><p class="lead">Tap a card to flip it.</p><div class="flips">${d.terms.map((t) => `<button class="flip" aria-pressed="false"><span class="flip__in"><span class="flip__f">${esc(t[0])}<small>Tap to flip</small></span><span class="flip__b">${esc(t[1])}</span></span></button>`).join("")}</div>`;
-        if (i === 3) return `<h3>Summary</h3><ul>${d.summary.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>`;
-        if (i === 4) return `<h3>Quick Quiz</h3><p class="lead">Five questions. Score 70% or more to pass and mark this chapter done.</p>
-          <div id="quiz">${d.quiz.map((q, qi) => `<div class="q" data-q="${qi}"><p><b>${qi + 1}.</b> ${esc(q.q)}</p>${q.o.map((o, oi) => `<button type="button" data-o="${oi}">${esc(o)}</button>`).join("")}<p class="fb" data-fb hidden></p></div>`).join("")}</div>
-          <div class="score" id="score" hidden></div>`;
-        return `<h3>Practical Task</h3><h3 style="font-size:17px">${esc(d.task.title)}</h3><ol>${d.task.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
-          <p><b>Deliverable:</b> ${esc(d.task.deliverable)}</p><p class="meta">Time: ${esc(d.task.time)}</p>
-          <a class="btn btn--wa" style="justify-self:start" target="_blank" rel="noopener" href="${wa("Hi Travel Kahani! I finished the Chapter 1 practical task from the Academy and would like feedback.")}">Send it to us for feedback</a>`;
-      }
-      function bindChapter(n) {
-        const panel = $("#spanel"), tabs = [...document.querySelectorAll("[data-step]")];
-        const show = (i) => {
-          tabs.forEach((t, j) => t.setAttribute("aria-selected", String(i === j)));
-          panel.innerHTML = stepHtml(n, i);
-          panel.querySelectorAll(".flip").forEach((f) => (f.onclick = () => f.setAttribute("aria-pressed", f.getAttribute("aria-pressed") === "true" ? "false" : "true")));
-          if (i === 4 && n === 1) bindQuiz(n);
-        };
-        tabs.forEach((t, i) => (t.onclick = () => show(i)));
-        show(0);
-      }
-      function bindQuiz(n) {
-        const quiz = CH1.quiz; let answered = 0, right = 0;
-        document.querySelectorAll("#quiz .q").forEach((row) => {
-          const qi = +row.dataset.q, bs = [...row.querySelectorAll("[data-o]")], fb = row.querySelector("[data-fb]");
-          bs.forEach((b) => (b.onclick = () => {
-            const ok = +b.dataset.o === quiz[qi].a;
-            bs.forEach((x) => { x.disabled = true; if (+x.dataset.o === quiz[qi].a) x.classList.add("right"); });
-            if (!ok) b.classList.add("wrong");
-            fb.hidden = false; fb.textContent = ok ? "Correct." : "Not quite — the right answer is highlighted.";
-            fb.style.color = ok ? "#22784f" : "var(--coral)";
-            answered++; right += ok ? 1 : 0;
-            if (answered === quiz.length) {
-              const pct = Math.round((right / quiz.length) * 100), pass = pct >= 70;
-              if (pass) {
-                markDone(n);
-                const lead = document.querySelector(".head .lead");
-                if (lead && !lead.querySelector(".ok2")) lead.insertAdjacentHTML("beforeend", ' <span class="ok2">✓ Done</span>');
-              }
-              $("#score").hidden = false;
-              $("#score").innerHTML = `<h3>${right} of ${quiz.length} correct · ${pct}%</h3><p class="lead">${pass ? "Passed. Chapter " + n + " is marked done." : "You need 70% to pass. Read the lessons again and retake the quiz."}</p>
-                <div class="btns">${pass ? `<a class="btn btn--blue" href="#/academy/chapter/${n + 1}">Next chapter</a><a class="btn" href="#/academy/certificate">Your free certificate</a>` : `<button class="btn btn--dark" type="button" id="retake">Retake the quiz</button>`}</div>`;
-              const rt = $("#retake"); if (rt) rt.onclick = () => { document.querySelectorAll("[data-step]")[4].click(); };
-            }
-          }));
-        });
-      }
-
-      /* ---------- certificate ---------- */
-      const certId = (name, date) => {
-        let h = 0; const s = name + "|" + date;
-        for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
-        let out = ""; const A = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-        for (let i = 0; i < 5; i++) { out += A[h % A.length]; h = Math.floor(h / A.length) + (i + 1) * 7919; }
-        return "TK-2026-" + out;
-      };
-      let certName = "", certDate = ""; try { certName = localStorage.getItem("tk-certname") || ""; certDate = localStorage.getItem("tk-certdate") || ""; } catch (e) {}
-      function certPage() {
-        const left = QUIZZED.filter((n) => !isDone(n));
-        if (left.length) {
-          return `<section class="sec"><div class="wrap" style="max-width:720px">
-              <div class="head"><p class="eyebrow">Certificate</p><h2>One step to go.</h2><p class="lead">Your free certificate unlocks once you pass the quiz in every chapter that has one.</p></div>
-              <div class="spanel"><h3>Still to pass</h3><ul>${left.map((n) => `<li><a class="link" href="#/academy/chapter/${n}">Chapter ${n} · ${esc(CHAPTERS.find((c) => c.n === n).title)}</a> — Quick Quiz</li>`).join("")}</ul>
-                <p class="meta">Chapters without a quiz yet don't hold you back. More quizzes are added as chapters are written.</p>
-                <div class="btns"><a class="btn btn--wa" href="#/academy/chapter/${left[0]}">Take the Chapter ${left[0]} quiz</a><a class="btn" href="#/academy">Back to the syllabus</a></div></div>
-            </div></section>${foot()}`;
-        }
-        if (!certName) {
-          return `<section class="sec"><div class="wrap" style="max-width:720px">
-              <div class="head"><p class="eyebrow">Certificate</p><h2>Unlocked. What name goes on it?</h2><p class="lead">Your certificate is free. Type your full name exactly as you'd like it printed.</p></div>
-              <form class="form pcta vbox" id="nform"><label>Full name<input name="name" required autocomplete="name" placeholder="Akhila Sushanth" /></label>
-                <button class="btn btn--wa" type="submit">Make my certificate</button></form>
-            </div></section>${foot()}`;
-        }
-        if (!/^\d{4}-\d{2}-\d{2}$/.test(certDate)) { const t = new Date(); certDate = t.getFullYear() + "-" + String(t.getMonth() + 1).padStart(2, "0") + "-" + String(t.getDate()).padStart(2, "0"); try { localStorage.setItem("tk-certdate", certDate); } catch (e) {} }
-        const [cy, cm, cd] = certDate.split("-").map(Number);
-        const date = new Date(cy, cm - 1, cd).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
-        const id = certId(certName, certDate);
-        return `<section class="sec certsec"><div class="wrap">
-            <div class="head noprint"><p class="eyebrow">Certificate</p><h2>Congratulations, ${esc(certName.split(" ")[0])}.</h2><p class="lead">Print it, save it as a PDF, or send it on WhatsApp. Certificate ID ${id}.</p></div>
-            <div class="cert"><div class="cert__in">
-              <p class="c-brand">Travel Kahani Academy</p>
-              <p class="c-t">Certificate of Completion</p>
-              <p class="c-s">Travel &amp; Tourism Foundations</p>
-              <p class="c-n">${esc(certName)}</p>
-              <p class="c-b">has completed the Travel Kahani Academy course in Travel &amp; Tourism Foundations,</p>
-              <p class="c-c">based on <i>The Journey Maker</i> by Akhila Sushanth</p>
-              <div class="c-f"><span>Date<b>${date}</b></span><span>Certificate ID<b>${id}</b></span><span>Issued by<b>Travel Kahani, Hyderabad</b></span></div>
-              <svg class="seal" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="none" stroke="#b08a3e" stroke-width="2" /><circle cx="50" cy="50" r="38" fill="none" stroke="#b08a3e" stroke-width="1" /><path d="M50 26c8 0 14 6 14 14 0 10-14 26-14 26S36 50 36 40c0-8 6-14 14-14z" fill="#b08a3e" /><circle cx="50" cy="40" r="5" fill="#fbf8f1" /></svg>
-            </div></div>
-            <div class="btns noprint" style="margin-top:28px;justify-content:center"><button class="btn btn--dark" type="button" id="cprint">Download / Print</button>
-              <a class="btn btn--wa" target="_blank" rel="noopener" href="${wa("I completed the free Travel & Tourism course at Travel Kahani Academy, based on The Journey Maker by Akhila Sushanth. Certificate ID: " + id + " (" + certName + ")")}">Share on WhatsApp</a>
-              <button class="btn" type="button" id="cname">Change name</button></div>
-          </div></section><div class="noprint">${foot()}</div>`;
-      }
-      function bindCert() {
-        const f = $("#nform");
-        if (f) { f.onsubmit = (e) => { e.preventDefault(); const v = f.querySelector("input").value.trim(); if (!v) return; certName = v; try { localStorage.setItem("tk-certname", certName); } catch (er) {} router(); }; return; }
-        const p = $("#cprint"); if (p) p.onclick = () => print();
-        const c = $("#cname"); if (c) c.onclick = () => { certName = ""; try { localStorage.removeItem("tk-certname"); } catch (er) {} router(); };
-      }
-      function verifyPage() {
-        return `<section class="sec"><div class="wrap" style="max-width:720px">
-            <div class="head"><p class="eyebrow">Verify</p><h2>Check a certificate ID.</h2><p class="lead">Certificates are issued free online. To confirm one, WhatsApp us the certificate ID.</p></div>
-            <form class="form pcta vbox" id="vform"><label>Certificate ID<input name="id" placeholder="TK-2026-XXXXX" required /></label>
-              <button class="btn btn--wa" type="submit">Send the ID on WhatsApp</button></form>
-            <p class="meta" style="margin-top:16px">Or call ${PH}.</p>
-          </div></section>${foot()}`;
-      }
-      function bindVerify() {
-        $("#vform").onsubmit = (e) => { e.preventDefault(); const v = e.target.querySelector("input").value.trim(); if (v) window.open(wa("Hi Travel Kahani! Please verify this Academy certificate ID: " + v), "_blank", "noopener"); };
-      }
-
-      /* ---------- router ---------- */
-      const VIEWS = {
-        home: () => [home(), () => initMap($("#map3d"), { full: false })],
-        map: () => [mapPage(), () => initMap($("#map3d"), { full: true })],
-        destinations: () => [destinationsPage(), bindDest],
-        destination: (id) => { const st = byId(id); return st && [destPage(st), () => view360(st)]; },
-        packages: () => [packagesPage(), bindPacks],
-        package: (id) => { const p = DATA.packages.find((x) => x.id === id); return p && [packagePage(p), () => bindPkg(p)]; },
-        contact: () => [contactPage(), bindContact],
-        trip: () => [tripPage(), () => bindTrip(location.hash.split("?")[1] || "")],
-        churches: () => [churchesPage(), bindChurches],
-        academy: (b) => {
-          const parts = (location.hash.split("?")[0].replace(/^#\/+/, "")).split("/");
-          if (b === "chapter") { const n = Math.max(1, Math.min(CHAPTERS.length, parseInt(parts[2], 10) || 1)); return [chapterPage(n), () => bindChapter(n)]; }
-          if (b === "certificate") return [certPage(), bindCert];
-          return [academyPage(), () => {}];
-        },
-        verify: () => [verifyPage(), bindVerify],
-      };
-      const NAMES = { churches: "Church Trails", academy: "Academy" };
-
-      const app = document.getElementById("app");
-      function router() {
-        const path = (location.hash.replace("#", "") || "/home").split("?")[0];
-        const [a0, b] = path.replace(/^\/+/, "").split("/"), a = a0 || "home";
-        if (disposer) { disposer(); disposer = null; }
-        const v = VIEWS[a] && VIEWS[a](b && decodeURIComponent(b));
-        app.innerHTML = v ? v[0] : soon(NAMES[a] || "Travel Kahani");
-        const sec = { destination: "destinations", package: "packages" }[a] || a;
-        document.querySelectorAll(".nav a").forEach((l) => (l.getAttribute("href") === "#/" + sec ? l.setAttribute("aria-current", "page") : l.removeAttribute("aria-current")));
-        document.getElementById("nav").classList.remove("on");
-        document.body.classList.toggle("immersive", a === "destination");
-        scrollTo({ top: 0 });
-        if (v && v[1]) v[1]();
-        renderTrip();
-        prevHash = curHash; curHash = location.hash;
-      }
-      addEventListener("pointermove", (e) => {
-        const wall = document.getElementById("wallin");
-        if (wall && !RM) wall.style.transform = `rotateY(${(e.clientX / innerWidth - 0.5) * 14}deg) rotateX(${(e.clientY / innerHeight - 0.5) * -7}deg)`;
-      });
-      addEventListener("hashchange", router);
-      document.getElementById("burger").onclick = (e) => {
-        const nav = document.getElementById("nav"), on = nav.classList.toggle("on");
-        e.currentTarget.setAttribute("aria-expanded", String(on));
-      };
-      router();
-    })();
-    </script>
-  </body>
+<script>
+  const b = document.querySelector(".burger"), l = document.getElementById("links");
+  b.addEventListener("click", () => { const o = l.classList.toggle("open"); b.setAttribute("aria-expanded", o); });
+</script>
+</body>
 </html>
