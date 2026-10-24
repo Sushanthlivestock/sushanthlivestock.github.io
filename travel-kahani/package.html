@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kerala Backwaters &amp; Munnar · Travel Kahani</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Roboto,system-ui,sans-serif;color:#0f2233;min-height:100vh;background-color:#3a78ab;background-image:linear-gradient(180deg,#3a78ab 0%,#5f9fd0 60%,#8cc0e6 100%);background-attachment:fixed;overflow-x:hidden}
+a{color:inherit}
+.clouds{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.cloud{position:absolute;background:#fff;border-radius:50%;filter:blur(28px);opacity:.7;animation:drift linear infinite}
+.c1{width:320px;height:120px;top:8%;left:-6%;animation-duration:90s}
+.c2{width:260px;height:100px;top:38%;right:-4%;animation-duration:120s;animation-direction:reverse}
+.c3{width:380px;height:130px;top:70%;left:10%;animation-duration:140s}
+.c4{width:220px;height:90px;top:18%;right:22%;animation-duration:110s;opacity:.5}
+@keyframes drift{0%{transform:translateX(0)}50%{transform:translateX(120px)}100%{transform:translateX(0)}}
+html{background:#3a78ab}
+.clouds{z-index:-1}
+.top,.top>*{min-width:0}
+.wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px}
+h1,h2{color:#fff;font-weight:900;text-shadow:0 4px 18px rgba(20,60,100,.35)}
+.glass{background:rgba(255,255,255,.35);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.85);border-radius:16px;box-shadow:0 10px 30px rgba(20,60,100,.18);color:#0f2233}
+/* nav */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;letter-spacing:.04em;min-height:44px}
+.logo span.ring{width:40px;height:40px;border:2px solid #fff;border-radius:50%;display:grid;place-items:center}
+.links{display:flex;gap:4px;list-style:none;flex-wrap:wrap}
+.links a{display:flex;align-items:center;min-height:44px;padding:0 9px;color:#fff;text-decoration:none;text-transform:uppercase;font-size:13px;font-weight:500;letter-spacing:.03em}
+.links a[aria-current]{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
+.burger{display:none;width:44px;height:44px;border-radius:12px;background:#2777A7;border:1.5px solid rgba(255,255,255,.8);color:#fff;font-size:22px;cursor:pointer}
+/* buttons */
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 22px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 6px 16px rgba(20,60,100,.2)}
+.btn--p{background:#2777A7;color:#fff}
+.btn--s{background:#fff;color:#0f2233}
+.btn svg{width:18px;height:18px;flex:none}
+/* hero */
+.top{display:grid;grid-template-columns:1.25fr 1fr;gap:22px;margin-top:10px}
+.hero{padding:14px;display:flex;flex-direction:column}
+.hero img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;display:block}
+.hero h1{color:#0f2233;text-shadow:none;font-size:clamp(30px,4.4vw,48px);line-height:1.05;margin:18px 6px 14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 6px 18px;list-style:none}
+.chips li{background:rgba(255,255,255,.75);border:1px solid #fff;border-radius:999px;padding:7px 14px;font-size:14px;font-weight:500}
+.chips li.price{background:#0f2233;color:#fff;border-color:#0f2233}
+.hero .btns{margin:0 6px 6px}
+.card-h{font-size:22px;font-weight:700;margin-bottom:12px}
+.route{padding:18px;display:flex;flex-direction:column}
+.map{position:relative;width:100%;max-width:100%;aspect-ratio:1312/816;overflow:hidden;border-radius:12px}
+.zoom{position:absolute;width:220%;height:220%;left:-56.4%;top:-98.4%;animation:float 6s ease-in-out infinite}
+.zoom img{width:100%;height:100%;object-fit:cover;display:block}
+.zoom svg.path{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.pin{position:absolute;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center}
+.pin i{width:26px;height:26px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:linear-gradient(135deg,#ff9b9b,#E76F6F 60%,#c94f4f);border:2px solid #fff;box-shadow:0 4px 10px rgba(0,0,0,.3)}
+.pin.l b{bottom:6px;right:30px}.pin.r b{bottom:-2px;left:30px}
+.pin.blue i{background:linear-gradient(135deg,#8cc4f2,#3d86c9 60%,#2a65a0)}
+.pin b{position:absolute;bottom:34px;white-space:nowrap;background:rgba(255,255,255,.85);backdrop-filter:blur(6px);border:1px solid #fff;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;box-shadow:0 4px 10px rgba(20,60,100,.2)}
+.route p{font-size:14px;margin-top:12px}
+/* sections */
+section{margin-top:56px}
+section h2{font-size:clamp(26px,3.4vw,36px);margin-bottom:18px}
+.days{padding:10px 24px;list-style:none}
+.days li{display:grid;grid-template-columns:70px 22px 1fr;gap:12px;padding:16px 0;position:relative}
+.days li+li{border-top:1px solid rgba(255,255,255,.6)}
+.days .d{font-weight:700;color:#1d4a6e}
+.days .dot{width:14px;height:14px;border-radius:50%;background:#2777A7;border:3px solid #fff;margin-top:3px;box-shadow:0 0 0 2px rgba(39,119,167,.3)}
+.days h3{font-size:18px;font-weight:700;margin-bottom:4px}
+.days p{font-size:15px;line-height:1.5}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.box{padding:22px 24px}
+.box ul{list-style:none;display:grid;gap:10px}
+.box li{display:flex;gap:10px;font-size:15px;line-height:1.4}
+.box li::before{content:"✓";font-weight:900;color:#1f8a4c}
+.box.no li::before{content:"✕";color:#c94f4f}
+.like{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.like a{text-decoration:none;padding:12px;display:block;transition:transform .2s}
+.like a:hover{transform:translateY(-4px)}
+.like img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;display:block}
+.like h3{font-size:20px;font-weight:700;margin:12px 6px 4px}
+.like p{font-size:14px;margin:0 6px 6px}
+footer{color:#fff;font-size:13px;text-align:center;padding:48px 0 32px}
+.sticky{display:none}
+@media (max-width:900px){
+  .burger{display:block}
+  .links{display:none;position:absolute;top:76px;right:24px;left:24px;flex-direction:column;padding:10px;background:rgba(40,100,150,.85);backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.85);border-radius:16px;z-index:5}
+  .links.open{display:flex}
+  .top,.two{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .like{grid-template-columns:1fr}
+  .days{padding:6px 16px}
+  .days li{grid-template-columns:56px 18px 1fr;gap:8px}
+  body{padding-bottom:78px}
+  .sticky{display:flex;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:10;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(255,255,255,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1.5px solid rgba(255,255,255,.85)}
+  .sticky .btn{flex:1;padding:0 12px}
+  .hero .btns .btn{flex:1 1 100%}
+}
+@media (prefers-reduced-motion:reduce){.cloud,.zoom{animation:none}}
+</style>
+</head>
+<body>
+<div class="clouds" aria-hidden="true"><div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div><div class="cloud c4"></div></div>
+<svg width="0" height="0" style="position:absolute"><symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></symbol><symbol id="ph" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></symbol></svg>
+<div class="wrap">
+  <header class="nav">
+    <a class="logo" href="index.html"><span class="ring"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"><path d="M22 2 2 10l7 3 3 7z"/><path d="M22 2 9 13"/></svg></span>TRAVEL KAHANI</a>
+    <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="links">☰</button>
+    <ul class="links" id="links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="map.html">3D Map</a></li>
+      <li><a href="destination.html">360°</a></li>
+      <li><a href="package.html" aria-current="page">Packages</a></li>
+      <li><a href="trip.html">Trip Builder</a></li>
+      <li><a href="churches.html">Church Trails</a></li>
+      <li><a href="academy.html">Academy</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </header>
+
+  <div class="top">
+    <article class="glass hero">
+      <img src="kerala.jpg" alt="A Kerala houseboat on the backwaters" />
+      <h1>Kerala Backwaters &amp; Munnar</h1>
+      <ul class="chips">
+        <li>5 Days / 4 Nights</li>
+        <li>Starts in Kochi</li>
+        <li>Best Oct to Feb</li>
+        <li class="price">Price on enquiry</li>
+      </ul>
+      <div class="btns">
+        <a class="btn btn--p" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27m%20interested%20in%20Kerala%20Backwaters%20%26%20Munnar" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Enquire on WhatsApp</a>
+        <a class="btn btn--s" href="tel:+917671819808"><svg><use href="#ph"/></svg>Call +91 76718 19808</a>
+      </div>
+    </article>
+
+    <aside class="glass route" aria-label="Route">
+      <p class="card-h">Route</p>
+      <div class="map">
+        <div class="zoom">
+          <img src="map_art.jpg" alt="3D map of south India showing Kochi, Munnar and Alleppey" />
+          <svg class="path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M46 82.5 Q48 80.8 50 81 Q49.6 84 47.6 85.5 Q46.4 84.4 46 82.5" fill="none" stroke="#FFD84D" stroke-width="3" stroke-dasharray="7 6" stroke-linecap="round" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 4px rgba(255,216,77,.9))"/>
+          </svg>
+          <span class="pin l" style="left:46%;top:82.5%"><b>Kochi</b><i></i></span>
+          <span class="pin blue" style="left:50%;top:81%"><b>Munnar</b><i></i></span>
+          <span class="pin r" style="left:47.6%;top:85.5%"><b>Alleppey</b><i></i></span>
+        </div>
+      </div>
+      <p>Kochi → Munnar → Alleppey → Kochi, by private car.</p>
+    </aside>
+  </div>
+
+  <section aria-labelledby="days-h">
+    <h2 id="days-h">Day by day</h2>
+    <ol class="glass days">
+      <li><span class="d">Day 1</span><span class="dot"></span><div><h3>Arrive Kochi</h3><p>Fort Kochi walk, St Francis Church and the Chinese fishing nets.</p></div></li>
+      <li><span class="d">Day 2</span><span class="dot"></span><div><h3>Drive to Munnar</h3><p>Waterfalls on the way up into the tea hills.</p></div></li>
+      <li><span class="d">Day 3</span><span class="dot"></span><div><h3>Munnar sightseeing</h3><p>Eravikulam National Park, the tea museum and Mattupetty Dam.</p></div></li>
+      <li><span class="d">Day 4</span><span class="dot"></span><div><h3>Alleppey houseboat</h3><p>Cruise the backwaters and stay overnight on board.</p></div></li>
+      <li><span class="d">Day 5</span><span class="dot"></span><div><h3>Back to Kochi</h3><p>Drive back to Kochi and depart.</p></div></li>
+    </ol>
+  </section>
+
+  <section aria-label="What's included">
+    <div class="two">
+      <div class="glass box">
+        <p class="card-h">Included</p>
+        <ul><li>Stays</li><li>Private car with driver</li><li>Houseboat with meals</li><li>Sightseeing as listed</li></ul>
+      </div>
+      <div class="glass box no">
+        <p class="card-h">Not included</p>
+        <ul><li>Flights or trains to Kochi</li><li>Entry tickets</li><li>Personal expenses</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="like-h">
+    <h2 id="like-h">You may also like</h2>
+    <div class="like">
+      <a class="glass" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27m%20interested%20in%20Hidden%20Meghalaya" target="_blank" rel="noopener">
+        <img src="hidden.jpg" alt="A waterfall in Meghalaya" />
+        <h3>Hidden Meghalaya</h3><p>Waterfalls and living root bridges · Price on enquiry</p>
+      </a>
+      <a class="glass" href="churches.html">
+        <img src="church.jpg" alt="Velankanni church" />
+        <h3>Velankanni Pilgrimage</h3><p>A church trail on the Tamil Nadu coast · Price on enquiry</p>
+      </a>
+    </div>
+  </section>
+
+  <footer>© 2026 Travel Kahani · Hyderabad, Telangana · WhatsApp +91 76718 19808</footer>
+</div>
+
+<div class="sticky">
+  <a class="btn btn--p" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27m%20interested%20in%20Kerala%20Backwaters%20%26%20Munnar" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>WhatsApp</a>
+  <a class="btn btn--s" href="tel:+917671819808"><svg><use href="#ph"/></svg>Call</a>
+</div>
+<script>
+const b=document.querySelector('.burger'),l=document.getElementById('links');
+b.addEventListener('click',()=>{const o=l.classList.toggle('open');b.setAttribute('aria-expanded',o)});
+</script>
+</body>
+</html>
