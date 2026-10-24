@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>360° Kerala Backwaters · Travel Kahani</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:#0f2233;font-family:Roboto,system-ui,sans-serif;color:#0f2233}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.glass{background:rgba(255,255,255,.35);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.85);border-radius:16px;color:#0f2233}
+.h{color:#fff;font-weight:900;text-shadow:0 4px 18px rgba(20,60,100,.35)}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 22px;border-radius:999px;font-weight:700;font-size:15px;white-space:nowrap;transition:transform .2s,box-shadow .2s}
+.pill:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(15,34,51,.25)}
+.pill--primary{background:#2777A7;color:#fff}
+.pill--secondary{background:#fff;color:#0f2233}
+.pill svg{width:18px;height:18px;fill:currentColor}
+.pill--wa svg{fill:#25D366}
+/* viewer */
+#viewer{position:fixed;inset:0;cursor:grab;touch-action:none;overflow:hidden}
+#viewer.drag{cursor:grabbing}
+#viewer canvas{display:block}
+#pano{display:none}
+#viewer.fallback #pano{display:block;position:absolute;top:0;left:0;height:100%;width:auto;max-width:none;user-select:none;-webkit-user-drag:none}
+.shade{position:fixed;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(15,34,51,.45) 0,rgba(15,34,51,0) 22%,rgba(15,34,51,0) 65%,rgba(15,34,51,.4) 100%)}
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:18px 32px;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;font-size:17px;letter-spacing:.06em;line-height:1.05;text-shadow:0 2px 10px rgba(20,60,100,.35)}
+.logo svg{width:44px;height:44px;flex:none}
+.links{display:flex;gap:22px;list-style:none}
+.links a{color:#fff;font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;padding:12px 0;text-shadow:0 2px 10px rgba(20,60,100,.45)}
+.links a[aria-current]{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
+.burger{display:none;width:46px;height:46px;border-radius:50%;align-items:center;justify-content:center}
+.burger span,.burger span::before,.burger span::after{display:block;width:20px;height:2px;background:#0f2233;position:relative;content:""}
+.burger span::before{position:absolute;top:-6px}.burger span::after{position:absolute;top:6px}
+/* overlay */
+.ui{position:fixed;z-index:10;pointer-events:none}
+.ui>*{pointer-events:auto}
+.left{top:96px;left:32px;width:320px;display:flex;flex-direction:column;gap:16px}
+.left h1{font-size:44px;line-height:1.02}
+.left .sub{color:#fff;font-weight:500;font-size:17px;margin-top:6px;text-shadow:0 2px 10px rgba(20,60,100,.45)}
+.about{padding:16px;display:flex;flex-direction:column;gap:10px}
+.about img{width:100%;height:120px;object-fit:cover;border-radius:10px;display:block}
+.about h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+.about p{font-size:15px;line-height:1.45}
+.months{display:flex;flex-wrap:wrap;gap:3px;list-style:none}
+.months li{font-size:12px;padding:3px 6px;border-radius:999px;background:rgba(255,255,255,.5)}
+.months li.on{background:#2777A7;color:#fff;font-weight:500}
+.right{top:50%;right:32px;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;align-items:stretch}
+.right small{color:#fff;font-weight:500;font-size:13px;text-align:center;text-shadow:0 2px 10px rgba(20,60,100,.5)}
+.bottom{left:32px;bottom:28px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;max-width:calc(100% - 380px)}
+.bottom .lbl{color:#fff;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-right:4px;text-shadow:0 2px 10px rgba(20,60,100,.5)}
+.chip{display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;font-weight:700;font-size:15px}
+.chip.now{background:#fff}
+.chip em{font-style:normal;font-weight:500;font-size:12px;padding:3px 8px;border-radius:999px;background:rgba(15,34,51,.12)}
+.br{right:32px;bottom:28px;display:flex;align-items:center;gap:10px}
+.hint{display:flex;align-items:center;gap:8px;padding:12px 16px;border-radius:999px;font-size:14px;font-weight:500}
+.round{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.round svg{width:20px;height:20px;stroke:#0f2233;fill:none;stroke-width:2}
+/* hotspots */
+#spots{position:fixed;inset:0;z-index:5;pointer-events:none}
+.spot{position:absolute;left:0;top:0;pointer-events:auto;display:none}
+.spot>button{position:absolute;left:-22px;top:-22px;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.spot>button i{width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(39,119,167,.55),0 0 22px 6px rgba(255,255,255,.8);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 9px rgba(39,119,167,.15),0 0 30px 10px rgba(255,255,255,.55)}}
+.card{position:absolute;left:-120px;bottom:30px;width:240px;padding:14px 16px;display:none}
+.spot.open .card{display:block}
+.card b{display:block;font-size:16px;font-weight:700;margin-bottom:4px}
+.card span{font-size:14px;line-height:1.4}
+@media (max-width:900px){
+ .nav{padding:14px 18px}
+ .burger{display:flex}
+ .links{display:none;position:absolute;top:72px;right:18px;flex-direction:column;gap:0;padding:8px 20px;background:rgba(255,255,255,.35);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1.5px solid rgba(255,255,255,.85);border-radius:16px}
+ .links.open{display:flex}
+ .links a{color:#0f2233;text-shadow:none;display:block}
+ .left{top:84px;left:18px;right:18px;width:auto}
+ .left h1{font-size:32px}
+ .about{flex-direction:row;flex-wrap:wrap;align-items:center;padding:12px}
+ .about img{width:72px;height:72px}
+ .about div{flex:1;min-width:180px}
+ .right{top:auto;transform:none;bottom:150px;right:18px;left:18px;flex-direction:row;flex-wrap:wrap;justify-content:center}
+ .right small{width:100%}
+ .bottom{left:18px;right:18px;bottom:84px;max-width:none;flex-wrap:nowrap;overflow-x:auto}
+ .br{right:18px;left:18px;bottom:18px;justify-content:space-between}
+}
+@media (max-width:560px){.about img,.months{display:none}.left .sub{font-size:15px}.right .pill{flex:1}.chip{font-size:14px;padding:8px 12px}}
+</style>
+</head>
+<body>
+<div id="viewer"><img id="pano" src="pano_kerala.jpg" alt="360° panorama of the Kerala backwaters at Alleppey" draggable="false" /></div>
+<div class="shade"></div>
+<div id="spots" aria-live="polite"></div>
+
+<header class="nav">
+ <a class="logo" href="index.html" aria-label="Travel Kahani home">
+  <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20.5" fill="none" stroke="#fff" stroke-width="2"/><path d="M11 21.5 32 12l-6.5 20-4.2-7.3z" fill="#fff"/><path d="M21.3 24.7 32 12" stroke="#2777A7" stroke-width="1.4"/></svg>
+  <span>TRAVEL<br />KAHANI</span>
+ </a>
+ <button class="burger glass" aria-label="Menu" aria-expanded="false" aria-controls="links"><span></span></button>
+ <ul class="links" id="links">
+  <li><a href="index.html">Home</a></li>
+  <li><a href="map.html">3D Map</a></li>
+  <li><a href="destination.html" aria-current="page">360°</a></li>
+  <li><a href="package.html">Packages</a></li>
+  <li><a href="trip.html">Trip Builder</a></li>
+  <li><a href="churches.html">Church Trails</a></li>
+  <li><a href="academy.html">Academy</a></li>
+  <li><a href="contact.html">Contact</a></li>
+ </ul>
+</header>
+
+<main>
+ <section class="ui left" aria-label="Destination">
+  <div><h1 class="h">Kerala Backwaters</h1><p class="sub">Alleppey, Kerala</p></div>
+  <div class="glass about">
+   <img src="kerala.jpg" alt="Kerala backwaters" />
+   <div>
+    <h2>About</h2>
+    <p>Calm canals, coconut palms and houseboats. Best October to February.</p>
+   </div>
+   <ul class="months" aria-label="Best time to visit: October to February">
+    <li class="on">Jan</li><li class="on">Feb</li><li>Mar</li><li>Apr</li><li>May</li><li>Jun</li><li>Jul</li><li>Aug</li><li>Sep</li><li class="on">Oct</li><li class="on">Nov</li><li class="on">Dec</li>
+   </ul>
+  </div>
+ </section>
+
+ <section class="ui right" aria-label="Plan this trip">
+  <a class="pill pill--primary" href="package.html">View package</a>
+  <a class="pill pill--secondary pill--wa" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27d%20like%20a%20Kerala%20trip" target="_blank" rel="noopener">
+   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.17-1.24-6.16-3.48-8.41Z"/></svg>
+   Enquire on WhatsApp</a>
+  <small>Price on enquiry · <a href="tel:+917671819808">+91 76718 19808</a></small>
+ </section>
+
+ <nav class="ui bottom" aria-label="Other 360° scenes">
+  <span class="lbl">Scenes</span>
+  <span class="chip glass now">Alleppey</span>
+  <span class="chip glass">Munnar <em>360° soon</em></span>
+  <span class="chip glass">Fort Kochi <em>360° soon</em></span>
+  <span class="chip glass">Varkala <em>360° soon</em></span>
+ </nav>
+
+ <div class="ui br">
+  <span class="hint glass"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0f2233" stroke-width="2" aria-hidden="true"><path d="M8 12H3m0 0 3-3m-3 3 3 3M16 12h5m0 0-3-3m3 3-3 3"/></svg>Drag to look around</span>
+  <button class="round glass" id="fs" aria-label="Fullscreen"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+ </div>
+</main>
+
+<script src="https://unpkg.com/three@0.147.0/build/three.min.js"></script>
+<script>
+(function(){
+var viewer=document.getElementById('viewer'),img=document.getElementById('pano'),spotsEl=document.getElementById('spots');
+var SPOTS=[
+ {lon:15,lat:-6,t:'Houseboat stay',d:'Overnight on the Alleppey backwaters'},
+ {lon:125,lat:-10,t:'Village canoe ride',d:'Narrow canals and coir villages'},
+ {lon:235,lat:2,t:'Sunset on Vembanad Lake',d:'Golden light over Kerala\u2019s largest lake'}
+];
+SPOTS.forEach(function(s){
+ var el=document.createElement('div');el.className='spot';
+ el.innerHTML='<button aria-label="'+s.t+'"><i></i></button><div class="card glass"><b>'+s.t+'</b><span>'+s.d+'</span></div>';
+ el.querySelector('button').addEventListener('click',function(e){e.stopPropagation();var o=el.classList.contains('open');SPOTS.forEach(function(x){x.el.classList.remove('open')});if(!o)el.classList.add('open');stopAuto();});
+ spotsEl.appendChild(el);s.el=el;
+});
+document.addEventListener('click',function(){SPOTS.forEach(function(x){x.el.classList.remove('open')})});
+
+var lon=0,lat=0,fov=75,auto=true,down=false,sx=0,sy=0,slon=0,slat=0,pinch=0,pfov=75;
+function stopAuto(){auto=false}
+function clampLat(){lat=Math.max(-85,Math.min(85,lat))}
+function clampFov(){fov=Math.max(40,Math.min(90,fov))}
+
+// pointer input (shared by WebGL and fallback)
+var pts={};
+viewer.addEventListener('pointerdown',function(e){pts[e.pointerId]=e;viewer.setPointerCapture(e.pointerId);stopAuto();
+ var k=Object.keys(pts);if(k.length===2){pinch=dist();pfov=fov;down=false}else{down=true;sx=e.clientX;sy=e.clientY;slon=lon;slat=lat;viewer.classList.add('drag')}});
+viewer.addEventListener('pointermove',function(e){if(!pts[e.pointerId])return;pts[e.pointerId]=e;
+ if(Object.keys(pts).length===2&&pinch){fov=pfov*pinch/dist();clampFov();return}
+ if(down){var f=fov/viewer.clientHeight;lon=slon-(e.clientX-sx)*f;lat=slat+(e.clientY-sy)*f;clampLat()}});
+function up(e){delete pts[e.pointerId];if(Object.keys(pts).length<2)pinch=0;down=false;viewer.classList.remove('drag')}
+viewer.addEventListener('pointerup',up);viewer.addEventListener('pointercancel',up);
+function dist(){var p=Object.values(pts);return Math.hypot(p[0].clientX-p[1].clientX,p[0].clientY-p[1].clientY)||1}
+viewer.addEventListener('wheel',function(e){e.preventDefault();stopAuto();fov+=e.deltaY*.05;clampFov()},{passive:false});
+
+function dir(lo,la){var phi=(90-la)*Math.PI/180,th=lo*Math.PI/180;return [Math.sin(phi)*Math.cos(th),Math.cos(phi),Math.sin(phi)*Math.sin(th)]}
+
+function startGL(){
+ var renderer;
+ try{renderer=new THREE.WebGLRenderer({antialias:true});if(!renderer.getContext())throw 0}catch(err){return false}
+ renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+ var scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(fov,1,1,1100);
+ var geo=new THREE.SphereGeometry(500,60,40);geo.scale(-1,1,1);
+ var tex=new THREE.Texture(img);tex.needsUpdate=true;if('sRGBEncoding' in THREE)tex.encoding=THREE.sRGBEncoding;
+ scene.add(new THREE.Mesh(geo,new THREE.MeshBasicMaterial({map:tex})));
+ renderer.outputEncoding=THREE.sRGBEncoding;
+ viewer.appendChild(renderer.domElement);
+ var v=new THREE.Vector3(),target=new THREE.Vector3();
+ function size(){var w=innerWidth,h=innerHeight;renderer.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix()}
+ addEventListener('resize',size);size();
+ (function loop(){
+  if(auto)lon+=.04;
+  cam.fov=fov;cam.updateProjectionMatrix();
+  var d=dir(lon,lat);target.set(d[0],d[1],d[2]).multiplyScalar(500);cam.lookAt(target);
+  renderer.render(scene,cam);
+  var w=innerWidth,h=innerHeight;
+  SPOTS.forEach(function(s){var p=dir(s.lon,s.lat);v.set(p[0],p[1],p[2]).multiplyScalar(500).project(cam);
+   var vis=v.z<1&&Math.abs(v.x)<1.05&&Math.abs(v.y)<1.05;s.el.style.display=vis?'block':'none';
+   if(vis)s.el.style.transform='translate('+((v.x+1)/2*w)+'px,'+((1-v.y)/2*h)+'px)';});
+  requestAnimationFrame(loop);
+ })();
+ return true;
+}
+
+function startFallback(){
+ viewer.classList.add('fallback');
+ (function loop(){
+  if(auto)lon+=.04;
+  var h=innerHeight,iw=img.naturalWidth?img.naturalWidth*h/img.naturalHeight:h*2,w=innerWidth,max=Math.max(0,iw-w);
+  var u=((lon%360)+360)%360/360,x=-Math.min(max,u*max);
+  img.style.transform='translateX('+x+'px)';
+  SPOTS.forEach(function(s){var sxp=x+(((s.lon%360)+360)%360)/360*iw,syp=(90-s.lat)/180*h;
+   var vis=sxp>0&&sxp<w;s.el.style.display=vis?'block':'none';if(vis)s.el.style.transform='translate('+sxp+'px,'+syp+'px)';});
+  requestAnimationFrame(loop);
+ })();
+}
+
+function go(){if(!(window.THREE&&startGL()))startFallback()}
+if(img.complete&&img.naturalWidth)go();else{img.addEventListener('load',go);img.addEventListener('error',startFallback)}
+
+// fullscreen
+document.getElementById('fs').addEventListener('click',function(){
+ var d=document,el=d.documentElement;
+ if(d.fullscreenElement||d.webkitFullscreenElement){(d.exitFullscreen||d.webkitExitFullscreen).call(d)}
+ else if(el.requestFullscreen||el.webkitRequestFullscreen){(el.requestFullscreen||el.webkitRequestFullscreen).call(el)}
+});
+// hamburger
+var b=document.querySelector('.burger'),l=document.getElementById('links');
+b.addEventListener('click',function(){var o=l.classList.toggle('open');b.setAttribute('aria-expanded',o)});
+})();
+</script>
+</body>
+</html>
