@@ -673,9 +673,9 @@
             </div>
             <div class="x-hero__top">
               <h1 id="x-headline">
-                <span data-te="అందరూ ఎక్కండి.">All aboard.</span>
-                <span data-te="మీ భారత కథ">Your India story</span>
-                <span data-te="ఇక్కడే మొదలవుతుంది.">starts here.</span>
+                <span data-te="ప్రతి ప్రయాణానికీ">Every trip</span>
+                <span data-te="ఒక కథ ఉంటుంది.">has a story.</span>
+                <span data-te="మీ కథ మనం కలిసి రాద్దాం.">Let's write yours.</span>
               </h1>
               <div class="x-cta">
                 <a class="x-ticket-btn" href="#journeys"><span class="x-tb-main" data-te="మీ సీటు బుక్ చేసుకోండి">Book your seat</span><span class="x-tb-stub" aria-hidden="true"></span></a>
@@ -1306,7 +1306,7 @@
         }
 
         // Router
-        var views = {}, titles = { home: "All aboard. Your India story starts here.", journeys: "Journeys", "journey-kerala": "Kerala Backwaters, 6 Days / 5 Nights", "church-trails": "Church Trails", plan: "Plan My Trip", academy: "Academy" };
+        var views = {}, titles = { home: "Every trip has a story. Let's write yours.", journeys: "Journeys", "journey-kerala": "Kerala Backwaters, 6 Days / 5 Nights", "church-trails": "Church Trails", plan: "Plan My Trip", academy: "Academy" };
         $$(".x-view").forEach(function (v) { views[v.getAttribute("data-view")] = v; });
         function show(name) {
           Object.keys(views).forEach(function (k) { views[k].classList.toggle("is-on", k === name); });
