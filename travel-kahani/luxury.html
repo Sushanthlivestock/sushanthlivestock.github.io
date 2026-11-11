@@ -1,423 +1,689 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Kahani Luxe · Luxury journeys by Travel Kahani</title>
-<meta name="description" content="Palace stays, private houseboats and villas across India, planned privately by Travel Kahani, Hyderabad." />
-<meta name="theme-color" content="#0d1424" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Poppins:wght@300;400;500&family=Noto+Serif+Telugu:wght@500&display=swap" />
-<style>
-:root{--bg:#0d1424;--panel:#141d33;--gold:#c9a45c;--gold-soft:rgba(201,164,92,.35);--ivory:#f4ecdc;--muted:#b9b0a0;--green:#25d366;
---serif:"Cormorant Garamond","Noto Serif Telugu",Georgia,"Times New Roman",serif;--sans:"Poppins","Noto Serif Telugu",system-ui,-apple-system,"Segoe UI",sans-serif;--max:1120px}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{background:var(--bg);color:var(--ivory);font:300 15px/1.7 var(--sans);-webkit-font-smoothing:antialiased;padding-bottom:64px}
-img{display:block;max-width:100%}
-a{color:inherit}
-h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;letter-spacing:.01em}
-h2{font-size:clamp(34px,7vw,52px);text-align:center}
-h2 em,h1 em{font-style:italic;color:var(--gold)}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
-.eyebrow{font:500 12px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
-.lead{color:var(--muted);text-align:center;max-width:560px;margin:14px auto 0}
-:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Luxe Journeys · Travel Kahani</title>
+    <meta name="description" content="Palace stays, private houseboats and villas across India, planned privately by Travel Kahani, Hyderabad. Enquire on WhatsApp +91 76718 19808." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&family=Poppins:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@400;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="hark.css" />
+    <link rel="stylesheet" href="hark-hero.css" />
+    <style>
+      :root {
+        --x-navy: #14213d;
+        --x-navy-2: #1c2c4f;
+        --x-cream: #f3ead3;
+        --x-gold: #e0b45a;
+        --x-gold-dk: #c99a3d;
+        --x-tan: #d9c08f;
+        --x-teal: #5b8a86;
+        --x-red: #b4442f;
+        --x-font: "Poppins", "Noto Sans Telugu", system-ui, sans-serif;
+        --x-hdr: 76px;
+        --x-rail: 140px;
+        --x-pad: 48px;
+      }
+      body.x-body { background: var(--x-navy); color: #fff; font-family: var(--x-font); font-size: 15px; line-height: 1.55; }
+      .page.x-page { max-width: none; padding: 0; display: block; gap: 0; }
+      .main.x-main { display: block; gap: 0; }
+      .x-body [lang="te"], .x-body :lang(te) { font-family: "Noto Sans Telugu", var(--x-font); }
+      .x-body a { text-decoration: none; }
+      .x-body :focus-visible { outline: 2px solid var(--x-gold); outline-offset: 3px; border-radius: 6px; }
+      section[id], footer[id] { scroll-margin-top: calc(var(--x-hdr) + 12px); }
 
-/* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 26px;border-radius:2px;font:500 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:1px solid var(--gold);transition:background .3s,color .3s,transform .3s}
-.btn--gold{background-color:#c9a45c;background-image:linear-gradient(135deg,#d8b873,#c9a45c 55%,#a8853f);color:#0d1424}
-.btn--gold:hover{transform:translateY(-2px)}
-.btn--line{background:transparent;color:var(--ivory)}
-.btn--line:hover{background:rgba(201,164,92,.12)}
+      /* Header */
+      .x-header { position: sticky; top: 0; z-index: 50; background: var(--x-cream); color: var(--x-navy); box-shadow: 0 1px 0 rgba(20,33,61,.12); }
+      .x-header__in { height: var(--x-hdr); display: flex; align-items: center; gap: 24px; padding: 0 32px 0 max(32px, calc(var(--x-rail) - 52px)); }
+      .x-brand { display: flex; align-items: center; gap: 10px; color: var(--x-navy); flex: none; }
+      .x-logo { position: relative; width: 54px; height: 54px; border-radius: 50%; overflow: hidden; background: var(--x-cream); flex: none; }
+      .x-logo img { position: absolute; max-width: none; width: 250%; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+      .x-brand__name { font-weight: 700; font-size: 22px; line-height: 1; letter-spacing: -0.01em; }
+      .x-brand__name span { display: block; }
+      .x-nav { flex: 1; display: flex; justify-content: center; gap: 4px; }
+      .x-nav a { position: relative; padding: 10px 12px; min-height: 44px; display: inline-flex; align-items: center; font-size: 16px; font-weight: 500; color: var(--x-navy); white-space: nowrap; border-radius: 8px; }
+      .x-nav a::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 4px; height: 3px; border-radius: 2px; background: var(--x-gold); transform: scaleX(0); transition: transform .25s ease; }
+      .x-nav a:hover::after { transform: scaleX(.5); }
+      .x-nav a.is-active::after { transform: scaleX(1); }
+      .x-nav a.is-active { font-weight: 600; }
+      .x-actions { display: flex; align-items: center; gap: 12px; flex: none; }
+      .x-lang { min-height: 44px; padding: 0 18px; border: 0; border-radius: 10px; background: var(--x-gold); color: var(--x-navy); font: 500 16px var(--x-font); cursor: pointer; box-shadow: inset 0 -2px 0 rgba(20,33,61,.12); }
+      .x-lang:hover { background: #e7c06d; }
+      .x-search-btn { width: 44px; height: 44px; border-radius: 50%; border: 0; background: #fff; color: var(--x-navy); display: grid; place-items: center; cursor: pointer; box-shadow: 0 1px 3px rgba(20,33,61,.15); }
+      .x-search-btn svg { width: 20px; height: 20px; }
+      .x-search { display: none; position: absolute; right: 32px; top: calc(var(--x-hdr) - 6px); width: min(340px, calc(100vw - 40px)); background: #fff; border-radius: 14px; padding: 10px; box-shadow: 0 12px 32px rgba(0,0,0,.25); }
+      .x-search.is-open { display: block; }
+      .x-search input { width: 100%; height: 44px; border: 1.5px solid var(--x-tan); border-radius: 10px; padding: 0 14px; font: 15px var(--x-font); color: var(--x-navy); }
+      .x-search p { font-size: 12px; color: #5a6274; margin-top: 6px; padding-left: 4px; }
+      .x-progress { display: none; position: relative; height: 10px; background:
+          repeating-linear-gradient(90deg, rgba(20,33,61,.45) 0 2px, transparent 2px 10px) center / 100% 8px no-repeat,
+          linear-gradient(var(--x-navy), var(--x-navy)) 0 2px / 100% 1.5px no-repeat,
+          linear-gradient(var(--x-navy), var(--x-navy)) 0 7px / 100% 1.5px no-repeat; }
+      .x-progress span { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--x-gold); opacity: .9; }
+      .x-progress span::after { content: ""; position: absolute; right: -6px; top: -1px; width: 12px; height: 12px; border-radius: 50%; background: var(--x-navy); border: 2px solid var(--x-gold); box-sizing: border-box; }
 
-/* header */
-.hdr{position:fixed;inset:0 0 auto;z-index:50;background:rgba(13,20,36,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,164,92,.18)}
-.hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
-.logo{font:600 24px/1 var(--serif);text-decoration:none;display:flex;align-items:center;gap:8px;min-height:44px}
-.logo span{font:500 12px/1 var(--sans);letter-spacing:.2em;color:var(--gold);border:1px solid var(--gold);padding:4px 5px 4px 7px}
-.menu{display:flex;align-items:center;gap:28px;list-style:none}
-.menu a{text-decoration:none;font-size:13px;letter-spacing:.08em;color:var(--muted);transition:color .2s}
-.menu a:hover{color:var(--gold)}
-.tools{display:flex;align-items:center;gap:10px}
-.lang{background:none;border:1px solid var(--gold-soft);color:var(--ivory);border-radius:99px;min-height:44px;padding:0 14px;font:400 12px/1 var(--sans);cursor:pointer}
-.lang b{color:var(--gold);font-weight:500}
-.burger{display:none;width:48px;height:48px;background:none;border:0;cursor:pointer;position:relative}
-.burger i,.burger i::before,.burger i::after{position:absolute;left:13px;width:22px;height:1px;background:var(--gold);content:"";transition:transform .3s}
-.burger i{top:24px}.burger i::before{left:0;top:-7px}.burger i::after{left:0;top:7px}
-.open .burger i{background:transparent}.open .burger i::before{transform:translateY(7px) rotate(45deg)}.open .burger i::after{transform:translateY(-7px) rotate(-45deg)}
-@media (max-width:899px){
- .burger{display:block}
- .menu{position:absolute;top:68px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--gold-soft);max-height:0;overflow:hidden;transition:max-height .4s ease}
- .open .menu{max-height:360px}
- .menu li{width:100%;text-align:center}
- .menu a{display:block;padding:14px;font-size:15px}
-}
+      /* Layout and rail */
+      .x-layout { display: grid; grid-template-columns: var(--x-rail) minmax(0, 1fr); }
+      .x-rail { position: sticky; top: var(--x-hdr); height: calc(100vh - var(--x-hdr)); background: var(--x-cream); color: var(--x-navy); align-self: start; border-right: 1px solid rgba(20,33,61,.08); }
+      .x-rail__track { position: absolute; left: 34px; width: 14px; top: 44px; bottom: 44px;
+        background:
+          linear-gradient(var(--x-navy), var(--x-navy)) left / 2px 100% no-repeat,
+          linear-gradient(var(--x-navy), var(--x-navy)) right / 2px 100% no-repeat,
+          repeating-linear-gradient(180deg, var(--x-navy) 0 2px, transparent 2px 8px); }
+      .x-rail__fill { position: absolute; left: 39px; width: 4px; top: 44px; height: 0; background: var(--x-gold); border-radius: 2px; }
+      .x-rail ol { list-style: none; margin: 0; padding: 30px 0; height: 100%; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+      .x-station { display: flex; align-items: center; gap: 10px; padding: 0 8px 0 26px; min-height: 44px; color: var(--x-navy); font-size: 13px; font-weight: 500; line-height: 1.2; }
+      .x-station__icon { width: 30px; height: 30px; border-radius: 50%; background: var(--x-gold); display: grid; place-items: center; flex: none; box-shadow: 0 0 0 3px var(--x-cream); transition: transform .25s ease, background .25s ease, color .25s ease; position: relative; z-index: 1; }
+      .x-station__icon svg { width: 17px; height: 17px; }
+      .x-station:hover .x-station__icon { transform: scale(1.08); }
+      .x-station.is-active .x-station__icon { background: var(--x-navy); color: var(--x-gold); transform: scale(1.15); box-shadow: 0 0 0 3px var(--x-cream), 0 0 0 5px var(--x-gold); }
+      .x-station.is-active { font-weight: 700; }
+      .x-train { position: absolute; left: 25px; top: 44px; width: 32px; height: 32px; margin-top: -16px; border-radius: 9px; background: var(--x-red); color: var(--x-cream); display: grid; place-items: center; z-index: 2; box-shadow: 0 3px 8px rgba(20,33,61,.35); border: 2px solid var(--x-cream); pointer-events: none; transition: top .12s linear; }
+      .x-train svg { width: 18px; height: 18px; }
 
-/* hero */
-.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;padding:110px 0 70px}
-.hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% center;animation:kb 28s ease-in-out infinite alternate;transform-origin:70% 50%}
-@keyframes kb{from{transform:scale(1)}to{transform:scale(1.12)}}
-.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(13,20,36,.9) 0%,rgba(13,20,36,.55) 55%,rgba(13,20,36,.1) 100%),linear-gradient(0deg,var(--bg) 0%,transparent 40%)}
-.hero__frame{position:absolute;inset:84px 12px 14px;z-index:2;border:1px solid var(--gold-soft);pointer-events:none}
-.hero__frame::after{content:"";position:absolute;inset:5px;border:1px solid rgba(201,164,92,.15)}
-.hero .wrap{position:relative;z-index:3;width:100%}
-.hero h1{font-size:clamp(46px,12vw,92px);margin:18px 0 18px;max-width:11ch}
-.foil{position:relative;color:var(--ivory)}
-.foil::after{content:attr(data-shine);position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,transparent 0%,transparent 40%,#e9cf8f 47%,#fff6dc 50%,#c9a45c 53%,transparent 60%,transparent 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:foil 7s ease-in-out infinite}
-@keyframes foil{0%{background-position:100% 0}60%,100%{background-position:0 0}}
-.hero__sub{color:var(--muted);max-width:440px;font-size:16px}
-.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.ticket{position:absolute;right:22px;top:-46px;width:176px;height:92px;perspective:700px;background:none;border:0;cursor:pointer;z-index:3}
-.ticket__in{position:relative;width:100%;height:100%;transition:transform .8s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
-.ticket:hover .ticket__in,.ticket[aria-pressed="true"] .ticket__in{transform:rotateY(180deg)}
-.ticket__face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#0d1424;background-color:#c9a45c;background-image:linear-gradient(135deg,#e2c483,#c9a45c 60%,#a8853f);border-radius:4px;
- -webkit-mask:radial-gradient(circle 7px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 7px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat;mask:radial-gradient(circle 7px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 7px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat}
-.ticket__face::before{content:"";position:absolute;inset:5px 12px;border:1px dashed rgba(13,20,36,.4)}
-.ticket__face small{font:500 12px/1 var(--sans);letter-spacing:.14em}
-.ticket__face strong{font:600 italic 20px/1 var(--serif)}
-.ticket__back{transform:rotateY(180deg)}
-.ticket__back strong{font:600 18px/1 var(--serif);letter-spacing:.14em;font-style:normal}
-@media (min-width:900px){.hero{padding-bottom:110px}.hero__frame{inset:92px 28px 28px}.ticket{right:60px;top:auto;bottom:0}}
+      /* Hero */
+      .x-hero { position: relative; overflow: hidden; background: var(--x-navy); padding-bottom: 20px; }
+      .x-art { position: absolute; right: 0; top: 0; width: min(1180px, 90%); aspect-ratio: 1600 / 893; }
+      .x-art > img { width: 100%; height: 100%; object-fit: cover; }
+      .x-art::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+        background: linear-gradient(90deg, var(--x-navy) 0, rgba(20,33,61,.55) 22%, rgba(20,33,61,0) 48%), linear-gradient(180deg, rgba(20,33,61,0) 62%, var(--x-navy) 98%); }
+      .x-hero__top { position: relative; z-index: 2; padding: 76px var(--x-pad) 40px; min-height: calc(min(1180px, (100vw - var(--x-rail)) * .9) * .558 * .8); }
+      .x-hero h1 { color: var(--x-cream); font-weight: 700; font-size: clamp(40px, 4.6vw, 66px); line-height: 1.06; letter-spacing: -0.02em; text-shadow: 0 2px 18px rgba(20,33,61,.6); max-width: 9ch; }
+      .x-hero h1:lang(te) { font-size: clamp(32px, 3.6vw, 52px); line-height: 1.35; max-width: 12ch; }
+      .x-hero__sub { color: rgba(255,255,255,.88); font-size: 17px; max-width: 34ch; margin-top: 16px; text-shadow: 0 1px 10px rgba(20,33,61,.7); }
+      .x-cta { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 36px; align-items: center; }
+      .x-ticket-btn { display: inline-flex; align-items: stretch; min-height: 60px; color: var(--x-navy); font-weight: 500; font-size: 19px; filter: drop-shadow(0 4px 10px rgba(0,0,0,.3)); transition: transform .2s ease; }
+      .x-ticket-btn:hover { transform: translateY(-2px); }
+      .x-ticket-btn > span { background: var(--x-gold); display: flex; align-items: center;
+        -webkit-mask: radial-gradient(circle 4px at 0 50%, #0000 96%, #000) left / 51% 12px repeat-y, radial-gradient(circle 4px at 100% 50%, #0000 96%, #000) right / 51% 12px repeat-y;
+                mask: radial-gradient(circle 4px at 0 50%, #0000 96%, #000) left / 51% 12px repeat-y, radial-gradient(circle 4px at 100% 50%, #0000 96%, #000) right / 51% 12px repeat-y; }
+      .x-ticket-btn .x-tb-main { padding: 0 22px 0 26px; border-radius: 3px 0 0 3px; }
+      .x-ticket-btn .x-tb-stub { width: 30px; margin-left: 3px; background:
+          radial-gradient(circle, var(--x-navy) 1.6px, transparent 2px) center / 8px 8px repeat-y, var(--x-gold); }
+      .x-ticket-btn .x-tb-main { -webkit-mask: radial-gradient(circle 4px at 0 50%, #0000 96%, #000) left / 51% 12px repeat-y, linear-gradient(#000,#000) right / 50% 100% no-repeat;
+                                         mask: radial-gradient(circle 4px at 0 50%, #0000 96%, #000) left / 51% 12px repeat-y, linear-gradient(#000,#000) right / 50% 100% no-repeat; }
+      .x-wa-btn { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 20px; border: 1.5px solid rgba(255,255,255,.85); border-radius: 8px; color: #fff; font-size: 18px; font-weight: 500; background: rgba(20,33,61,.35); transition: background .2s ease; }
+      .x-wa-btn:hover { background: rgba(255,255,255,.12); }
+      .x-wa-btn svg { width: 22px; height: 22px; }
+      /* Luxe hero: a slightly richer mustard gold */
+      .x-hero .x-eyebrow { color: #f0c463; }
+      .x-hero .x-ticket-btn .x-tb-main { background-color: #e0b45a; background-image: linear-gradient(135deg, #f0c86e, #e0b45a 55%, #c99a3d); }
+      .x-hero .x-ticket-btn .x-tb-stub { background: radial-gradient(circle, var(--x-navy) 1.6px, transparent 2px) center / 8px 8px repeat-y, #c99a3d; }
 
-/* sections + dividers */
-.sec{padding:72px 0}
-.sep{display:flex;align-items:center;justify-content:center;gap:14px;max-width:320px;margin:0 auto;padding:0 22px}
-.sep::before,.sep::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
-.sep::after{transform:scaleX(-1)}
-.sep i{width:8px;height:8px;border:1px solid var(--gold);transform:rotate(45deg)}
-@media (min-width:900px){
- .sec{padding:96px 0}
- .sep{flex-direction:column;height:120px;max-width:none;gap:10px}
- .sep::before,.sep::after{flex:1;width:1px;height:auto;background:linear-gradient(180deg,transparent,var(--gold))}
- .sep::after{transform:scaleY(-1)}
- .sep i{width:12px;height:12px;border-radius:50%;transform:none;background:var(--bg);box-shadow:0 0 0 4px var(--bg),0 0 14px rgba(201,164,92,.5)}
-}
+      /* Shared section bits */
+      .x-sec { padding: 72px var(--x-pad) 0; max-width: 1280px; }
+      .x-eyebrow { color: var(--x-gold); font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; }
+      .x-sec h2 { color: var(--x-cream); font-size: clamp(26px, 3vw, 36px); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; }
+      .x-sec h2:lang(te) { line-height: 1.4; }
+      .x-lead { color: rgba(255,255,255,.8); font-size: 16px; max-width: 56ch; margin-top: 10px; }
+      .x-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 10px; background: var(--x-gold); color: var(--x-navy); font-weight: 600; font-size: 15px; transition: transform .2s ease, background .2s ease; border: 0; font-family: var(--x-font); cursor: pointer; }
+      .x-btn:hover { background: #e9c472; transform: translateY(-1px); }
+      .x-btn svg { width: 20px; height: 20px; }
+      .x-btn--navy { background: var(--x-navy); color: var(--x-cream); }
+      .x-btn--navy:hover { background: var(--x-navy-2); }
+      .x-note { color: rgba(243,234,211,.75); font-size: 13px; margin-top: 14px; }
 
-/* reveal */
-.js .reveal{opacity:0;transform:translateY(28px);transition:opacity 1s ease,transform 1s ease}
-.js .reveal.in{opacity:1;transform:none}
+      /* Tickets */
+      .x-lgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
+      .x-tk-wrap { filter: drop-shadow(0 6px 12px rgba(0,0,0,.35)); transition: transform .25s ease, filter .25s ease; }
+      .x-tk-wrap:hover { transform: translateY(-6px); filter: drop-shadow(0 12px 18px rgba(0,0,0,.45)); }
+      .x-ticket { position: relative; display: flex; align-items: center; gap: 14px; height: 100%; padding: 13px 34px 13px 14px; color: var(--x-navy); border-radius: 6px;
+        background: radial-gradient(ellipse at 20% 10%, rgba(255,255,255,.16), transparent 60%), radial-gradient(ellipse at 90% 100%, rgba(120,84,30,.14), transparent 55%), var(--x-tan);
+        -webkit-mask: radial-gradient(circle 6px at 0 50%, #0000 96%, #000) left / 51% 21px repeat-y, radial-gradient(circle 6px at 100% 50%, #0000 96%, #000) right / 51% 21px repeat-y;
+                mask: radial-gradient(circle 6px at 0 50%, #0000 96%, #000) left / 51% 21px repeat-y, radial-gradient(circle 6px at 100% 50%, #0000 96%, #000) right / 51% 21px repeat-y; }
+      .x-ticket::after { content: ""; position: absolute; right: 16px; top: 12px; bottom: 12px; border-left: 2px dashed rgba(20,33,61,.4); }
+      .x-ticket img { width: 132px; height: 132px; object-fit: cover; border-radius: 8px; flex: none; }
+      .x-ticket__body { display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+      .x-ticket h3 { font-size: 15px; font-weight: 700; line-height: 1.15; text-transform: uppercase; letter-spacing: .01em; }
+      .x-ticket__days { font-size: 12.5px; margin-top: 3px; }
+      .x-ticket__list { list-style: none; margin: 6px 0 2px; padding: 0; font-size: 12.5px; line-height: 1.4; }
+      .x-ticket__list li { position: relative; padding-left: 11px; margin-top: 2px; }
+      .x-ticket__list li::before { content: ""; position: absolute; left: 0; top: 7px; width: 4px; height: 4px; border-radius: 50%; background: var(--x-navy); }
+      .x-ticket__price { font-size: 18px; font-weight: 700; line-height: 1.2; margin-top: 4px; }
+      .x-ticket__link { font-size: 12.5px; font-weight: 500; margin: -6px 0 -12px; display: inline-flex; align-items: center; gap: 2px; min-height: 44px; min-width: 96px; text-decoration: underline !important; text-underline-offset: 3px; color: var(--x-navy); align-self: flex-start; }
+      .x-ticket__link:hover { color: #7a4d10; }
+      .x-stamp { align-self: flex-start; margin-bottom: 7px; padding: 2px 8px; border: 1.5px solid var(--x-navy); border-radius: 3px; background: var(--x-gold); color: var(--x-navy); font-size: 12px; font-weight: 700; letter-spacing: .14em; line-height: 1.3; text-transform: uppercase; transform: rotate(-3deg); box-shadow: inset 0 0 0 2px #f0cd80; }
 
-/* journeys */
-.grid{display:grid;gap:26px;margin-top:46px}
-@media (min-width:700px){.grid--2{grid-template-columns:1fr 1fr}}
-.journey{background:var(--panel);border:1px solid var(--gold-soft);position:relative;display:flex;flex-direction:column}
-.journey::after{content:"";position:absolute;inset:6px;border:1px solid rgba(201,164,92,.12);pointer-events:none}
-.journey figure{overflow:hidden;aspect-ratio:4/3}
-.journey img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
-.journey:hover img{transform:scale(1.05)}
-.journey__body{padding:26px 24px 28px;display:flex;flex-direction:column;flex:1}
-.journey h3{font-size:32px}
-.dur{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:6px}
-.journey ul{list-style:none;margin:18px 0 20px;flex:1}
-.journey li{position:relative;padding:7px 0 7px 22px;color:var(--muted);border-bottom:1px solid rgba(201,164,92,.1)}
-.journey li::before{content:"";position:absolute;left:2px;top:16px;width:6px;height:6px;border:1px solid var(--gold);transform:rotate(45deg)}
-.price{font:italic 500 19px/1 var(--serif);color:var(--ivory);margin-bottom:18px}
-.journey .btn{position:relative;z-index:1}
+      /* Cream band */
+      .x-band { background: var(--x-cream); color: var(--x-navy); margin-top: 72px; padding-bottom: 72px; }
+      .x-band .x-sec { padding-top: 64px; }
+      .x-band .x-sec h2 { color: var(--x-navy); }
+      .x-band .x-eyebrow { color: #7a5518; }
+      .x-band .x-lead { color: #4a4636; }
 
-/* included */
-.incl{display:grid;gap:14px;margin-top:46px;grid-template-columns:1fr}
-@media (min-width:600px){.incl{grid-template-columns:repeat(2,1fr)}}
-@media (min-width:1000px){.incl{grid-template-columns:repeat(5,1fr)}}
-.incl li{list-style:none;display:flex;align-items:center;gap:16px;padding:18px;border:1px solid rgba(201,164,92,.18);background:var(--panel)}
-@media (min-width:1000px){.incl li{flex-direction:column;text-align:center;padding:30px 18px}}
-.incl svg{flex:none;width:40px;height:40px;stroke:var(--gold);fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
-.incl span{font-size:14px;line-height:1.5}
+      /* Included: a line of stations */
+      .x-line { list-style: none; margin: 36px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; position: relative; }
+      .x-line::before { content: ""; position: absolute; left: 10%; right: 10%; top: 20px; height: 12px;
+        background: linear-gradient(var(--x-navy), var(--x-navy)) 0 0 / 100% 2px no-repeat, linear-gradient(var(--x-navy), var(--x-navy)) 0 100% / 100% 2px no-repeat, repeating-linear-gradient(90deg, rgba(20,33,61,.5) 0 3px, transparent 3px 12px); }
+      .x-line li { position: relative; text-align: center; font-size: 14.5px; font-weight: 500; line-height: 1.4; }
+      .x-line .x-station__icon { width: 52px; height: 52px; margin: 0 auto 12px; color: var(--x-navy); box-shadow: 0 0 0 5px var(--x-cream), 0 0 0 7px rgba(224,180,90,.5); }
+      .x-line .x-station__icon svg { width: 26px; height: 26px; }
 
-/* occasions */
-.occ{display:grid;gap:14px;margin-top:46px}
-@media (min-width:600px){.occ{grid-template-columns:repeat(2,1fr)}}
-@media (min-width:1000px){.occ{grid-template-columns:repeat(4,1fr)}}
-.occ article{padding:28px 24px;background:var(--panel);border-top:2px solid var(--gold)}
-.occ h3{font-size:26px;font-style:italic}
-.occ p{color:var(--muted);font-size:14px;margin-top:8px}
+      /* Occasions */
+      .x-occ { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+      .x-occ > div { background: #fffdf6; color: var(--x-navy); border-radius: 12px; padding: 16px 20px; border-left: 7px solid var(--x-gold); box-shadow: 0 6px 14px rgba(20,33,61,.08); }
+      .x-occ b { display: block; font-size: 14px; text-transform: uppercase; letter-spacing: .08em; }
+      .x-occ p { font-size: 14.5px; margin-top: 4px; }
 
-/* steps */
-.steps{list-style:none;display:grid;gap:30px;margin-top:46px;counter-reset:s}
-@media (min-width:800px){.steps{grid-template-columns:repeat(4,1fr)}}
-.steps li{counter-increment:s;position:relative;padding-top:66px;text-align:center}
-.steps li::before{content:counter(s);position:absolute;top:0;left:50%;transform:translateX(-50%);width:50px;height:50px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;font:500 italic 26px/1 var(--serif);color:var(--gold)}
-.steps p{color:var(--muted);max-width:240px;margin:0 auto}
-.steps strong{display:block;font:500 22px/1.2 var(--serif);color:var(--ivory);margin-bottom:6px}
+      /* How it works */
+      .x-how { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; }
+      .x-how::before { content: ""; position: absolute; left: 12.5%; right: 12.5%; top: 24px; height: 12px;
+        background: linear-gradient(var(--x-navy), var(--x-navy)) 0 0 / 100% 2px no-repeat, linear-gradient(var(--x-navy), var(--x-navy)) 0 100% / 100% 2px no-repeat, repeating-linear-gradient(90deg, rgba(20,33,61,.5) 0 3px, transparent 3px 12px); }
+      .x-how li { text-align: center; position: relative; }
+      .x-how__num { width: 60px; height: 60px; margin: 0 auto 16px; border-radius: 50%; background: var(--x-gold); color: var(--x-navy); display: grid; place-items: center; font-size: 24px; font-weight: 700; box-shadow: 0 0 0 6px var(--x-cream), 0 0 0 8px rgba(224,180,90,.5); position: relative; }
+      .x-how h3 { color: var(--x-navy); font-size: 19px; font-weight: 600; }
+      .x-how p { color: #3f4250; font-size: 14.5px; max-width: 26ch; margin: 6px auto 0; }
 
-/* form */
-.form{max-width:760px;margin:46px auto 0;background:var(--panel);border:1px solid var(--gold-soft);padding:30px 22px;display:grid;gap:20px}
-@media (min-width:700px){.form{grid-template-columns:1fr 1fr;padding:44px}.form .full{grid-column:1/-1}}
-.field label{display:block;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-.field input,.field select,.field textarea{width:100%;min-height:48px;background:transparent;border:0;border-bottom:1px solid rgba(201,164,92,.4);color:var(--ivory);font:300 15px/1.4 var(--sans);padding:10px 2px;border-radius:0;-webkit-appearance:none;appearance:none}
-.field select{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23c9a45c'/%3E%3C/svg%3E") right 4px center no-repeat}
-.field select option{background:var(--panel)}
-.field textarea{min-height:90px;resize:vertical}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-bottom-color:var(--gold)}
-.field ::placeholder{color:#7d7668}
-.form .btn{justify-self:start}
-.note{font-size:12px;color:var(--muted)}
+      /* Design your own: reservation slip */
+      .x-trackline { position: relative; height: 54px; margin: 26px 0 0; }
+      .x-trackline::before { content: ""; position: absolute; left: 0; right: 0; bottom: 6px; height: 12px;
+        background: linear-gradient(var(--x-cream), var(--x-cream)) 0 0 / 100% 2px no-repeat, linear-gradient(var(--x-cream), var(--x-cream)) 0 100% / 100% 2px no-repeat, repeating-linear-gradient(90deg, rgba(243,234,211,.5) 0 3px, transparent 3px 13px); opacity: .7; }
+      .x-trackline i { position: absolute; bottom: 14px; width: 40px; height: 40px; border-radius: 10px; background: var(--x-red); color: var(--x-cream); display: grid; place-items: center; border: 2px solid var(--x-cream); animation: x-chug 14s linear infinite; }
+      .x-trackline i svg { width: 22px; height: 22px; }
+      @keyframes x-chug { from { left: -60px; } to { left: 100%; } }
+      .x-slip { max-width: 760px; margin-top: 18px; background: var(--x-cream); color: var(--x-navy); border-radius: 10px; padding: 22px 26px 26px; box-shadow: 0 16px 34px rgba(0,0,0,.35);
+        background-image: repeating-linear-gradient(180deg, rgba(180,150,90,.07) 0 26px, transparent 26px 27px); }
+      .x-slip__head { display: flex; flex-wrap: wrap; gap: 6px 16px; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--x-navy); padding-bottom: 10px; }
+      .x-slip__head b { font-size: 15px; letter-spacing: .1em; text-transform: uppercase; }
+      .x-slip__head span { font-size: 12px; letter-spacing: .1em; color: #6b6550; font-weight: 600; }
+      .x-field { display: grid; gap: 6px; padding: 14px 0 12px; border-bottom: 1.5px dotted rgba(20,33,61,.45); }
+      .x-field > label { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: #5a5340; }
+      .x-field input, .x-field select, .x-field textarea { width: 100%; min-height: 46px; border: 1.5px solid rgba(20,33,61,.45); border-radius: 8px; background: #fffdf6; padding: 0 12px; font: 500 15px var(--x-font); color: var(--x-navy); }
+      .x-field textarea { min-height: 90px; padding: 10px 12px; resize: vertical; }
+      .x-field ::placeholder { color: #7a7462; }
+      .x-two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .x-slip .x-btn { width: 100%; justify-content: center; margin-top: 20px; min-height: 56px; font-size: 18px; letter-spacing: .04em; text-transform: uppercase; }
+      .x-slip__note { font-size: 13px; color: #5a5340; margin-top: 10px; text-align: center; }
+      .x-slip__note.is-warn { color: var(--x-red); font-weight: 600; }
 
-/* contact */
-.contact{text-align:center}
-.contact h2{max-width:16ch;margin:16px auto 0}
-.contact .cta{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:32px}
-.contact .small{margin-top:22px;color:var(--muted);font-size:13px}
-.contact .back{display:inline-flex;align-items:center;min-height:44px;margin-top:10px;color:var(--gold);font-size:13px;letter-spacing:.08em;padding:0 4px}
-.foot{border-top:1px solid rgba(201,164,92,.18);text-align:center;padding:26px 22px;color:var(--muted);font-size:12px;letter-spacing:.08em}
+      /* Footer boarding pass */
+      .x-foot { padding: 80px var(--x-pad) 110px; max-width: 1280px; }
+      .x-pass { display: grid; grid-template-columns: 1fr 22px 300px; background: var(--x-cream); color: var(--x-navy); border-radius: 18px; overflow: hidden; box-shadow: 0 14px 30px rgba(0,0,0,.35); }
+      .x-pass__main { padding: 0 0 26px; }
+      .x-pass__band { background: var(--x-navy-2); color: var(--x-cream); display: flex; justify-content: space-between; align-items: center; padding: 12px 30px; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; border-bottom: 4px solid var(--x-gold); }
+      .x-pass__band span:last-child { color: var(--x-gold); }
+      .x-pass__brand { display: flex; align-items: center; gap: 14px; padding: 22px 30px 0; }
+      .x-pass__brand strong { font-size: 24px; line-height: 1.1; }
+      .x-pass__lead { padding: 12px 30px 0; font-size: 18px; font-weight: 600; }
+      .x-pass__fields { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 8px 40px; padding: 18px 30px 0; margin: 0; }
+      .x-pass__fields dt { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #6b6550; font-weight: 600; }
+      .x-pass__fields dd { margin: 0; font-weight: 600; font-size: 15px; }
+      .x-pass__fields a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline !important; text-underline-offset: 3px; }
+      .x-pass__fine { padding: 18px 30px 0; font-size: 13.5px; }
+      .x-pass__fine small { display: block; color: #6b6550; font-size: 12.5px; margin-top: 4px; }
+      .x-pass__fine a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; text-decoration: underline !important; text-underline-offset: 3px; }
+      .x-perf { position: relative; background: linear-gradient(var(--x-navy-2), var(--x-navy-2)) 0 0 / 100% 48px no-repeat; }
+      .x-perf::before { content: ""; position: absolute; left: 10px; top: 56px; bottom: 16px; border-left: 2px dashed rgba(20,33,61,.4); }
+      .x-perf i { position: absolute; left: -1px; width: 24px; height: 24px; border-radius: 50%; background: var(--x-navy); }
+      .x-perf i:first-child { top: -12px; } .x-perf i:last-child { bottom: -12px; }
+      .x-pass__stub { display: flex; flex-direction: column; }
+      .x-pass__stub .x-pass__band { justify-content: center; }
+      .x-pass__actions { padding: 22px 26px 26px; display: flex; flex-direction: column; gap: 10px; flex: 1; justify-content: center; }
+      .x-pass__actions .x-btn { justify-content: center; }
+      .x-barcode { height: 34px; margin-top: 6px; background: repeating-linear-gradient(90deg, var(--x-navy) 0 2px, transparent 2px 4px, var(--x-navy) 4px 7px, transparent 7px 9px, var(--x-navy) 9px 10px, transparent 10px 13px); opacity: .85; border-radius: 2px; }
 
-/* mobile bar + float */
-.bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;align-items:center;justify-content:center;gap:10px;height:56px;background-color:#c9a45c;background-image:linear-gradient(135deg,#d8b873,#c9a45c 55%,#a8853f);color:#0d1424;text-decoration:none;font:500 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase}
-.wa{display:none;position:fixed;right:26px;bottom:26px;z-index:60;width:58px;height:58px;border-radius:50%;background:var(--green);place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .3s}
-.wa:hover{transform:scale(1.08)}
-.wa svg,.bar svg{width:28px;height:28px;fill:#fff}
-.bar svg{width:18px;height:18px;fill:#0d1424}
-@media (min-width:900px){body{padding-bottom:0}.bar{display:none}.wa{display:grid}}
+      /* Floating WhatsApp */
+      .x-fab { position: fixed; right: 22px; bottom: 22px; z-index: 60; width: 60px; height: 60px; border-radius: 50%; background: #25d366; color: #fff; display: grid; place-items: center; box-shadow: 0 8px 20px rgba(0,0,0,.35); transition: transform .2s ease, opacity .25s ease, visibility .25s; }
+      .x-fab:hover { transform: scale(1.07); }
+      .x-fab svg { width: 32px; height: 32px; }
+      .x-fab.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; transform: scale(.85); }
 
-[lang="te"] h1,[lang="te"] h2{font-family:"Noto Serif Telugu",var(--serif);line-height:1.35}
-[lang="te"] .hero h1{font-size:clamp(36px,9vw,70px)}
-[lang="te"] h2{font-size:clamp(26px,5.5vw,40px)}
+      /* Mobile menu */
+      .x-page { overflow-x: clip; }
+      :where(.x-body) img { max-width: 100%; }
+      .x-burger { display: none; width: 44px; height: 44px; border-radius: 10px; border: 0; background: var(--x-navy); color: var(--x-cream); place-items: center; cursor: pointer; flex: none; }
+      .x-burger span, .x-burger span::before, .x-burger span::after { display: block; width: 20px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .2s ease, background .2s ease; }
+      .x-burger span { position: relative; }
+      .x-burger span::before, .x-burger span::after { content: ""; position: absolute; left: 0; }
+      .x-burger span::before { top: -6px; } .x-burger span::after { top: 6px; }
+      .x-burger[aria-expanded="true"] span { background: transparent; }
+      .x-burger[aria-expanded="true"] span::before { transform: translateY(6px) rotate(45deg); }
+      .x-burger[aria-expanded="true"] span::after { transform: translateY(-6px) rotate(-45deg); }
+      .x-lang__short { display: none; }
 
-@media (prefers-reduced-motion:reduce){
- *,*::before,*::after{animation:none!important;transition:none!important}
- html{scroll-behavior:auto}
- .js .reveal{opacity:1;transform:none}
- .foil::after{display:none}
-}
-</style>
-<script>document.documentElement.classList.add("js")</script>
-</head>
-<body>
-<header class="hdr" id="hdr">
- <div class="wrap">
-  <a class="logo" href="index.html">Travel Kahani <span>LUXE</span></a>
-  <nav aria-label="Main">
-   <ul class="menu" id="menu">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="#journeys">Journeys</a></li>
-    <li><a href="#occasions">Occasions</a></li>
-    <li><a href="#plan">Plan</a></li>
-    <li><a href="#contact">Contact</a></li>
-   </ul>
-  </nav>
-  <div class="tools">
-   <button class="lang" id="lang" type="button" aria-label="Switch language"><b>EN</b> / తెలుగు</button>
-   <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i></button>
-  </div>
- </div>
-</header>
+      @media (max-width: 1180px) {
+        .x-nav a { padding: 10px 8px; font-size: 15px; }
+        .x-nav a::after { left: 8px; right: 8px; }
+        .x-header__in { gap: 14px; padding-left: 24px; padding-right: 24px; }
+        .x-occ { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      @media (max-width: 1100px) {
+        .x-lgrid { grid-template-columns: 1fr; max-width: 620px; }
+        .x-line { grid-template-columns: repeat(3, 1fr); row-gap: 30px; }
+        .x-line::before { display: none; }
+      }
+      @media (max-width: 960px) {
+        :root { --x-rail: 0px; --x-pad: 22px; --x-hdr: 68px; }
+        .x-layout { display: block; }
+        .x-rail { display: none; }
+        .x-progress { display: block; }
+        .x-header__in { height: var(--x-hdr); flex-wrap: nowrap; padding: 0 12px 0 14px; gap: 8px; }
+        .x-brand { flex: 1; }
+        .x-logo { width: 46px; height: 46px; }
+        .x-brand__name { font-size: 19px; }
+        .x-actions { gap: 8px; }
+        .x-lang { font-size: 14px; padding: 0 14px; }
+        .x-burger { display: grid; }
+        .x-nav { display: none; position: absolute; left: 0; right: 0; top: 100%; margin: 0; padding: 6px 0 12px; flex-direction: column; gap: 0; background: var(--x-cream); border-top: 1px solid rgba(20,33,61,.12); box-shadow: 0 16px 28px rgba(0,0,0,.35); }
+        .x-nav.is-open { display: flex; }
+        .x-nav a { padding: 0 24px; min-height: 52px; font-size: 17px; border-radius: 0; border-bottom: 1px solid rgba(20,33,61,.08); }
+        .x-nav a::after { left: 0; right: auto; top: 10px; bottom: 10px; width: 4px; height: auto; transform: scaleY(0); }
+        .x-nav a:hover::after { transform: scaleY(.5); }
+        .x-nav a.is-active { background: rgba(224,180,90,.22); font-weight: 700; }
+        .x-nav a.is-active::after { transform: scaleY(1); }
+        .x-search { top: calc(var(--x-hdr) - 4px); right: 12px; }
+        .x-art { position: relative; width: 150%; margin-left: -50%; }
+        .x-art::after { background: linear-gradient(180deg, rgba(20,33,61,0) 55%, var(--x-navy) 98%); }
+        .x-hero__top { min-height: 0; padding-top: 0; margin-top: -60px; }
+      }
+      @media (max-width: 760px) {
+        .x-line { grid-template-columns: 1fr; gap: 16px; }
+        .x-line li { display: flex; align-items: center; gap: 16px; text-align: left; }
+        .x-line .x-station__icon { margin: 0; width: 46px; height: 46px; }
+        .x-occ { grid-template-columns: 1fr; }
+        .x-how { grid-template-columns: 1fr; gap: 28px; }
+        .x-how::before { left: 24px; right: auto; top: 30px; bottom: 30px; width: 12px; height: auto;
+          background: linear-gradient(var(--x-navy), var(--x-navy)) 0 0 / 2px 100% no-repeat, linear-gradient(var(--x-navy), var(--x-navy)) 100% 0 / 2px 100% no-repeat, repeating-linear-gradient(180deg, rgba(20,33,61,.5) 0 3px, transparent 3px 12px); }
+        .x-how li { text-align: left; display: grid; grid-template-columns: 60px 1fr; column-gap: 18px; align-items: start; }
+        .x-how__num { margin: 0; grid-row: span 2; }
+        .x-how h3 { padding-top: 6px; }
+        .x-how p { margin: 4px 0 0; }
+        .x-pass { grid-template-columns: 1fr; }
+        .x-perf { height: 22px; background: none; }
+        .x-perf::before { left: 18px; right: 18px; top: 10px; bottom: auto; border-left: 0; border-top: 2px dashed rgba(20,33,61,.4); }
+        .x-perf i { top: -1px !important; bottom: auto !important; }
+        .x-perf i:first-child { left: -12px; } .x-perf i:last-child { left: auto; right: -12px; }
+        .x-pass__stub .x-pass__band { display: none; }
+        .x-pass__actions { padding-top: 10px; }
+        .x-pass__fields { grid-template-columns: 1fr 1fr; gap: 10px 24px; padding-inline: 22px; }
+        .x-pass__brand, .x-pass__fine, .x-pass__lead { padding-inline: 22px; }
+        .x-pass__band { padding-inline: 22px; }
+        .x-foot { padding-bottom: 100px; }
+        .x-ticket-btn { font-size: 17px; min-height: 54px; }
+        .x-wa-btn { font-size: 16px; min-height: 50px; }
+        .x-fab { width: 56px; height: 56px; right: 16px; bottom: 16px; }
+        .x-slip { padding: 18px 16px 20px; }
+        .page.x-page { padding-bottom: 72px; }
+      }
+      @media (max-width: 620px) {
+        .x-two { grid-template-columns: 1fr; gap: 0; }
+        .x-ticket { gap: 12px; padding-right: 30px; }
+        .x-ticket img { width: 96px; height: 96px; }
+        .x-fab { width: 52px; height: 52px; right: 12px; bottom: 12px; }
+        .page.x-page { padding-bottom: 64px; }
+      }
+      @media (max-width: 420px) {
+        .x-lang { font-size: 13px; padding: 0 10px; }
+        .x-brand__name { font-size: 17px; }
+      }
+      @media (max-width: 400px) {
+        .x-lang__full { display: none; }
+        .x-lang__short { display: inline; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .x-trackline i { animation: none; left: 20px; }
+        .x-train { transition: none; }
+        .x-tk-wrap, .x-tk-wrap:hover { transition: none; transform: none; }
+      }
+    </style>
+  </head>
+  <body class="x-body">
+    <div class="page x-page" id="top">
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
+        <symbol id="i-train" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 10h14M9 21l1.5-4M15 21l-1.5-4"/><circle cx="9" cy="13.5" r=".6" fill="currentColor"/><circle cx="15" cy="13.5" r=".6" fill="currentColor"/></g></symbol>
+        <symbol id="i-ticket" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 0 0 4v0a2 2 0 0 0 0 4v2h18v-2a2 2 0 0 1 0-4 2 2 0 0 1 0-4V6H3z"/><path d="M15 6v2M15 11v2M15 16v2"/></g></symbol>
+        <symbol id="i-star" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></symbol>
+        <symbol id="i-heart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></g></symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+        <symbol id="i-car" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16V11l2-5h10l2 5v5M3 16h18v2H3zM5 11h14"/><circle cx="7.5" cy="13.5" r=".6" fill="currentColor"/><circle cx="16.5" cy="13.5" r=".6" fill="currentColor"/></g></symbol>
+        <symbol id="i-hotel" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V10l8-5 8 5v11zM2 21h20M10 21v-5h4v5M8 12h1M15 12h1"/></g></symbol>
+        <symbol id="i-plane" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 13l18-7-5 14-4-5-3 3v-4z M12 15l9-9"/></symbol>
+        <symbol id="i-compass" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></g></symbol>
+        <symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-3.6A8 8 0 1 1 8 19z"/><path d="M9 10h6M9 13.5h4"/></g></symbol>
+      </svg>
 
-<main>
- <section class="hero" id="top">
-  <img class="hero__img" src="lux_hero.jpg" alt="A lake palace in Udaipur at dusk, lit gold over still blue water" />
-  <div class="hero__frame" aria-hidden="true"></div>
-  <div class="wrap">
-   <p class="eyebrow">Kahani Luxe</p>
-   <h1 class="foil" data-te="మీ విలాసవంతమైన కహానీ.">Luxury, written your way.</h1>
-   <p class="hero__sub">Palace stays, private houseboats and villas across India, planned privately for you.</p>
-   <div class="cta">
-    <a class="btn btn--gold" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27d%20like%20to%20plan%20a%20luxury%20trip" target="_blank" rel="noopener">Plan my luxury trip</a>
-    <a class="btn btn--line" href="#journeys">See journeys</a>
-   </div>
-   <button class="ticket" id="ticket" type="button" aria-pressed="false" aria-label="Golden ticket: tap to flip">
-    <span class="ticket__in">
-     <span class="ticket__face"><small>KAHANI LUXE</small><strong>Admit two</strong></span>
-     <span class="ticket__face ticket__back"><small>CARRIAGE Nº 1</small><strong>FIRST CLASS</strong></span>
-    </span>
-   </button>
-  </div>
- </section>
+      <header class="x-header">
+        <div class="x-header__in">
+          <a class="x-brand" href="index.html" aria-label="Travel Kahani, home">
+            <span class="x-logo"><img src="tk_logo.png" alt="" /></span>
+            <span class="x-brand__name"><span>Travel</span><span>Kahani</span></span>
+          </a>
+          <nav class="x-nav" id="x-nav" aria-label="Main">
+            <a href="index.html">Home</a>
+            <a href="index.html#journeys">Journeys</a>
+            <a href="index.html#church-trails">Church Trails</a>
+            <a href="index.html#plan">Plan My Trip</a>
+            <a href="index.html#academy">Academy</a>
+            <a href="luxury.html" class="is-active" aria-current="page">Luxe ✦</a>
+            <a href="#contact">Contact</a>
+          </nav>
+          <div class="x-actions">
+            <button class="x-lang" type="button" id="x-lang" aria-pressed="false" aria-label="Telugu / English"><span class="x-lang__full">Telugu / English</span><span class="x-lang__short" aria-hidden="true">తె / EN</span></button>
+            <button class="x-search-btn" type="button" id="x-search-btn" aria-label="Search journeys" aria-expanded="false" aria-controls="x-search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            </button>
+            <button class="x-burger" type="button" id="x-burger" aria-label="Menu" aria-expanded="false" aria-controls="x-nav"><span></span></button>
+          </div>
+          <div class="x-search" id="x-search" role="search">
+            <input type="search" id="x-search-input" placeholder="Search journeys, e.g. Kerala" aria-label="Search journeys" />
+            <p id="x-search-msg">Type a place to filter the tickets.</p>
+          </div>
+        </div>
+        <div class="x-progress" aria-hidden="true"><span id="x-progress"></span></div>
+      </header>
 
- <section class="sec" id="journeys">
-  <div class="wrap">
-   <div class="reveal">
-    <p class="eyebrow" style="text-align:center">Signature journeys</p>
-    <h2 data-te="ప్రత్యేక ప్రయాణాలు" style="margin-top:14px">Four journeys, <em>privately yours.</em></h2>
-    <p class="lead">Each one is a starting point. We shape every day around you.</p>
-   </div>
-   <div class="grid grid--2">
-    <article class="journey reveal">
-     <figure><img src="lux_rajasthan.jpg" alt="A palace courtyard with a still pool in Rajasthan" loading="lazy" /></figure>
-     <div class="journey__body">
-      <h3>Royal Rajasthan</h3>
-      <p class="dur">7 Days / 6 Nights</p>
-      <ul><li>Heritage palace stays in Udaipur and Jaipur</li><li>Private sunset boat on Lake Pichola</li><li>Private guided city palace and fort visits</li></ul>
-      <p class="price">Price on enquiry</p>
-      <a class="btn btn--line" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27m%20interested%20in%20the%20Royal%20Rajasthan%20luxury%20journey" target="_blank" rel="noopener">Request this journey</a>
-     </div>
-    </article>
-    <article class="journey reveal">
-     <figure><img src="lux_kerala.jpg" alt="A private houseboat on Kerala's backwaters at sunset" loading="lazy" /></figure>
-     <div class="journey__body">
-      <h3>Kerala Slow Luxury</h3>
-      <p class="dur">6 Days / 5 Nights</p>
-      <ul><li>Munnar tea-estate bungalow</li><li>Ayurveda wellness retreat</li><li>Private houseboat with chef on the Alleppey backwaters</li></ul>
-      <p class="price">Price on enquiry</p>
-      <a class="btn btn--line" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27m%20interested%20in%20the%20Kerala%20Slow%20Luxury%20luxury%20journey" target="_blank" rel="noopener">Request this journey</a>
-     </div>
-    </article>
-    <article class="journey reveal">
-     <figure><img src="lux_kashmir.jpg" alt="A carved luxury houseboat on Dal Lake, Kashmir" loading="lazy" /></figure>
-     <div class="journey__body">
-      <h3>Kashmir in Comfort</h3>
-      <p class="dur">6 Days / 5 Nights</p>
-      <ul><li>Luxury houseboat on Dal Lake</li><li>Private shikara at sunrise</li><li>Gulmarg in a premium resort</li></ul>
-      <p class="price">Price on enquiry</p>
-      <a class="btn btn--line" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27m%20interested%20in%20the%20Kashmir%20in%20Comfort%20luxury%20journey" target="_blank" rel="noopener">Request this journey</a>
-     </div>
-    </article>
-    <article class="journey reveal">
-     <figure><img src="lux_goa.jpg" alt="A villa infinity pool in Goa at sunset" loading="lazy" /></figure>
-     <div class="journey__body">
-      <h3>Goa Private Villa</h3>
-      <p class="dur">5 Days / 4 Nights</p>
-      <ul><li>Private villa with pool</li><li>Sunset cruise</li><li>Old Goa and Fontainhas heritage walk with a private guide</li></ul>
-      <p class="price">Price on enquiry</p>
-      <a class="btn btn--line" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27m%20interested%20in%20the%20Goa%20Private%20Villa%20luxury%20journey" target="_blank" rel="noopener">Request this journey</a>
-     </div>
-    </article>
-   </div>
-  </div>
- </section>
+      <div class="x-layout">
+        <aside class="x-rail" aria-label="Journey stations">
+          <div class="x-rail__track" id="x-track"></div>
+          <div class="x-rail__fill" id="x-fill"></div>
+          <div class="x-train" id="x-train" aria-hidden="true"><svg><use href="#i-train" /></svg></div>
+          <ol>
+            <li><a class="x-station" href="index.html"><span class="x-station__icon"><svg><use href="#i-train" /></svg></span>Home</a></li>
+            <li><a class="x-station" href="#journeys" data-sec="journeys"><span class="x-station__icon"><svg><use href="#i-ticket" /></svg></span>Journeys</a></li>
+            <li><a class="x-station is-active" href="#top" data-sec="luxe" aria-current="true"><span class="x-station__icon"><svg><use href="#i-star" /></svg></span>Luxe</a></li>
+            <li><a class="x-station" href="#occasions" data-sec="occasions"><span class="x-station__icon"><svg><use href="#i-heart" /></svg></span>Occasions</a></li>
+            <li><a class="x-station" href="#plan" data-sec="plan"><span class="x-station__icon"><svg><use href="#i-pin" /></svg></span>Plan</a></li>
+            <li><a class="x-station" href="#contact" data-sec="contact"><span class="x-station__icon"><svg><use href="#i-phone" /></svg></span>Contact</a></li>
+          </ol>
+        </aside>
 
- <div class="sep" aria-hidden="true"><i></i></div>
+        <main class="main x-main">
+          <section class="x-hero" id="luxe" aria-label="Kahani Luxe">
+            <div class="x-art">
+              <img src="lux_hero.jpg" alt="A lake palace in Udaipur at dusk, lit gold over still blue water" />
+            </div>
+            <div class="x-hero__top">
+              <p class="x-eyebrow">Kahani Luxe</p>
+              <h1 id="x-headline" data-te="మీ విలాసవంతమైన కహానీ.">Luxury, written your way.</h1>
+              <p class="x-hero__sub">Palace stays, private houseboats and villas across India, planned privately for you.</p>
+              <div class="x-cta">
+                <a class="x-ticket-btn" href="#journeys"><span class="x-tb-main">See journeys</span><span class="x-tb-stub" aria-hidden="true"></span></a>
+                <a class="x-wa-btn" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27d%20like%20to%20plan%20a%20luxury%20trip" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa" /></svg><span>Plan my luxury trip</span></a>
+              </div>
+            </div>
+          </section>
 
- <section class="sec" id="included">
-  <div class="wrap">
-   <div class="reveal">
-    <p class="eyebrow" style="text-align:center">On every journey</p>
-    <h2 data-te="ఎప్పుడూ ఉండేవి" style="margin-top:14px">Always <em>included.</em></h2>
-   </div>
-   <ul class="incl reveal">
-    <li><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M7 25v-5l3-7h20l3 7v5z"/><path d="M7 25v4h4v-4M29 25v4h4v-4M7 20h26"/><circle cx="12" cy="22.5" r="1"/><circle cx="28" cy="22.5" r="1"/></svg><span>Private chauffeur-driven car</span></li>
-    <li><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 33V16l12-8 12 8v17z"/><path d="M16 33v-8h8v8M14 18h2M24 18h2"/><path d="M20 3l1 2 2 .3-1.5 1.4.4 2.1L20 7.8l-1.9 1 .4-2.1L17 5.3l2-.3z"/></svg><span>Handpicked 5-star and heritage stays</span></li>
-    <li><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 22l30-10-6 18-7-6-5 5v-7z"/><path d="M17 22l18-10"/></svg><span>Airport meet and greet</span></li>
-    <li><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="14"/><path d="M25 15l-3 7-7 3 3-7z"/><path d="M20 4v3M20 33v3M4 20h3M33 20h3"/></svg><span>Private local guides</span></li>
-    <li><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M7 31l2-6a13 13 0 1 1 5 5z"/><path d="M15 17h10M15 22h7"/></svg><span>A personal trip host on WhatsApp, 24/7</span></li>
-   </ul>
-  </div>
- </section>
+          <section class="x-sec" id="journeys" aria-labelledby="jr-title">
+            <p class="x-eyebrow">Signature journeys</p>
+            <h2 id="jr-title" data-te="ప్రత్యేక ప్రయాణాలు">Four journeys, privately yours.</h2>
+            <p class="x-lead">Each one is a starting point. We shape every day around you.</p>
+            <div class="x-lgrid" id="x-lgrid">
+              <div class="x-tk-wrap" data-name="royal rajasthan udaipur jaipur palace lake pichola">
+                <article class="x-ticket">
+                  <img src="lux_rajasthan.jpg" alt="A palace courtyard with a still pool in Rajasthan" />
+                  <div class="x-ticket__body">
+                    <span class="x-stamp">First class</span>
+                    <h3>Royal<br />Rajasthan</h3>
+                    <p class="x-ticket__days">7 Days / 6 Nights</p>
+                    <ul class="x-ticket__list"><li>Heritage palace stays in Udaipur and Jaipur</li><li>Private sunset boat on Lake Pichola</li><li>Private guided city palace and fort visits</li></ul>
+                    <p class="x-ticket__price">Price on enquiry</p>
+                    <a class="x-ticket__link" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27m%20interested%20in%20the%20Royal%20Rajasthan%20luxury%20journey" target="_blank" rel="noopener">Request this journey ›</a>
+                  </div>
+                </article>
+              </div>
+              <div class="x-tk-wrap" data-name="kerala slow luxury munnar alleppey houseboat ayurveda backwaters">
+                <article class="x-ticket">
+                  <img src="lux_kerala.jpg" alt="A private houseboat on Kerala's backwaters at sunset" />
+                  <div class="x-ticket__body">
+                    <span class="x-stamp">First class</span>
+                    <h3>Kerala<br />Slow Luxury</h3>
+                    <p class="x-ticket__days">6 Days / 5 Nights</p>
+                    <ul class="x-ticket__list"><li>Munnar tea-estate bungalow</li><li>Ayurveda wellness retreat</li><li>Private houseboat with chef on the Alleppey backwaters</li></ul>
+                    <p class="x-ticket__price">Price on enquiry</p>
+                    <a class="x-ticket__link" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27m%20interested%20in%20the%20Kerala%20Slow%20Luxury%20luxury%20journey" target="_blank" rel="noopener">Request this journey ›</a>
+                  </div>
+                </article>
+              </div>
+              <div class="x-tk-wrap" data-name="kashmir in comfort dal lake houseboat shikara gulmarg srinagar">
+                <article class="x-ticket">
+                  <img src="lux_kashmir.jpg" alt="A carved luxury houseboat on Dal Lake, Kashmir" />
+                  <div class="x-ticket__body">
+                    <span class="x-stamp">First class</span>
+                    <h3>Kashmir in<br />Comfort</h3>
+                    <p class="x-ticket__days">6 Days / 5 Nights</p>
+                    <ul class="x-ticket__list"><li>Luxury houseboat on Dal Lake</li><li>Private shikara at sunrise</li><li>Gulmarg in a premium resort</li></ul>
+                    <p class="x-ticket__price">Price on enquiry</p>
+                    <a class="x-ticket__link" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27m%20interested%20in%20the%20Kashmir%20in%20Comfort%20luxury%20journey" target="_blank" rel="noopener">Request this journey ›</a>
+                  </div>
+                </article>
+              </div>
+              <div class="x-tk-wrap" data-name="goa private villa pool sunset cruise old goa fontainhas beach">
+                <article class="x-ticket">
+                  <img src="lux_goa.jpg" alt="A villa infinity pool in Goa at sunset" />
+                  <div class="x-ticket__body">
+                    <span class="x-stamp">First class</span>
+                    <h3>Goa Private<br />Villa</h3>
+                    <p class="x-ticket__days">5 Days / 4 Nights</p>
+                    <ul class="x-ticket__list"><li>Private villa with pool</li><li>Sunset cruise</li><li>Old Goa and Fontainhas heritage walk with a private guide</li></ul>
+                    <p class="x-ticket__price">Price on enquiry</p>
+                    <a class="x-ticket__link" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27m%20interested%20in%20the%20Goa%20Private%20Villa%20luxury%20journey" target="_blank" rel="noopener">Request this journey ›</a>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <p class="x-note" id="x-jcount" aria-live="polite">Every journey is priced privately. Your quote comes on WhatsApp.</p>
+          </section>
 
- <div class="sep" aria-hidden="true"><i></i></div>
+          <div class="x-band">
+            <section class="x-sec" id="included" aria-labelledby="in-title">
+              <p class="x-eyebrow">On every journey</p>
+              <h2 id="in-title" data-te="ఎప్పుడూ ఉండేవి">Always included.</h2>
+              <ul class="x-line">
+                <li><span class="x-station__icon" aria-hidden="true"><svg><use href="#i-car" /></svg></span>Private chauffeur-driven car</li>
+                <li><span class="x-station__icon" aria-hidden="true"><svg><use href="#i-hotel" /></svg></span>Handpicked 5-star and heritage stays</li>
+                <li><span class="x-station__icon" aria-hidden="true"><svg><use href="#i-plane" /></svg></span>Airport meet and greet</li>
+                <li><span class="x-station__icon" aria-hidden="true"><svg><use href="#i-compass" /></svg></span>Private local guides</li>
+                <li><span class="x-station__icon" aria-hidden="true"><svg><use href="#i-chat" /></svg></span>A personal trip host on WhatsApp, 24/7</li>
+              </ul>
+            </section>
 
- <section class="sec" id="occasions">
-  <div class="wrap">
-   <div class="reveal">
-    <p class="eyebrow" style="text-align:center">Made for moments</p>
-    <h2 data-te="ప్రత్యేక సందర్భాలు" style="margin-top:14px">For the trips that <em>matter most.</em></h2>
-   </div>
-   <div class="occ reveal">
-    <article><h3>Honeymoons</h3><p>Candle-lit dinners, surprise décor and slow mornings.</p></article>
-    <article><h3>Anniversaries</h3><p>Relive your story somewhere new.</p></article>
-    <article><h3>Parents' milestone trips</h3><p>Comfort first: easy pace, the best rooms, no rushing.</p></article>
-    <article><h3>Small family celebrations</h3><p>Villas and palace suites for the whole family.</p></article>
-   </div>
-  </div>
- </section>
+            <section class="x-sec" id="occasions" aria-labelledby="oc-title">
+              <p class="x-eyebrow">Made for moments</p>
+              <h2 id="oc-title" data-te="ప్రత్యేక సందర్భాలు">For the trips that matter most.</h2>
+              <div class="x-occ">
+                <div><b>Honeymoons</b><p>Candle-lit dinners, surprise décor and slow mornings.</p></div>
+                <div><b>Anniversaries</b><p>Relive your story somewhere new.</p></div>
+                <div><b>Parents' milestone trips</b><p>Comfort first: easy pace, the best rooms, no rushing.</p></div>
+                <div><b>Small family celebrations</b><p>Villas and palace suites for the whole family.</p></div>
+              </div>
+            </section>
 
- <div class="sep" aria-hidden="true"><i></i></div>
+            <section class="x-sec" id="how" aria-labelledby="how-title">
+              <p class="x-eyebrow">Four quiet steps</p>
+              <h2 id="how-title" data-te="ఎలా పనిచేస్తుంది">How it works.</h2>
+              <ol class="x-how">
+                <li><span class="x-how__num">1</span><h3>Share</h3><p>Share your dates and wishes.</p></li>
+                <li><span class="x-how__num">2</span><h3>Design</h3><p>We design your trip and send a private quote within 24 hours.</p></li>
+                <li><span class="x-how__num">3</span><h3>Confirm</h3><p>Confirm when it feels right.</p></li>
+                <li><span class="x-how__num">4</span><h3>Travel</h3><p>Travel; we handle every detail.</p></li>
+              </ol>
+            </section>
+          </div>
 
- <section class="sec" id="how">
-  <div class="wrap">
-   <div class="reveal">
-    <p class="eyebrow" style="text-align:center">Four quiet steps</p>
-    <h2 data-te="ఎలా పనిచేస్తుంది" style="margin-top:14px">How it <em>works.</em></h2>
-   </div>
-   <ol class="steps reveal">
-    <li><p><strong>Share</strong>Share your dates and wishes.</p></li>
-    <li><p><strong>Design</strong>We design your trip and send a private quote within 24 hours.</p></li>
-    <li><p><strong>Confirm</strong>Confirm when it feels right.</p></li>
-    <li><p><strong>Travel</strong>Travel; we handle every detail.</p></li>
-   </ol>
-  </div>
- </section>
+          <section class="x-sec" id="plan" aria-labelledby="pl-title">
+            <p class="x-eyebrow">Design your own</p>
+            <h2 id="pl-title" data-te="మీ ప్రయాణం మీరే రూపొందించండి">Tell us your kahani.</h2>
+            <p class="x-lead">A few details, and we reply on WhatsApp with a private quote within 24 hours.</p>
+            <div class="x-trackline" aria-hidden="true"><i><svg><use href="#i-train" /></svg></i></div>
+            <form class="x-slip" id="planForm" novalidate>
+              <div class="x-slip__head"><b>Reservation slip — Kahani Luxe</b><span>FIRST CLASS · PRIVATE QUOTE</span></div>
+              <div class="x-two">
+                <div class="x-field"><label for="f-dest">Destination</label>
+                  <select id="f-dest" required><option value="" disabled selected>Choose a destination</option><option>Rajasthan</option><option>Kerala</option><option>Kashmir</option><option>Goa</option><option>Somewhere else</option></select>
+                </div>
+                <div class="x-field"><label for="f-dates">Travel dates</label><input id="f-dates" type="text" placeholder="e.g. 12–18 December" /></div>
+              </div>
+              <div class="x-two">
+                <div class="x-field"><label for="f-pax">Number of travellers</label><input id="f-pax" type="number" min="1" inputmode="numeric" placeholder="2" /></div>
+                <div class="x-field"><label for="f-budget">Budget per person</label>
+                  <select id="f-budget"><option value="" disabled selected>Choose a range</option><option>₹50,000–1 lakh</option><option>₹1–2 lakh</option><option>₹2 lakh+</option></select>
+                </div>
+              </div>
+              <div class="x-two">
+                <div class="x-field"><label for="f-occ">Occasion</label>
+                  <select id="f-occ"><option value="" disabled selected>Choose an occasion</option><option>Honeymoon</option><option>Anniversary</option><option>Family celebration</option><option>Just because</option></select>
+                </div>
+                <div class="x-field"><label for="f-name">Your name</label><input id="f-name" type="text" autocomplete="name" required /></div>
+              </div>
+              <div class="x-field"><label for="f-notes">Notes</label><textarea id="f-notes" placeholder="Rooms, pace, surprises, anything we should know"></textarea></div>
+              <button class="x-btn" type="submit">Send on WhatsApp</button>
+              <p class="x-slip__note" id="formNote" role="status">Opens WhatsApp with your details. Nothing is booked or paid.</p>
+            </form>
+          </section>
 
- <div class="sep" aria-hidden="true"><i></i></div>
+          <footer class="x-foot" id="contact" aria-label="Contact">
+            <div class="x-pass">
+              <div class="x-pass__main">
+                <div class="x-pass__band"><span>Boarding pass</span><span>Contact</span></div>
+                <div class="x-pass__brand">
+                  <span class="x-logo"><img src="tk_logo.png" alt="" /></span>
+                  <strong>Travel Kahani · Hyderabad</strong>
+                </div>
+                <p class="x-pass__lead">Your private journey starts with a message.</p>
+                <dl class="x-pass__fields">
+                  <div><dt>From</dt><dd>Hyderabad</dd></div>
+                  <div><dt>WhatsApp &amp; Call</dt><dd><a href="tel:+917671819808">+91 76718 19808</a></dd></div>
+                  <div><dt>Class</dt><dd>First class</dd></div>
+                </dl>
+                <p class="x-pass__fine">Enquiry only. No online payments.<small>© 2026 Travel Kahani</small><a href="index.html">← Back to Travel Kahani</a></p>
+              </div>
+              <div class="x-perf" aria-hidden="true"><i></i><i></i></div>
+              <div class="x-pass__stub">
+                <div class="x-pass__band"><span>Board here</span></div>
+                <div class="x-pass__actions">
+                  <a class="x-btn" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27d%20like%20to%20plan%20a%20luxury%20trip" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa" /></svg>WhatsApp us</a>
+                  <a class="x-btn x-btn--navy" href="tel:+917671819808"><svg aria-hidden="true"><use href="#i-phone" /></svg>Call +91 76718 19808</a>
+                  <div class="x-barcode" aria-hidden="true"></div>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </main>
+      </div>
 
- <section class="sec" id="plan">
-  <div class="wrap">
-   <div class="reveal">
-    <p class="eyebrow" style="text-align:center">Design your own</p>
-    <h2 data-te="మీ ప్రయాణం మీరే రూపొందించండి" style="margin-top:14px">Tell us your <em>kahani.</em></h2>
-    <p class="lead">A few details, and we reply on WhatsApp with a private quote within 24 hours.</p>
-   </div>
-   <form class="form reveal" id="planForm" novalidate>
-    <div class="field"><label for="f-dest">Destination</label>
-     <select id="f-dest" required><option value="" disabled selected>Choose a destination</option><option>Rajasthan</option><option>Kerala</option><option>Kashmir</option><option>Goa</option><option>Somewhere else</option></select></div>
-    <div class="field"><label for="f-dates">Travel dates</label><input id="f-dates" type="text" placeholder="e.g. 12–18 December" /></div>
-    <div class="field"><label for="f-pax">Number of travellers</label><input id="f-pax" type="number" min="1" inputmode="numeric" placeholder="2" /></div>
-    <div class="field"><label for="f-budget">Budget per person</label>
-     <select id="f-budget"><option value="" disabled selected>Choose a range</option><option>₹50,000–1 lakh</option><option>₹1–2 lakh</option><option>₹2 lakh+</option></select></div>
-    <div class="field"><label for="f-occ">Occasion</label>
-     <select id="f-occ"><option value="" disabled selected>Choose an occasion</option><option>Honeymoon</option><option>Anniversary</option><option>Family celebration</option><option>Just because</option></select></div>
-    <div class="field"><label for="f-name">Your name</label><input id="f-name" type="text" autocomplete="name" required /></div>
-    <div class="field full"><label for="f-notes">Notes</label><textarea id="f-notes" placeholder="Rooms, pace, surprises, anything we should know"></textarea></div>
-    <div class="full"><button class="btn btn--gold" type="submit">Send on WhatsApp</button>
-     <p class="note" id="formNote" role="status" style="margin-top:12px">Opens WhatsApp with your details. Nothing is booked or paid.</p></div>
-   </form>
-  </div>
- </section>
+      <a class="x-fab" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27d%20like%20a%20private%20luxury%20quote" target="_blank" rel="noopener" aria-label="Request a private quote on WhatsApp"><svg aria-hidden="true"><use href="#i-wa" /></svg></a>
+    </div>
+    <script src="hark.js"></script>
+    <script>
+      (function () {
+        var $ = function (s, r) { return (r || document).querySelector(s); };
+        var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
- <div class="sep" aria-hidden="true"><i></i></div>
+        // Rail: the train leaves the Luxe station and runs down to Contact as you scroll
+        var rail = $(".x-rail"), train = $("#x-train"), fill = $("#x-fill"), track = $("#x-track"), bar = $("#x-progress");
+        var stations = $$(".x-station[data-sec]");
+        var stops = [["luxe", "luxe"], ["occasions", "occasions"], ["plan", "plan"], ["contact", "contact"]];
+        var current = "";
+        function iconY(sec) {
+          var a = $('.x-station[data-sec="' + sec + '"] .x-station__icon');
+          var r = a.getBoundingClientRect(), rr = rail.getBoundingClientRect();
+          return r.top - rr.top + r.height / 2;
+        }
+        function update() {
+          var max = document.documentElement.scrollHeight - window.innerHeight;
+          var p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+          bar.style.width = p * 100 + "%";
+          if (rail.offsetParent) {
+            var from = iconY("luxe"), to = iconY("contact"), y = from + p * (to - from);
+            train.style.top = y + "px";
+            fill.style.height = Math.max(0, y - track.offsetTop) + "px";
+          }
+          var cur = "luxe", line = window.innerHeight * 0.4;
+          stops.forEach(function (s) { var el = document.getElementById(s[0]); if (el && el.getBoundingClientRect().top < line) cur = s[1]; });
+          if (p > 0.985 && max > 200) cur = "contact";
+          if (cur !== current) {
+            current = cur;
+            stations.forEach(function (a) {
+              var on = a.getAttribute("data-sec") === cur;
+              a.classList.toggle("is-active", on);
+              if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+            });
+          }
+        }
+        var ticking = false;
+        window.addEventListener("scroll", function () { if (ticking) return; ticking = true; requestAnimationFrame(function () { update(); ticking = false; }); }, { passive: true });
+        window.addEventListener("resize", update);
+        window.addEventListener("load", update);
+        update();
 
- <section class="sec contact" id="contact">
-  <div class="wrap reveal">
-   <p class="eyebrow">Contact</p>
-   <h2>Your private journey starts with <em>a message.</em></h2>
-   <div class="cta">
-    <a class="btn btn--gold" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27d%20like%20to%20plan%20a%20luxury%20trip" target="_blank" rel="noopener">WhatsApp us</a>
-    <a class="btn btn--line" href="tel:+917671819808">Call +91 76718 19808</a>
-   </div>
-   <p class="small">Enquiry only. No online payments.</p>
-   <a class="back" href="index.html">← Back to Travel Kahani</a>
-  </div>
- </section>
-</main>
+        // Mobile menu
+        var burger = $("#x-burger"), navEl = $("#x-nav");
+        function closeMenu() { navEl.classList.remove("is-open"); burger.setAttribute("aria-expanded", "false"); }
+        burger.addEventListener("click", function () {
+          var open = navEl.classList.toggle("is-open");
+          burger.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+        $$("#x-nav a").forEach(function (a) { a.addEventListener("click", closeMenu); });
+        document.addEventListener("click", function (e) { if (navEl.classList.contains("is-open") && !navEl.contains(e.target) && !burger.contains(e.target)) closeMenu(); });
+        document.addEventListener("keydown", function (e) { if (e.key === "Escape" && navEl.classList.contains("is-open")) { closeMenu(); burger.focus(); } });
 
-<footer class="foot">© 2026 Travel Kahani · Hyderabad</footer>
+        // Telugu / English
+        var langBtn = $("#x-lang"), te = false;
+        var nodes = $$("[data-te]");
+        nodes.forEach(function (n) { n.setAttribute("data-en", n.textContent); });
+        langBtn.addEventListener("click", function () {
+          te = !te;
+          langBtn.setAttribute("aria-pressed", te ? "true" : "false");
+          nodes.forEach(function (n) { n.textContent = n.getAttribute(te ? "data-te" : "data-en"); n.setAttribute("lang", te ? "te" : "en"); });
+        });
 
-<a class="bar" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27d%20like%20a%20private%20luxury%20quote" target="_blank" rel="noopener">
- <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6a10.6 10.6 0 0 1-5.4-1.5l-.4-.2-3.9 1 1-3.8-.2-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8.9 3.9.8a3.3 3.3 0 0 0 2.1-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.2-.3-.3-.7-.5z"/></svg>
- Request a private quote</a>
-<a class="wa" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27d%20like%20a%20private%20luxury%20quote" target="_blank" rel="noopener" aria-label="Request a private quote on WhatsApp">
- <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6a10.6 10.6 0 0 1-5.4-1.5l-.4-.2-3.9 1 1-3.8-.2-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8.9 3.9.8a3.3 3.3 0 0 0 2.1-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.2-.3-.3-.7-.5z"/></svg>
-</a>
+        // Search filters the luxe tickets
+        var sBtn = $("#x-search-btn"), sBox = $("#x-search"), sIn = $("#x-search-input"), sMsg = $("#x-search-msg");
+        var cards = $$("#x-lgrid .x-tk-wrap"), jNote = $("#x-jcount"), jBase = jNote.textContent;
+        sBtn.addEventListener("click", function () {
+          var open = sBox.classList.toggle("is-open");
+          sBtn.setAttribute("aria-expanded", open ? "true" : "false");
+          if (open) sIn.focus();
+        });
+        document.addEventListener("keydown", function (e) { if (e.key === "Escape" && sBox.classList.contains("is-open")) { sBox.classList.remove("is-open"); sBtn.setAttribute("aria-expanded", "false"); sBtn.focus(); } });
+        sIn.addEventListener("input", function () {
+          var q = sIn.value.trim().toLowerCase(), n = 0;
+          cards.forEach(function (c) { var ok = !q || c.getAttribute("data-name").indexOf(q) > -1; c.style.display = ok ? "" : "none"; if (ok) n++; });
+          var msg = !q ? "Type a place to filter the tickets." : n ? n + " journey" + (n > 1 ? "s" : "") + " found." : "No ticket yet. Ask us on WhatsApp, we plan custom journeys.";
+          sMsg.textContent = msg;
+          jNote.textContent = q ? msg : jBase;
+          update();
+        });
+        sIn.addEventListener("keydown", function (e) {
+          if (e.key === "Enter") { sBox.classList.remove("is-open"); sBtn.setAttribute("aria-expanded", "false"); $("#journeys").scrollIntoView({ behavior: reduce ? "auto" : "smooth" }); }
+        });
 
-<script>
-(function(){
- var hdr=document.getElementById("hdr"),burger=document.getElementById("burger");
- burger.addEventListener("click",function(){var o=hdr.classList.toggle("open");burger.setAttribute("aria-expanded",o);burger.setAttribute("aria-label",o?"Close menu":"Open menu")});
- document.querySelectorAll("#menu a").forEach(function(a){a.addEventListener("click",function(){hdr.classList.remove("open");burger.setAttribute("aria-expanded","false")})});
+        // Design your own: send the slip on WhatsApp
+        var form = $("#planForm"), note = $("#formNote");
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var v = function (id) { return document.getElementById(id).value.trim(); };
+          if (!v("f-dest") || !v("f-name")) { note.textContent = "Please choose a destination and add your name."; note.classList.add("is-warn"); return; }
+          var lines = ["Hi Travel Kahani, I'd like a private luxury quote.", "", "Name: " + v("f-name"), "Destination: " + v("f-dest")];
+          if (v("f-dates")) lines.push("Travel dates: " + v("f-dates"));
+          if (v("f-pax")) lines.push("Travellers: " + v("f-pax"));
+          if (v("f-budget")) lines.push("Budget per person: " + v("f-budget"));
+          if (v("f-occ")) lines.push("Occasion: " + v("f-occ"));
+          if (v("f-notes")) lines.push("Notes: " + v("f-notes"));
+          note.textContent = "Opening WhatsApp…"; note.classList.remove("is-warn");
+          window.open("https://wa.me/917671819808?text=" + encodeURIComponent(lines.join("\n")), "_blank", "noopener");
+        });
 
- var lang=document.getElementById("lang"),te=false,els=document.querySelectorAll("[data-te]");
- var shine=function(){document.querySelectorAll(".foil").forEach(function(h){h.setAttribute("data-shine",h.textContent)})};
- els.forEach(function(el){el.dataset.en=el.innerHTML});shine();
- lang.addEventListener("click",function(){
-  te=!te;document.documentElement.lang=te?"te":"en";
-  els.forEach(function(el){el.innerHTML=te?el.dataset.te:el.dataset.en});shine();
-  lang.innerHTML=te?"EN / <b>తెలుగు</b>":"<b>EN</b> / తెలుగు";
- });
-
- var t=document.getElementById("ticket");
- t.addEventListener("click",function(){t.setAttribute("aria-pressed",t.getAttribute("aria-pressed")!=="true")});
-
- var items=document.querySelectorAll(".reveal");
- if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion: reduce)").matches){
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -40px 0px"});
-  items.forEach(function(el){io.observe(el)});
- }else{items.forEach(function(el){el.classList.add("in")})}
-
- var form=document.getElementById("planForm"),note=document.getElementById("formNote");
- form.addEventListener("submit",function(e){
-  e.preventDefault();
-  var v=function(id){return document.getElementById(id).value.trim()};
-  if(!v("f-dest")||!v("f-name")){note.textContent="Please choose a destination and add your name.";note.style.color="#c9a45c";return}
-  var lines=["Hi Travel Kahani, I'd like a private luxury quote.","","Name: "+v("f-name"),"Destination: "+v("f-dest")];
-  if(v("f-dates"))lines.push("Travel dates: "+v("f-dates"));
-  if(v("f-pax"))lines.push("Travellers: "+v("f-pax"));
-  if(v("f-budget"))lines.push("Budget per person: "+v("f-budget"));
-  if(v("f-occ"))lines.push("Occasion: "+v("f-occ"));
-  if(v("f-notes"))lines.push("Notes: "+v("f-notes"));
-  note.textContent="Opening WhatsApp…";note.style.color="";
-  window.open("https://wa.me/917671819808?text="+encodeURIComponent(lines.join("\n")),"_blank","noopener");
- });
-})();
-</script>
-</body>
+        // Floating WhatsApp: fade out while another WhatsApp or call button is on screen
+        (function () {
+          var fab = $(".x-fab");
+          if (!fab || !("IntersectionObserver" in window)) return;
+          var seen = new Set();
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) { if (en.isIntersecting) seen.add(en.target); else seen.delete(en.target); });
+            fab.classList.toggle("is-hidden", seen.size > 0);
+            if (seen.size > 0) fab.setAttribute("tabindex", "-1"); else fab.removeAttribute("tabindex");
+          }, { threshold: 0.01 });
+          $$('a.x-btn[href*="wa.me"], a.x-wa-btn, a[href^="tel:"], #planForm .x-btn').forEach(function (el) { io.observe(el); });
+        })();
+      })();
+    </script>
+  </body>
 </html>
