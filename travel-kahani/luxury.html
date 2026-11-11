@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kahani Luxe · Luxury journeys by Travel Kahani</title>
+<meta name="description" content="Palace stays, private houseboats and villas across India, planned privately by Travel Kahani, Hyderabad." />
+<meta name="theme-color" content="#0d1424" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Poppins:wght@300;400;500&family=Noto+Serif+Telugu:wght@500&display=swap" />
+<style>
+:root{--bg:#0d1424;--panel:#141d33;--gold:#c9a45c;--gold-soft:rgba(201,164,92,.35);--ivory:#f4ecdc;--muted:#b9b0a0;--green:#25d366;
+--serif:"Cormorant Garamond","Noto Serif Telugu",Georgia,"Times New Roman",serif;--sans:"Poppins","Noto Serif Telugu",system-ui,-apple-system,"Segoe UI",sans-serif;--max:1120px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--ivory);font:300 15px/1.7 var(--sans);-webkit-font-smoothing:antialiased;padding-bottom:64px}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;letter-spacing:.01em}
+h2{font-size:clamp(34px,7vw,52px);text-align:center}
+h2 em,h1 em{font-style:italic;color:var(--gold)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+.eyebrow{font:500 12px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+.lead{color:var(--muted);text-align:center;max-width:560px;margin:14px auto 0}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 26px;border-radius:2px;font:500 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:1px solid var(--gold);transition:background .3s,color .3s,transform .3s}
+.btn--gold{background-color:#c9a45c;background-image:linear-gradient(135deg,#d8b873,#c9a45c 55%,#a8853f);color:#0d1424}
+.btn--gold:hover{transform:translateY(-2px)}
+.btn--line{background:transparent;color:var(--ivory)}
+.btn--line:hover{background:rgba(201,164,92,.12)}
+
+/* header */
+.hdr{position:fixed;inset:0 0 auto;z-index:50;background:rgba(13,20,36,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,164,92,.18)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font:600 24px/1 var(--serif);text-decoration:none;display:flex;align-items:center;gap:8px;min-height:44px}
+.logo span{font:500 12px/1 var(--sans);letter-spacing:.2em;color:var(--gold);border:1px solid var(--gold);padding:4px 5px 4px 7px}
+.menu{display:flex;align-items:center;gap:28px;list-style:none}
+.menu a{text-decoration:none;font-size:13px;letter-spacing:.08em;color:var(--muted);transition:color .2s}
+.menu a:hover{color:var(--gold)}
+.tools{display:flex;align-items:center;gap:10px}
+.lang{background:none;border:1px solid var(--gold-soft);color:var(--ivory);border-radius:99px;min-height:44px;padding:0 14px;font:400 12px/1 var(--sans);cursor:pointer}
+.lang b{color:var(--gold);font-weight:500}
+.burger{display:none;width:48px;height:48px;background:none;border:0;cursor:pointer;position:relative}
+.burger i,.burger i::before,.burger i::after{position:absolute;left:13px;width:22px;height:1px;background:var(--gold);content:"";transition:transform .3s}
+.burger i{top:24px}.burger i::before{left:0;top:-7px}.burger i::after{left:0;top:7px}
+.open .burger i{background:transparent}.open .burger i::before{transform:translateY(7px) rotate(45deg)}.open .burger i::after{transform:translateY(-7px) rotate(-45deg)}
+@media (max-width:899px){
+ .burger{display:block}
+ .menu{position:absolute;top:68px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--gold-soft);max-height:0;overflow:hidden;transition:max-height .4s ease}
+ .open .menu{max-height:360px}
+ .menu li{width:100%;text-align:center}
+ .menu a{display:block;padding:14px;font-size:15px}
+}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;padding:110px 0 70px}
+.hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% center;animation:kb 28s ease-in-out infinite alternate;transform-origin:70% 50%}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.12)}}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(13,20,36,.9) 0%,rgba(13,20,36,.55) 55%,rgba(13,20,36,.1) 100%),linear-gradient(0deg,var(--bg) 0%,transparent 40%)}
+.hero__frame{position:absolute;inset:84px 12px 14px;z-index:2;border:1px solid var(--gold-soft);pointer-events:none}
+.hero__frame::after{content:"";position:absolute;inset:5px;border:1px solid rgba(201,164,92,.15)}
+.hero .wrap{position:relative;z-index:3;width:100%}
+.hero h1{font-size:clamp(46px,12vw,92px);margin:18px 0 18px;max-width:11ch}
+.foil{position:relative;color:var(--ivory)}
+.foil::after{content:attr(data-shine);position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,transparent 0%,transparent 40%,#e9cf8f 47%,#fff6dc 50%,#c9a45c 53%,transparent 60%,transparent 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:foil 7s ease-in-out infinite}
+@keyframes foil{0%{background-position:100% 0}60%,100%{background-position:0 0}}
+.hero__sub{color:var(--muted);max-width:440px;font-size:16px}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.ticket{position:absolute;right:22px;top:-46px;width:176px;height:92px;perspective:700px;background:none;border:0;cursor:pointer;z-index:3}
+.ticket__in{position:relative;width:100%;height:100%;transition:transform .8s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.ticket:hover .ticket__in,.ticket[aria-pressed="true"] .ticket__in{transform:rotateY(180deg)}
+.ticket__face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#0d1424;background-color:#c9a45c;background-image:linear-gradient(135deg,#e2c483,#c9a45c 60%,#a8853f);border-radius:4px;
+ -webkit-mask:radial-gradient(circle 7px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 7px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat;mask:radial-gradient(circle 7px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 7px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat}
+.ticket__face::before{content:"";position:absolute;inset:5px 12px;border:1px dashed rgba(13,20,36,.4)}
+.ticket__face small{font:500 12px/1 var(--sans);letter-spacing:.14em}
+.ticket__face strong{font:600 italic 20px/1 var(--serif)}
+.ticket__back{transform:rotateY(180deg)}
+.ticket__back strong{font:600 18px/1 var(--serif);letter-spacing:.14em;font-style:normal}
+@media (min-width:900px){.hero{padding-bottom:110px}.hero__frame{inset:92px 28px 28px}.ticket{right:60px;top:auto;bottom:0}}
+
+/* sections + dividers */
+.sec{padding:72px 0}
+.sep{display:flex;align-items:center;justify-content:center;gap:14px;max-width:320px;margin:0 auto;padding:0 22px}
+.sep::before,.sep::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.sep::after{transform:scaleX(-1)}
+.sep i{width:8px;height:8px;border:1px solid var(--gold);transform:rotate(45deg)}
+@media (min-width:900px){
+ .sec{padding:96px 0}
+ .sep{flex-direction:column;height:120px;max-width:none;gap:10px}
+ .sep::before,.sep::after{flex:1;width:1px;height:auto;background:linear-gradient(180deg,transparent,var(--gold))}
+ .sep::after{transform:scaleY(-1)}
+ .sep i{width:12px;height:12px;border-radius:50%;transform:none;background:var(--bg);box-shadow:0 0 0 4px var(--bg),0 0 14px rgba(201,164,92,.5)}
+}
+
+/* reveal */
+.js .reveal{opacity:0;transform:translateY(28px);transition:opacity 1s ease,transform 1s ease}
+.js .reveal.in{opacity:1;transform:none}
+
+/* journeys */
+.grid{display:grid;gap:26px;margin-top:46px}
+@media (min-width:700px){.grid--2{grid-template-columns:1fr 1fr}}
+.journey{background:var(--panel);border:1px solid var(--gold-soft);position:relative;display:flex;flex-direction:column}
+.journey::after{content:"";position:absolute;inset:6px;border:1px solid rgba(201,164,92,.12);pointer-events:none}
+.journey figure{overflow:hidden;aspect-ratio:4/3}
+.journey img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+.journey:hover img{transform:scale(1.05)}
+.journey__body{padding:26px 24px 28px;display:flex;flex-direction:column;flex:1}
+.journey h3{font-size:32px}
+.dur{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:6px}
+.journey ul{list-style:none;margin:18px 0 20px;flex:1}
+.journey li{position:relative;padding:7px 0 7px 22px;color:var(--muted);border-bottom:1px solid rgba(201,164,92,.1)}
+.journey li::before{content:"";position:absolute;left:2px;top:16px;width:6px;height:6px;border:1px solid var(--gold);transform:rotate(45deg)}
+.price{font:italic 500 19px/1 var(--serif);color:var(--ivory);margin-bottom:18px}
+.journey .btn{position:relative;z-index:1}
+
+/* included */
+.incl{display:grid;gap:14px;margin-top:46px;grid-template-columns:1fr}
+@media (min-width:600px){.incl{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1000px){.incl{grid-template-columns:repeat(5,1fr)}}
+.incl li{list-style:none;display:flex;align-items:center;gap:16px;padding:18px;border:1px solid rgba(201,164,92,.18);background:var(--panel)}
+@media (min-width:1000px){.incl li{flex-direction:column;text-align:center;padding:30px 18px}}
+.incl svg{flex:none;width:40px;height:40px;stroke:var(--gold);fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.incl span{font-size:14px;line-height:1.5}
+
+/* occasions */
+.occ{display:grid;gap:14px;margin-top:46px}
+@media (min-width:600px){.occ{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1000px){.occ{grid-template-columns:repeat(4,1fr)}}
+.occ article{padding:28px 24px;background:var(--panel);border-top:2px solid var(--gold)}
+.occ h3{font-size:26px;font-style:italic}
+.occ p{color:var(--muted);font-size:14px;margin-top:8px}
+
+/* steps */
+.steps{list-style:none;display:grid;gap:30px;margin-top:46px;counter-reset:s}
+@media (min-width:800px){.steps{grid-template-columns:repeat(4,1fr)}}
+.steps li{counter-increment:s;position:relative;padding-top:66px;text-align:center}
+.steps li::before{content:counter(s);position:absolute;top:0;left:50%;transform:translateX(-50%);width:50px;height:50px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;font:500 italic 26px/1 var(--serif);color:var(--gold)}
+.steps p{color:var(--muted);max-width:240px;margin:0 auto}
+.steps strong{display:block;font:500 22px/1.2 var(--serif);color:var(--ivory);margin-bottom:6px}
+
+/* form */
+.form{max-width:760px;margin:46px auto 0;background:var(--panel);border:1px solid var(--gold-soft);padding:30px 22px;display:grid;gap:20px}
+@media (min-width:700px){.form{grid-template-columns:1fr 1fr;padding:44px}.form .full{grid-column:1/-1}}
+.field label{display:block;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.field input,.field select,.field textarea{width:100%;min-height:48px;background:transparent;border:0;border-bottom:1px solid rgba(201,164,92,.4);color:var(--ivory);font:300 15px/1.4 var(--sans);padding:10px 2px;border-radius:0;-webkit-appearance:none;appearance:none}
+.field select{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23c9a45c'/%3E%3C/svg%3E") right 4px center no-repeat}
+.field select option{background:var(--panel)}
+.field textarea{min-height:90px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-bottom-color:var(--gold)}
+.field ::placeholder{color:#7d7668}
+.form .btn{justify-self:start}
+.note{font-size:12px;color:var(--muted)}
+
+/* contact */
+.contact{text-align:center}
+.contact h2{max-width:16ch;margin:16px auto 0}
+.contact .cta{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:32px}
+.contact .small{margin-top:22px;color:var(--muted);font-size:13px}
+.contact .back{display:inline-flex;align-items:center;min-height:44px;margin-top:10px;color:var(--gold);font-size:13px;letter-spacing:.08em;padding:0 4px}
+.foot{border-top:1px solid rgba(201,164,92,.18);text-align:center;padding:26px 22px;color:var(--muted);font-size:12px;letter-spacing:.08em}
+
+/* mobile bar + float */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;align-items:center;justify-content:center;gap:10px;height:56px;background-color:#c9a45c;background-image:linear-gradient(135deg,#d8b873,#c9a45c 55%,#a8853f);color:#0d1424;text-decoration:none;font:500 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase}
+.wa{display:none;position:fixed;right:26px;bottom:26px;z-index:60;width:58px;height:58px;border-radius:50%;background:var(--green);place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .3s}
+.wa:hover{transform:scale(1.08)}
+.wa svg,.bar svg{width:28px;height:28px;fill:#fff}
+.bar svg{width:18px;height:18px;fill:#0d1424}
+@media (min-width:900px){body{padding-bottom:0}.bar{display:none}.wa{display:grid}}
+
+[lang="te"] h1,[lang="te"] h2{font-family:"Noto Serif Telugu",var(--serif);line-height:1.35}
+[lang="te"] .hero h1{font-size:clamp(36px,9vw,70px)}
+[lang="te"] h2{font-size:clamp(26px,5.5vw,40px)}
+
+@media (prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation:none!important;transition:none!important}
+ html{scroll-behavior:auto}
+ .js .reveal{opacity:1;transform:none}
+ .foil::after{display:none}
+}
+</style>
+<script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+<header class="hdr" id="hdr">
+ <div class="wrap">
+  <a class="logo" href="index.html">Travel Kahani <span>LUXE</span></a>
+  <nav aria-label="Main">
+   <ul class="menu" id="menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#journeys">Journeys</a></li>
+    <li><a href="#occasions">Occasions</a></li>
+    <li><a href="#plan">Plan</a></li>
+    <li><a href="#contact">Contact</a></li>
+   </ul>
+  </nav>
+  <div class="tools">
+   <button class="lang" id="lang" type="button" aria-label="Switch language"><b>EN</b> / తెలుగు</button>
+   <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i></button>
+  </div>
+ </div>
+</header>
+
+<main>
+ <section class="hero" id="top">
+  <img class="hero__img" src="lux_hero.jpg" alt="A lake palace in Udaipur at dusk, lit gold over still blue water" />
+  <div class="hero__frame" aria-hidden="true"></div>
+  <div class="wrap">
+   <p class="eyebrow">Kahani Luxe</p>
+   <h1 class="foil" data-te="మీ విలాసవంతమైన కహానీ.">Luxury, written your way.</h1>
+   <p class="hero__sub">Palace stays, private houseboats and villas across India, planned privately for you.</p>
+   <div class="cta">
+    <a class="btn btn--gold" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27d%20like%20to%20plan%20a%20luxury%20trip" target="_blank" rel="noopener">Plan my luxury trip</a>
+    <a class="btn btn--line" href="#journeys">See journeys</a>
+   </div>
+   <button class="ticket" id="ticket" type="button" aria-pressed="false" aria-label="Golden ticket: tap to flip">
+    <span class="ticket__in">
+     <span class="ticket__face"><small>KAHANI LUXE</small><strong>Admit two</strong></span>
+     <span class="ticket__face ticket__back"><small>CARRIAGE Nº 1</small><strong>FIRST CLASS</strong></span>
+    </span>
+   </button>
+  </div>
+ </section>
+
+ <section class="sec" id="journeys">
+  <div class="wrap">
+   <div class="reveal">
+    <p class="eyebrow" style="text-align:center">Signature journeys</p>
+    <h2 data-te="ప్రత్యేక ప్రయాణాలు" style="margin-top:14px">Four journeys, <em>privately yours.</em></h2>
+    <p class="lead">Each one is a starting point. We shape every day around you.</p>
+   </div>
+   <div class="grid grid--2">
+    <article class="journey reveal">
+     <figure><img src="lux_rajasthan.jpg" alt="A palace courtyard with a still pool in Rajasthan" loading="lazy" /></figure>
+     <div class="journey__body">
+      <h3>Royal Rajasthan</h3>
+      <p class="dur">7 Days / 6 Nights</p>
+      <ul><li>Heritage palace stays in Udaipur and Jaipur</li><li>Private sunset boat on Lake Pichola</li><li>Private guided city palace and fort visits</li></ul>
+      <p class="price">Price on enquiry</p>
+      <a class="btn btn--line" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27m%20interested%20in%20the%20Royal%20Rajasthan%20luxury%20journey" target="_blank" rel="noopener">Request this journey</a>
+     </div>
+    </article>
+    <article class="journey reveal">
+     <figure><img src="lux_kerala.jpg" alt="A private houseboat on Kerala's backwaters at sunset" loading="lazy" /></figure>
+     <div class="journey__body">
+      <h3>Kerala Slow Luxury</h3>
+      <p class="dur">6 Days / 5 Nights</p>
+      <ul><li>Munnar tea-estate bungalow</li><li>Ayurveda wellness retreat</li><li>Private houseboat with chef on the Alleppey backwaters</li></ul>
+      <p class="price">Price on enquiry</p>
+      <a class="btn btn--line" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27m%20interested%20in%20the%20Kerala%20Slow%20Luxury%20luxury%20journey" target="_blank" rel="noopener">Request this journey</a>
+     </div>
+    </article>
+    <article class="journey reveal">
+     <figure><img src="lux_kashmir.jpg" alt="A carved luxury houseboat on Dal Lake, Kashmir" loading="lazy" /></figure>
+     <div class="journey__body">
+      <h3>Kashmir in Comfort</h3>
+      <p class="dur">6 Days / 5 Nights</p>
+      <ul><li>Luxury houseboat on Dal Lake</li><li>Private shikara at sunrise</li><li>Gulmarg in a premium resort</li></ul>
+      <p class="price">Price on enquiry</p>
+      <a class="btn btn--line" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27m%20interested%20in%20the%20Kashmir%20in%20Comfort%20luxury%20journey" target="_blank" rel="noopener">Request this journey</a>
+     </div>
+    </article>
+    <article class="journey reveal">
+     <figure><img src="lux_goa.jpg" alt="A villa infinity pool in Goa at sunset" loading="lazy" /></figure>
+     <div class="journey__body">
+      <h3>Goa Private Villa</h3>
+      <p class="dur">5 Days / 4 Nights</p>
+      <ul><li>Private villa with pool</li><li>Sunset cruise</li><li>Old Goa and Fontainhas heritage walk with a private guide</li></ul>
+      <p class="price">Price on enquiry</p>
+      <a class="btn btn--line" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27m%20interested%20in%20the%20Goa%20Private%20Villa%20luxury%20journey" target="_blank" rel="noopener">Request this journey</a>
+     </div>
+    </article>
+   </div>
+  </div>
+ </section>
+
+ <div class="sep" aria-hidden="true"><i></i></div>
+
+ <section class="sec" id="included">
+  <div class="wrap">
+   <div class="reveal">
+    <p class="eyebrow" style="text-align:center">On every journey</p>
+    <h2 data-te="ఎప్పుడూ ఉండేవి" style="margin-top:14px">Always <em>included.</em></h2>
+   </div>
+   <ul class="incl reveal">
+    <li><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M7 25v-5l3-7h20l3 7v5z"/><path d="M7 25v4h4v-4M29 25v4h4v-4M7 20h26"/><circle cx="12" cy="22.5" r="1"/><circle cx="28" cy="22.5" r="1"/></svg><span>Private chauffeur-driven car</span></li>
+    <li><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 33V16l12-8 12 8v17z"/><path d="M16 33v-8h8v8M14 18h2M24 18h2"/><path d="M20 3l1 2 2 .3-1.5 1.4.4 2.1L20 7.8l-1.9 1 .4-2.1L17 5.3l2-.3z"/></svg><span>Handpicked 5-star and heritage stays</span></li>
+    <li><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 22l30-10-6 18-7-6-5 5v-7z"/><path d="M17 22l18-10"/></svg><span>Airport meet and greet</span></li>
+    <li><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="14"/><path d="M25 15l-3 7-7 3 3-7z"/><path d="M20 4v3M20 33v3M4 20h3M33 20h3"/></svg><span>Private local guides</span></li>
+    <li><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M7 31l2-6a13 13 0 1 1 5 5z"/><path d="M15 17h10M15 22h7"/></svg><span>A personal trip host on WhatsApp, 24/7</span></li>
+   </ul>
+  </div>
+ </section>
+
+ <div class="sep" aria-hidden="true"><i></i></div>
+
+ <section class="sec" id="occasions">
+  <div class="wrap">
+   <div class="reveal">
+    <p class="eyebrow" style="text-align:center">Made for moments</p>
+    <h2 data-te="ప్రత్యేక సందర్భాలు" style="margin-top:14px">For the trips that <em>matter most.</em></h2>
+   </div>
+   <div class="occ reveal">
+    <article><h3>Honeymoons</h3><p>Candle-lit dinners, surprise décor and slow mornings.</p></article>
+    <article><h3>Anniversaries</h3><p>Relive your story somewhere new.</p></article>
+    <article><h3>Parents' milestone trips</h3><p>Comfort first: easy pace, the best rooms, no rushing.</p></article>
+    <article><h3>Small family celebrations</h3><p>Villas and palace suites for the whole family.</p></article>
+   </div>
+  </div>
+ </section>
+
+ <div class="sep" aria-hidden="true"><i></i></div>
+
+ <section class="sec" id="how">
+  <div class="wrap">
+   <div class="reveal">
+    <p class="eyebrow" style="text-align:center">Four quiet steps</p>
+    <h2 data-te="ఎలా పనిచేస్తుంది" style="margin-top:14px">How it <em>works.</em></h2>
+   </div>
+   <ol class="steps reveal">
+    <li><p><strong>Share</strong>Share your dates and wishes.</p></li>
+    <li><p><strong>Design</strong>We design your trip and send a private quote within 24 hours.</p></li>
+    <li><p><strong>Confirm</strong>Confirm when it feels right.</p></li>
+    <li><p><strong>Travel</strong>Travel; we handle every detail.</p></li>
+   </ol>
+  </div>
+ </section>
+
+ <div class="sep" aria-hidden="true"><i></i></div>
+
+ <section class="sec" id="plan">
+  <div class="wrap">
+   <div class="reveal">
+    <p class="eyebrow" style="text-align:center">Design your own</p>
+    <h2 data-te="మీ ప్రయాణం మీరే రూపొందించండి" style="margin-top:14px">Tell us your <em>kahani.</em></h2>
+    <p class="lead">A few details, and we reply on WhatsApp with a private quote within 24 hours.</p>
+   </div>
+   <form class="form reveal" id="planForm" novalidate>
+    <div class="field"><label for="f-dest">Destination</label>
+     <select id="f-dest" required><option value="" disabled selected>Choose a destination</option><option>Rajasthan</option><option>Kerala</option><option>Kashmir</option><option>Goa</option><option>Somewhere else</option></select></div>
+    <div class="field"><label for="f-dates">Travel dates</label><input id="f-dates" type="text" placeholder="e.g. 12–18 December" /></div>
+    <div class="field"><label for="f-pax">Number of travellers</label><input id="f-pax" type="number" min="1" inputmode="numeric" placeholder="2" /></div>
+    <div class="field"><label for="f-budget">Budget per person</label>
+     <select id="f-budget"><option value="" disabled selected>Choose a range</option><option>₹50,000–1 lakh</option><option>₹1–2 lakh</option><option>₹2 lakh+</option></select></div>
+    <div class="field"><label for="f-occ">Occasion</label>
+     <select id="f-occ"><option value="" disabled selected>Choose an occasion</option><option>Honeymoon</option><option>Anniversary</option><option>Family celebration</option><option>Just because</option></select></div>
+    <div class="field"><label for="f-name">Your name</label><input id="f-name" type="text" autocomplete="name" required /></div>
+    <div class="field full"><label for="f-notes">Notes</label><textarea id="f-notes" placeholder="Rooms, pace, surprises, anything we should know"></textarea></div>
+    <div class="full"><button class="btn btn--gold" type="submit">Send on WhatsApp</button>
+     <p class="note" id="formNote" role="status" style="margin-top:12px">Opens WhatsApp with your details. Nothing is booked or paid.</p></div>
+   </form>
+  </div>
+ </section>
+
+ <div class="sep" aria-hidden="true"><i></i></div>
+
+ <section class="sec contact" id="contact">
+  <div class="wrap reveal">
+   <p class="eyebrow">Contact</p>
+   <h2>Your private journey starts with <em>a message.</em></h2>
+   <div class="cta">
+    <a class="btn btn--gold" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27d%20like%20to%20plan%20a%20luxury%20trip" target="_blank" rel="noopener">WhatsApp us</a>
+    <a class="btn btn--line" href="tel:+917671819808">Call +91 76718 19808</a>
+   </div>
+   <p class="small">Enquiry only. No online payments.</p>
+   <a class="back" href="index.html">← Back to Travel Kahani</a>
+  </div>
+ </section>
+</main>
+
+<footer class="foot">© 2026 Travel Kahani · Hyderabad</footer>
+
+<a class="bar" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27d%20like%20a%20private%20luxury%20quote" target="_blank" rel="noopener">
+ <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6a10.6 10.6 0 0 1-5.4-1.5l-.4-.2-3.9 1 1-3.8-.2-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8.9 3.9.8a3.3 3.3 0 0 0 2.1-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.2-.3-.3-.7-.5z"/></svg>
+ Request a private quote</a>
+<a class="wa" href="https://wa.me/917671819808?text=Hi%20Travel%20Kahani%2C%20I%27d%20like%20a%20private%20luxury%20quote" target="_blank" rel="noopener" aria-label="Request a private quote on WhatsApp">
+ <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6a10.6 10.6 0 0 1-5.4-1.5l-.4-.2-3.9 1 1-3.8-.2-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8.9 3.9.8a3.3 3.3 0 0 0 2.1-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.2-.3-.3-.7-.5z"/></svg>
+</a>
+
+<script>
+(function(){
+ var hdr=document.getElementById("hdr"),burger=document.getElementById("burger");
+ burger.addEventListener("click",function(){var o=hdr.classList.toggle("open");burger.setAttribute("aria-expanded",o);burger.setAttribute("aria-label",o?"Close menu":"Open menu")});
+ document.querySelectorAll("#menu a").forEach(function(a){a.addEventListener("click",function(){hdr.classList.remove("open");burger.setAttribute("aria-expanded","false")})});
+
+ var lang=document.getElementById("lang"),te=false,els=document.querySelectorAll("[data-te]");
+ var shine=function(){document.querySelectorAll(".foil").forEach(function(h){h.setAttribute("data-shine",h.textContent)})};
+ els.forEach(function(el){el.dataset.en=el.innerHTML});shine();
+ lang.addEventListener("click",function(){
+  te=!te;document.documentElement.lang=te?"te":"en";
+  els.forEach(function(el){el.innerHTML=te?el.dataset.te:el.dataset.en});shine();
+  lang.innerHTML=te?"EN / <b>తెలుగు</b>":"<b>EN</b> / తెలుగు";
+ });
+
+ var t=document.getElementById("ticket");
+ t.addEventListener("click",function(){t.setAttribute("aria-pressed",t.getAttribute("aria-pressed")!=="true")});
+
+ var items=document.querySelectorAll(".reveal");
+ if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion: reduce)").matches){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -40px 0px"});
+  items.forEach(function(el){io.observe(el)});
+ }else{items.forEach(function(el){el.classList.add("in")})}
+
+ var form=document.getElementById("planForm"),note=document.getElementById("formNote");
+ form.addEventListener("submit",function(e){
+  e.preventDefault();
+  var v=function(id){return document.getElementById(id).value.trim()};
+  if(!v("f-dest")||!v("f-name")){note.textContent="Please choose a destination and add your name.";note.style.color="#c9a45c";return}
+  var lines=["Hi Travel Kahani, I'd like a private luxury quote.","","Name: "+v("f-name"),"Destination: "+v("f-dest")];
+  if(v("f-dates"))lines.push("Travel dates: "+v("f-dates"));
+  if(v("f-pax"))lines.push("Travellers: "+v("f-pax"));
+  if(v("f-budget"))lines.push("Budget per person: "+v("f-budget"));
+  if(v("f-occ"))lines.push("Occasion: "+v("f-occ"));
+  if(v("f-notes"))lines.push("Notes: "+v("f-notes"));
+  note.textContent="Opening WhatsApp…";note.style.color="";
+  window.open("https://wa.me/917671819808?text="+encodeURIComponent(lines.join("\n")),"_blank","noopener");
+ });
+})();
+</script>
+</body>
+</html>
